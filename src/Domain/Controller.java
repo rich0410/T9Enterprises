@@ -1,5 +1,6 @@
 package Domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import DataAccess.DataGenerator;
@@ -11,9 +12,9 @@ public class Controller {
 	private Person user;
 	private Database dB;
 	private HashMap<String, String> names = new HashMap<String, String>();
-	private HashMap<String, String[]> schedule = new HashMap<String, String[]>();
+	private HashMap<String, ArrayList<String>> schedule = new HashMap<String, ArrayList<String>>();
 	public DataGenerator dG;
-	private GUI gui;
+	//private GUI gui;
 
 	private Controller(){
 	}
@@ -27,16 +28,16 @@ public class Controller {
 	 */
 	public void startup(){
 		loadData();
-		initGUI();
+		//initGUI();
 	}
 	
 	/**
 	 * Instantiate the GUI object and invoke the method to display the interface.
 	 */
-	private void initGUI() {
+	/*private void initGUI() {
 		GUI gui = new GUI();
 		gui.init();
-	}
+	}*/
 
 	/**
 	 * Creates a teacher object and sets it as the active user. If there is no record of the teacher in the database it will be updated.
@@ -44,24 +45,24 @@ public class Controller {
 	 * @param lastName
 	 * @param email
 	 */
-	public void createTeacher(){
+	/*public void createTeacher(){
 		Teacher teacher = new Teacher(names.get("First Name"), names.get("Last Name"), "");
 		user = teacher;
 		
 		//If the teacher doesn't exist in the database, insert the teacher as a new record.
 		if(!dB.teacherExists())
 			dB.commitTeacher(teacher);
-	}
+	}*/
 	
 	/**
 	 * Adds a new timetable to the teacher. The old timetable will be overwritten.
 	 */
-	public void createTimetable(){
+	/*public void createTimetable(){
 		if(user.getClass().equals(Teacher.class)){
 			Timetable tTable = new Timetable();
 			user.setTimetable(tTable);
 		}
-	}
+	}*/
 	
 	
 	public void addSlotToTimeTable(){
