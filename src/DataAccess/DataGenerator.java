@@ -47,7 +47,9 @@ public class DataGenerator {
 			sched = new ArrayList<String>();
 			
 			//Extract the name 
-			if(records[0].equals("NAME")){					
+			if(records[0].equals("")){
+			}
+			else if(records[0].equals("NAME")){					
 				names.put("First Name", records[1]);
 				names.put("Last Name", records[2]);
 			}
