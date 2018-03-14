@@ -1,13 +1,13 @@
 package Domain;
 
-public class Person {
+import java.util.ArrayList;
+
+public class User {
 	
-	private String firstName, lastName, email;
+	private String firstName, lastName, email, userID;
 	
-	public Person(String firstName, String lastName, String email){
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
+	public User(String userID){
+		this.userID = userID;
 	}
 	
 	protected String getFirstName(){
@@ -32,5 +32,9 @@ public class Person {
 	
 	protected void setEmail(String email){
 		this.email = email;
+	}
+	
+	protected String getID(){
+		return userID;
 	}
 }

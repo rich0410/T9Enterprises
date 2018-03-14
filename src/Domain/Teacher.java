@@ -2,12 +2,12 @@ package Domain;
 
 import java.util.Date;
 
-public class Teacher extends Person{
+public class Teacher extends User{
 	
 	Time_Table timetable = new Time_Table();
 
-	public Teacher(String firstName, String lastName, String email){
-		super(firstName, lastName, email);
+	public Teacher(String userID){
+		super(userID);
 	}
 
 	/**
