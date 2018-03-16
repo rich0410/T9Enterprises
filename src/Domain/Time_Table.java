@@ -1,30 +1,53 @@
 package Domain;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Time_Table {
-    private TimeSlot timeSlot;
+	
+	//A HashMap representing a schedule. The key will be the day of the week and the value will be an ArrayList of TimeSlot objects.
+    private HashMap<String, ArrayList<TimeSlot>> schedule;
 
 
-    public Time_Table(){}
-
-    protected void addSlot(Time Start_time , Time end_Time, String room_number,String coursename){    // This method is used to add the slot the the time table to book an appointment.
-
-       timeSlot = new TimeSlot(room_number,Start_time , end_Time);
-       timeSlot.setCourse(coursename);
-
-
-
+    public Time_Table(){
+    	initSchedule();
     }
 
-    protected void removeSlot(Time Start_time , Time end_Time, String room_number){ // This method is used to remove the added timeslot from the database.
+    /**
+     * This will initialize the schedule object with default values.
+     */
+    private void initSchedule() {
+    	schedule = new HashMap<String, ArrayList<TimeSlot>>();
+    	
+		schedule.put("Monday", new ArrayList<TimeSlot>());						//There will be a collection of TimeSlots identified by
+		schedule.put("Tuesday", new ArrayList<TimeSlot>());						//a day of the week. 
+		schedule.put("Wednesday", new ArrayList<TimeSlot>());
+		schedule.put("Thursday", new ArrayList<TimeSlot>());
+		schedule.put("Friday", new ArrayList<TimeSlot>());
+		
+	}
 
-        timeSlot = new TimeSlot(room_number,Start_time , end_Time);
-
+	protected void addSlot(TimeSlot tSlot){    
+    	ArrayList<TimeSlot> dailySched = schedule.get(tSlot.getDay());
+    	
+    	dailySched.add(tSlot); 	
     }
 
-    protected TimeSlot getTimeSlot(Time DateTime){
+    protected void removeSlot(TimeSlot tSlot){ 
+    	ArrayList<TimeSlot> dailySched = schedule.get(tSlot.getDay());
+    	
+    	if(dailySched.contains(tSlot)){
+    		dailySched.remove(tSlot);     
+    	}
+	}
 
+    protected TimeSlot getTimeSlot(String courseCode){
+    	TimeSlot timeSlot = null;
+    	
+    	do{
+    	//	schedule.get
+    	}while(timeSlot != null);
 
         return  timeSlot;
     }

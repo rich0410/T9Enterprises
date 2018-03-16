@@ -4,7 +4,8 @@ import java.util.Date;
 
 public class Teacher extends User{
 	
-	Time_Table timetable = new Time_Table();
+	//A collection of 15 Timetable objects, one for every week in the semester.
+	Time_Table[] timetable = new Time_Table[15];
 
 	public Teacher(String userID){
 		super(userID);

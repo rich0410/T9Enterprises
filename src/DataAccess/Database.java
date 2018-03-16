@@ -31,35 +31,54 @@ public class Database {
 		}
 	}
 	
-	public boolean teacherExists(String firstName, String lastName){
-		boolean exists = false;
-		try {
-			pSt = conn.prepareStatement("SELECT * FROM TEACHERS WHERE FIRSTNAME = ? AND LASTNAME = ? ");
-			pSt.setString(1, firstName);
-			pSt.setString(2, lastName);
-			rS = pSt.executeQuery();
-			
-			exists = rS.next();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return exists;
-	}
 
 	public boolean userIsAdmin(String userID) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean idPresent = false;
+		
+		try {
+			pSt = conn.prepareStatement("");		//SQL query will go here to retrieve admin user's data if their userID is in the Admin table.
+			pSt.setString(1, userID);
+			rS = pSt.executeQuery();
+			
+			idPresent = rS.next();		
+			
+		}catch(SQLException e){
+			
+		}
+			return idPresent;
 	}
 
 	public boolean userIsTeacher(String userID) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean idPresent = false;
+		
+		try {
+			pSt = conn.prepareStatement("");		//SQL query will go here to retrieve teacher user's data if their userID is in the Teacher table.
+			pSt.setString(1, userID);
+			rS = pSt.executeQuery();
+			
+			idPresent = rS.next();		
+			
+		}catch(SQLException e){
+			
+		}
+			return idPresent;
 	}
 
 	public boolean userIsStudent(String userID) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean idPresent = false;
+		
+		try {
+			pSt = conn.prepareStatement("");		//SQL query will go here to retrieve student user's data if their userID is in the Student table..
+			pSt.setString(1, userID);
+			rS = pSt.executeQuery();
+			
+			idPresent = rS.next();		
+			
+		}catch(SQLException e){
+			
+		}
+			return idPresent;
 	}
 
 	public HashMap<String, String> getStudentInfo(String userID) {

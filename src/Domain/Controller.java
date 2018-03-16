@@ -35,6 +35,13 @@ public class Controller {
 		//initGUI();
 	}
 	
+	/**
+	 * Called by the GUI layer this method will pass the user ID and password to the UserLogin object to actually perform
+	 * the authentication.
+	 * @param userID
+	 * @param password
+	 * @return
+	 */
 	public boolean authenticateUser(String userID, String password){
 		boolean verify = false;
 		UserLogin uL = new UserLogin();
@@ -42,12 +49,16 @@ public class Controller {
 			
 			loadUser(userID);
 			
-			invokeHomepage();
 			verify =true;
 		}
 		return verify;
 	}
 	
+	/**
+	 * Once the user has been authenticated the=is method will call the database object to check the user's role. Once the user's
+	 * role is determined the proper user object wil be created to represent the user's data.
+	 * @param userID
+	 */
 	private void loadUser(String userID) {
 
 		if(dB.userIsAdmin(userID)){
@@ -86,20 +97,7 @@ public class Controller {
 		gui.init();
 	}*/
 
-	/**
-	 * Creates a teacher object and sets it as the active user. If there is no record of the teacher in the database it will be updated.
-	 * @param firstName
-	 * @param lastName
-	 * @param email
-	 */
-	/*public void createTeacher(){
-		Teacher teacher = new Teacher(names.get("First Name"), names.get("Last Name"), "");
-		user = teacher;
-		
-		//If the teacher doesn't exist in the database, insert the teacher as a new record.
-		if(!dB.teacherExists())
-			dB.commitTeacher(teacher);
-	}*/
+	
 	
 	/**
 	 * Adds a new timetable to the teacher. The old timetable will be overwritten.

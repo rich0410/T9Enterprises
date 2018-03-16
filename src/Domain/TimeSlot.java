@@ -4,18 +4,16 @@ import java.sql.Time;
 
 public class TimeSlot {
     private Time startTime;
-    private Time endTime;
     private String room_number;
-    private Time day;
+    private String day;
     private int duration;
     private boolean cancelled;
     private String course;
 
     public TimeSlot(){}
 
-    public TimeSlot(String room_number,Time startTime,Time endTime){
+    public TimeSlot(String room_number,Time startTime){
         this.startTime = startTime;
-        this.endTime = endTime;
         this.room_number = room_number;
     }
 
@@ -24,9 +22,6 @@ public class TimeSlot {
     }
     protected int getDuration(){
         return duration;
-    }
-    protected Time getEndTime(){
-        return endTime;
     }
 
     protected String getRoom_number(){
@@ -46,10 +41,6 @@ public class TimeSlot {
         this.startTime = startTime;
     }
 
-    protected void setEndTime(Time endTime){
-        this.endTime = endTime;
-    }
-
     protected  void setRoom_number(){
         this.room_number = room_number;
     }
@@ -61,4 +52,9 @@ public class TimeSlot {
     protected  void setCourse( String course){
         this.course = course;
     }
+
+	public String getDay() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
