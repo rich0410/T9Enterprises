@@ -6,7 +6,8 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		ctl = Controller.getController();
-		ctl.startup();
+		ctl.startup(args);
+
 	}
 
 }

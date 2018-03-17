@@ -5,9 +5,15 @@ import java.util.HashMap;
 
 import DataAccess.DataGenerator;
 import DataAccess.Database;
+import UI.GUI;
 import User.UserLogin;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Controller {
+public class Controller{
 	
 	private static final Controller ctl = new Controller();
 	private Student student;
@@ -19,7 +25,7 @@ public class Controller {
 	private HashMap<String, ArrayList<String>> schedule = new HashMap<String, ArrayList<String>>();
 	public DataGenerator dG;
 	private HashMap<String, String> userData;
-	//private GUI gui;
+
 
 	private Controller(){
 	}
@@ -31,12 +37,12 @@ public class Controller {
 	/**
 	 * Load data and initiate the GUI object.
 	 */
-	public void startup(){
+	public void startup(String[] args){
 		dB = new Database();
 		dB.connectDatabase();
 		dB.setupHashMap();
 		//loadData();
-		//initGUI();
+		initGUI(args);
 	}
 	
 	public User getTeacher(){
@@ -102,10 +108,11 @@ public class Controller {
 	/**
 	 * Instantiate the GUI object and invoke the method to display the interface.
 	 */
-	/*private void initGUI() {
-		GUI gui = new GUI();
-		gui.init();
-	}*/
+	private void initGUI(String[] args) {
+
+		Application.launch(GUI.class,args);
+
+	}
 
 	
 	
@@ -137,6 +144,8 @@ public class Controller {
 		names = dG.getNames();
 		schedule =dG.getSched();
 	}*/
+
+
 	
 	
 }
