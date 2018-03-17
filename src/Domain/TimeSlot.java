@@ -1,23 +1,18 @@
 package Domain;
 
 import java.sql.Time;
+import java.time.LocalTime;
 
 public class TimeSlot {
-    private Time startTime;
+    private LocalTime startTime;
     private String room_number;
-    private String day;
     private int duration;
     private boolean cancelled;
     private String course;
 
     public TimeSlot(){}
 
-    public TimeSlot(String room_number,Time startTime){
-        this.startTime = startTime;
-        this.room_number = room_number;
-    }
-
-    protected Time getStartTime(){
+    protected LocalTime getStartTime(){
         return startTime;
     }
     protected int getDuration(){
@@ -32,16 +27,15 @@ public class TimeSlot {
         return  course;
     }
 
-
     protected boolean isCancelled(){
         return cancelled;
     }
 
-    protected void setStartTime(Time startTime){
-        this.startTime = startTime;
+    protected void setStartTime(String startTime){
+        this.startTime = LocalTime.parse(startTime);
     }
 
-    protected  void setRoom_number(){
+    protected  void setRoom_number(String room_number){
         this.room_number = room_number;
     }
 
@@ -49,12 +43,7 @@ public class TimeSlot {
         this.duration = duration;
     }
 
-    protected  void setCourse( String course){
+    protected  void setCourse(String course){
         this.course = course;
     }
-
-	public String getDay() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -8,6 +8,7 @@ public class Time_Table {
 	
 	//A HashMap representing a schedule. The key will be the day of the week and the value will be an ArrayList of TimeSlot objects.
     private HashMap<String, ArrayList<TimeSlot>> schedule;
+    private TimeSlot tSlot;
 
 
     public Time_Table(){
@@ -28,14 +29,14 @@ public class Time_Table {
 		
 	}
 
-	protected void addSlot(TimeSlot tSlot){    
-    	ArrayList<TimeSlot> dailySched = schedule.get(tSlot.getDay());
+	protected void addSlot(String day, TimeSlot tSlot){    
+    	ArrayList<TimeSlot> dailySched = schedule.get(day);
     	
     	dailySched.add(tSlot); 	
     }
 
-    protected void removeSlot(TimeSlot tSlot){ 
-    	ArrayList<TimeSlot> dailySched = schedule.get(tSlot.getDay());
+    protected void removeSlot(String day, TimeSlot tSlot){ 
+    	ArrayList<TimeSlot> dailySched = schedule.get(day);
     	
     	if(dailySched.contains(tSlot)){
     		dailySched.remove(tSlot);     
@@ -51,5 +52,29 @@ public class Time_Table {
 
         return  timeSlot;
     }
+    
+	public void addSlots(HashMap<String, ArrayList<String>> slotInfo) {
+		
+		boolean moreSlots = true;
+		int counter = 0;
+		
+		while(moreSlots){
+			
+			tSlot = new TimeSlot();
+
+			tSlot.setCourse(slotInfo.get("Course").get(counter));
+			tSlot.setStartTime(slotInfo.get("Time").get(counter));
+			tSlot.setDuration(Integer.parseInt(slotInfo.get("Duration").get(counter)));
+		
+			schedule.get(slotInfo.get("Day")).add(tSlot);
+			
+			counter++; 
+			
+			if(counter >= slotInfo.get("Course").size()){
+				moreSlots = false;
+			}
+		}
+		
+	}
 
 }

@@ -10,7 +10,10 @@ import User.UserLogin;
 public class Controller {
 	
 	private static final Controller ctl = new Controller();
-	private User user;
+	private Student student;
+	private Teacher teacher;
+	private Admin admin;
+
 	private Database dB;
 	private HashMap<String, String> names = new HashMap<String, String>();
 	private HashMap<String, ArrayList<String>> schedule = new HashMap<String, ArrayList<String>>();
@@ -31,8 +34,13 @@ public class Controller {
 	public void startup(){
 		dB = new Database();
 		dB.connectDatabase();
-		loadData();
+		dB.setupHashMap();
+		//loadData();
 		//initGUI();
+	}
+	
+	public User getTeacher(){
+		return teacher;
 	}
 	
 	/**
@@ -49,44 +57,46 @@ public class Controller {
 			
 			loadUser(userID);
 			
-			verify =true;
+			verify = true;
 		}
 		return verify;
 	}
 	
 	/**
 	 * Once the user has been authenticated the=is method will call the database object to check the user's role. Once the user's
-	 * role is determined the proper user object wil be created to represent the user's data.
+	 * role is determined the proper user object will be created to represent the user's data.
 	 * @param userID
 	 */
 	private void loadUser(String userID) {
 
 		if(dB.userIsAdmin(userID)){
-			user = new Admin(userID);
+			admin = new Admin(userID);
 			userData = dB.getAdminInfo(userID);
 			
 		}
 		else if(dB.userIsTeacher(userID)){
-			user = new Teacher(userID);
+			teacher = new Teacher(userID);
 			userData = dB.getTeacherInfo(userID);
 			
-			/*Set the data from HashMap userData to the attributes of the Teacher object*/
-
+			teacher.setFirstName(userData.get("First Name"));
+			teacher.setLastName(userData.get("Larst Name"));
+			teacher.setEmail(userData.get("Email"));
+			
+			createTimetable(userID);
 			
 		}
 		else if(dB.userIsStudent(userID)){
-			user = new Student(userID);
+			student = new Student(userID);
 			userData = dB.getStudentInfo(userID);
 		}
 	}
 
 	private void invokeHomepage() {
 
-		if (user instanceof Teacher){
+		
 			
 			/*Invoke the teacher home page displaying the teacher's timetable*/
 			
-		}
 	}
 
 	/**
@@ -102,12 +112,16 @@ public class Controller {
 	/**
 	 * Adds a new timetable to the teacher. The old timetable will be overwritten.
 	 */
-	/*public void createTimetable(){
-		if(user.getClass().equals(Teacher.class)){
-			Timetable tTable = new Timetable();
-			user.setTimetable(tTable);
-		}
-	}*/
+	private void createTimetable(String userID){
+		HashMap<String, ArrayList<String>> schedule = dB.getScheduleData(userID);
+		HashMap<String, ArrayList<String>> office = dB.getOfficeData(userID);
+		
+		Time_Table tTable = new Time_Table();
+		tTable.addSlots(schedule);
+		tTable.addSlots(office);
+		
+		teacher.setTimeTable(tTable);
+	}
 	
 	
 	public void addSlotToTimeTable(){
@@ -117,12 +131,12 @@ public class Controller {
 	/**
 	 * Reads the teacher timetable data to be passed to the presentation layer.
 	 */
-	protected void loadData(){
+	/*protected void loadData(){
 		dG = new DataGenerator();
 		dG.readFile();
 		names = dG.getNames();
 		schedule =dG.getSched();
-	}
+	}*/
 	
 	
 }

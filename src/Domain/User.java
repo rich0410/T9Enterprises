@@ -22,7 +22,7 @@ public class User {
 		return lastName;
 	}
 	
-	protected void setlastName(String lastName){
+	protected void setLastName(String lastName){
 		this.lastName = lastName;
 	}
 	
