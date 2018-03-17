@@ -1,0 +1,60 @@
+INSERT INTO Teacher(TeacherID, FirstName, LastName, EmailAddress) VALUES
+('000111222', 'Roland', 'Biggs', 'bigg2212@algonquincollege.com'),
+('054743566', 'Jack', 'Jefferson', 'jeff2364@algonquincollege.com'),
+('078656544', 'Hugo', 'Bertrani', 'bert0443@algonquincollege.com'),
+('026887345', 'Jeff', 'Akil', 'akil2020@algonquincollege.com'),
+('023435788', 'Alfonso', 'Isabella', 'isab0023@algonquincollege.com'),
+('096357467', 'Sigfried', 'VonEden', 'vone6744@algonquincollege.com'),
+('053354897', 'Erin', 'Snyder', 'snyd9954@algonquincollege.com'),
+('097546554', 'Hanna', 'Mulder', 'muld2247@algonquincollege.com');
+
+INSERT INTO Courses(CourseCode, Title) VALUES
+('CST9245', 'Electro-Engineering'),
+('CST4435', 'Java Programming'),
+('CST1134', 'Intro to Web')
+;
+
+INSERT INTO Student(StudentID, FirstName, LastName, EmailAddress)VALUES
+('123234234', 'John', 'Jenkins', 'jenk2002@algonquinlive.com'),
+('164853565', 'Alice', 'Morner', 'morn2332@algonquinlive.com'),
+('184325644', 'Eric', 'Tyler', 'tyle2343@algonquinlive.com'),
+('174536536', 'Naiomi', 'Scott', 'scot2456@algonquinlive.com'),
+('108684134', 'Nick', 'Richards', 'rich0067@algonquinlive.com'),
+('123235774', 'Alex', 'Hall', 'hall2446@algonquinlive.com')
+;
+
+INSERT INTO CourseSections(CourseSectionID, CourseCode, CourseSection, LabLecture, RoomNumber) VALUES
+('9245', 'CST9245', '010', 0, 'B232'),
+('9245', 'CST9245', '014', 1, 'C144'),
+('4435', 'CST4435', '010', 0, 'T126'),
+('4435', 'CST4435', '012', 1, 'B232'),
+('1134', 'CST1134', '010', 0, 'P216'),
+('1134', 'CST1134', '013', 1, 'C144')
+;
+
+INSERT INTO StudentClasses(StudentID, CourseSectionID) VALUES
+('123234234', '9245'),
+('123234234', '4435'),
+('174536536', '1134'),
+('108684134', '4435'),
+('123235774', '9245')
+;
+
+INSERT INTO TeacherClasses(TeacherID, CourseSectionID, Duration, DayOfTheWeek, StartTime) VALUES
+('078656544', '9245', 2, 'Wed', '13:00:00'),
+('026887345', '4435', 1, 'Tue', '08:00:00'),
+('096357467', '9245', 1, 'Thu', '09:00:00'),
+('054743566', '1134', 3, 'Fri', '16:30:00'),
+('000111222', '4435', 2, 'Mon', '19:30:00')
+;
+
+INSERT INTO TeacherOfficeTime(TeacherID, DayOfTheWeek, StartTime, Duration, RoomNumber) VALUES
+('000111222', 'Wed', '09:30:00', 2, 'B231'),
+('054743566', 'Tue', '12:00:00', 1, 'T315'),
+('078656544', 'Thu', '15:30:00', 3, 'T317'),
+('026887345', 'Fri', '13:00:00', 3, 'J115'),
+('023435788', 'Thu', '12:30:00', 2, 'B404'),
+('096357467', 'Wed', '17:00:00', 1, 'E410'),
+('053354897', 'Mon', '18:00:00', 1, 'B201'),
+('097546554', 'Mon', '19:30:00', 2, 'B343')
+;

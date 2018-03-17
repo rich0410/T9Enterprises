@@ -1,0 +1,78 @@
+DROP DATABASE IF EXISTS Algonquin_Kiosk;
+
+CREATE DATABASE Algonquin_Kiosk;
+
+USE Algonquin_Kiosk;
+
+CREATE TABLE Teacher(
+	TeacherID	VARCHAR(9) NOT NULL,
+	FirstName	VARCHAR(12) NOT NULL,
+	LastName	VARCHAR(24) NOT NULL,
+	EmailAddress	VARCHAR(30) NOT NULL,
+	PRIMARY KEY(TeacherID)
+);
+
+
+CREATE TABLE Courses(
+	CourseCode	VARCHAR(7)	NOT NULL PRIMARY KEY,
+	Title	VARCHAR(20)	NOT NULL
+);
+
+CREATE TABLE CourseSections(
+	CourseSectionID	VARCHAR(4) 	NOT NULL,
+	CourseCode	VARCHAR(7)	NOT NULL,
+	CourseSection	VARCHAR(3)	NOT NULL,
+	LabLecture	INTEGER(1),
+	RoomNumber	VARCHAR(5),
+	PRIMARY KEY(CourseSectionID, CourseSection),
+	CONSTRAINT	cc_fk	FOREIGN KEY(CourseCode) REFERENCES Courses(CourseCode)
+
+);
+
+CREATE TABLE TeacherClasses(
+	TeacherID	VARCHAR(9) NOT NULL,
+	CourseSectionID VARCHAR(4) NOT NULL,
+	Duration	INTEGER(1),
+	DayOfTheWeek	VARCHAR(3),
+	StartTime	TIME,
+	PRIMARY KEY(TeacherID, CourseSectionID),
+	CONSTRAINT	tid_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID),
+	CONSTRAINT	cid_fk 	FOREIGN KEY(CourseSectionID) REFERENCES CourseSections(CourseSectionID)
+);
+
+CREATE TABLE TeacherOfficeTime(
+	TeacherID	VARCHAR(9) NOT NULL,
+	DayOfTheWeek	VARCHAR(9) NOT NULL,
+	StartTime	TIME	NOT NULL,
+	Duration	INTEGER(1),
+	RoomNumber	VARCHAR(5),
+	PRIMARY KEY(TeacherID, DayOfTheWeek, StartTime),
+	CONSTRAINT	tot_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID)
+);
+
+CREATE TABLE Student(
+	StudentID	VARCHAR(9)	NOT NULL PRIMARY KEY,
+	FirstName	VARCHAR(12)	NOT NULL,
+	LastName	VARCHAR(24)	NOT NULL,
+	EmailAddress	VARCHAR(30)	NOT NULL
+);
+
+CREATE TABLE StudentClasses(
+	StudentID	VARCHAR(9)	NOT NULL,
+	CourseSectionID	VARCHAR(4)	NOT NULL,
+	CONSTRAINT sc_PK	PRIMARY KEY(StudentID, CourseSectionID),
+	CONSTRAINT	sid_fk	FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT	csi_fk 	FOREIGN KEY(CourseSectionID) REFERENCES CourseSections(CourseSectionID)
+);
+
+
+CREATE USER 'administrator'@'%' IDENTIFIED BY 't9-enterprise';
+CREATE USER 'teacherUser'@'%' IDENTIFIED BY 'teacherPassword';
+CREATE USER 'studentUser'@'%' IDENTIFIED BY 'studentPassword';
+
+
+GRANT ALL ON *.* TO 'administrator'@'localhost';
+GRANT SELECT ON Algonquin_Kiosk.* TO 'studentUser';
+GRANT SELECT ON Algonquin_Kiosk.* TO 'teacherUser';
+GRANT UPDATE ON Algonquin_Kiosk.Teacher TO 'teacherUser';
+GRANT INSERT, SELECT, DELETE ON Algonquin_Kiosk.TeacherOfficeTime TO 'teacherUser';
