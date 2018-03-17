@@ -26,6 +26,9 @@ public class Database {
 	public Database(){
 	}
 	
+	/**
+	 * Creates a connection to the database.
+	 */
 	public void connectDatabase(){
 		try {
 			conn = (Connection) DriverManager.getConnection(dbConnection, userName, password);
@@ -34,7 +37,12 @@ public class Database {
 		}
 	}
 	
-
+	/**
+	 * Queries the database to determine the role of the user. If the user ID is stored in the Admin table the method will return a true, otherwise false.
+	 * Note: at this point the table Admin has not been created in the database and will need to be for future implementations.
+	 * @param userID
+	 * @return
+	 */
 	public boolean userIsAdmin(String userID) {
 		
 		boolean idPresent = false;
@@ -52,6 +60,11 @@ public class Database {
 			return idPresent;
 	}
 
+	/**
+	 * Queries the database to determine the role of the user. If the user ID is stored in the Teacher table the method will return a true, otherwise false.
+	 * @param userID
+	 * @return
+	 */
 	public boolean userIsTeacher(String userID) {
 		boolean idPresent = false;
 		
@@ -68,6 +81,11 @@ public class Database {
 			return idPresent;
 	}
 
+	/**
+	 * Queries the database to determine the role of the user. If the user ID is stored in the Student table the method will return a true, otherwise false.
+	 * @param userID
+	 * @return
+	 */
 	public boolean userIsStudent(String userID) {
 		boolean idPresent = false;
 		
@@ -84,10 +102,20 @@ public class Database {
 			return idPresent;
 	}
 
+	/**
+	 * This method will be used to retrieve the student's personal info(Name and email).
+	 * @param userID
+	 * @return
+	 */
 	public HashMap<String, String> getStudentInfo(String userID) {
 		return null;		
 	}
 
+	/**
+	 * This method will be used to retrieve the teacher's personal info(Name and email).
+	 * @param userID
+	 * @return
+	 */
 	public HashMap<String, String> getTeacherInfo(String userID) {
 		userInfo = new HashMap<String, String>();
 		
@@ -109,11 +137,20 @@ public class Database {
 		return userInfo;
 	}
 
+	/**
+	 * This method will be used to retrieve the Admin's personal info(Name and email).
+	 * @param userID
+	 * @return
+	 */
 	public HashMap<String, String> getAdminInfo(String userID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
+	/**
+	 * This method will only be called on startup. This simply instantiates the HashMap used to store schedule information
+	 * and initializes default values.
+	 */
 	public void setupHashMap(){
 		schedInfo = new HashMap<String, ArrayList<String>>();
 		
@@ -124,6 +161,12 @@ public class Database {
 		schedInfo.put("Room", new ArrayList<String>());
 	}
 
+	/**
+	 * Retrieves schedule data for a teacher. Details pertaining to the room number, start time, duration, and course will be obtained from the database. 
+	 * This data will be bundled in a HashMap object and returned to create a TimeTable object.
+	 * @param userID
+	 * @return
+	 */
 	public HashMap<String, ArrayList<String>> getScheduleData(String userID) {
 		
 		try {
@@ -167,6 +210,12 @@ public class Database {
 		return schedInfo;
 	}
 	
+	/**
+	 * Retrieves office time data for a teacher. Details pertaining to the room number, start time, and durationwill be obtained from the database. 
+	 * This data will be bundled in a HashMap object and returned to create a TimeTable object.
+	 * @param userID
+	 * @return
+	 */
 	public HashMap<String, ArrayList<String>> getOfficeData(String userID) {
 		
 		try {
@@ -207,6 +256,11 @@ public class Database {
 		return schedInfo;
 	}
 	
+	/**
+	 * Converts the three letter String representing a day to the full word.
+	 * @param day
+	 * @return
+	 */
 	private String convertDay(String day){
 		
 		String dow = "";
