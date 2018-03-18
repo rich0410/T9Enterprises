@@ -2,6 +2,11 @@ package Domain;
 
 import java.util.Date;
 
+/**
+ * This represents a teacher user. The user will have a collection of TimeTable objects (one for every week in the semester). 
+ * @author Justin
+ *
+ */
 public class Teacher extends User{
 	
 	//A collection of 15 Timetable objects, one for every week in the semester.
@@ -31,6 +36,10 @@ public class Teacher extends User{
 		return timetable;
 	}
 	
+	/**
+	 * Set the timetable, creating an entry for every week in the semester.
+	 * @param tTable
+	 */
 	public void setTimeTable(Time_Table tTable){
 		
 		for(int i=0; i < 15; i++){

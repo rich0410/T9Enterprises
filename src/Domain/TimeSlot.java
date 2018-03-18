@@ -7,7 +7,7 @@ public class TimeSlot {
     private LocalTime startTime;
     private String room_number;
     private int duration;
-    private boolean cancelled;
+    private boolean cancelled = false;
     private String course;
 
     public TimeSlot(){}
@@ -41,6 +41,10 @@ public class TimeSlot {
 
     protected void setDuration(int duration){
         this.duration = duration;
+    }
+    
+    protected void cancel(){
+    	cancelled = true;
     }
 
     protected  void setCourse(String course){
