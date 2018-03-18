@@ -21,8 +21,8 @@ public class Controller{
 	private Admin admin;
 
 	private Database dB;
-	private HashMap<String, String> names = new HashMap<String, String>();
-	private HashMap<String, ArrayList<String>> schedule = new HashMap<String, ArrayList<String>>();
+	private HashMap<String, ArrayList<String>> schedule;
+	private HashMap<String, ArrayList<String>> office;
 	public DataGenerator dG;
 	private HashMap<String, String> userData;
 
@@ -120,8 +120,8 @@ public class Controller{
 	 * Adds a new timetable to the teacher. The old timetable will be overwritten.
 	 */
 	private void createTimetable(String userID){
-		HashMap<String, ArrayList<String>> schedule = dB.getScheduleData(userID);
-		HashMap<String, ArrayList<String>> office = dB.getOfficeData(userID);
+		schedule = dB.getScheduleData(userID);
+		office = dB.getOfficeData(userID);
 		
 		Time_Table tTable = new Time_Table();
 		tTable.addSlots(schedule);
