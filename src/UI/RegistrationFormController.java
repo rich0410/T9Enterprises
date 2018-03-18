@@ -9,8 +9,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
-public class RegistrationFormController {
 
+
+public class RegistrationFormController{
+
+    public static Boolean isSplashLoaded = false;
     @FXML
     private TextField emailField;
 
@@ -19,6 +22,7 @@ public class RegistrationFormController {
 
     @FXML
     private Button submitButton;
+
 
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) {
@@ -47,4 +51,9 @@ public class RegistrationFormController {
         //        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful",
 //                "Welcome!");
     }
+
+
+
+
+
 }

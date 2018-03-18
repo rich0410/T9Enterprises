@@ -7,7 +7,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Button?>
-<GridPane fx:controller="UI.RegistrationFormController"
+
+
+
+<GridPane fx:id="root" fx:controller="UI.RegistrationFormController"
           xmlns:fx="http://javafx.com/fxml" alignment="center"
           hgap="10" vgap="10">
     <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>

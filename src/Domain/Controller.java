@@ -69,7 +69,7 @@ public class Controller{
 	}
 	
 	/**
-	 * Once the user has been authenticated the=is method will call the database object to check the user's role. Once the user's
+	 * Once the user has been authenticated this method will call the database object to check the user's role. Once the user's
 	 * role is determined the proper user object will be created to represent the user's data.
 	 * @param userID
 	 */

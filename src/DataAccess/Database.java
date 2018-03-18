@@ -15,9 +15,9 @@ import Domain.User;
 public class Database {
 	
 	private Connection conn = null;
-	private String userName = "assignment1";;
+	private String userName = "assignment1";
 	private String password = "password";
-	private String dbConnection = "jdbc:mysql://localhost/assignment1?autoReconnect=true&useSSL=false";
+	private String dbConnection = "jdbc:mysql://localhost/assignment1";
 	private PreparedStatement pSt;
 	private ResultSet rS= null;
 	private HashMap<String, String> userInfo;
