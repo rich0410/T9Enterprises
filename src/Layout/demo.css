@@ -7,7 +7,7 @@
 .header-section {
     -fx-padding: 10px;
     -fx-font-size: 20px;
-    -fx-background-color: teal;
+    -fx-background-color: #008000;
 }
 
 .header-section Label {

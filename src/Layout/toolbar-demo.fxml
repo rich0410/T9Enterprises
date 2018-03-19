@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane fx:controller="UI.ToolbarController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <ToolBar styleClass="toolbar">
+           <items>
+               <Button text="Classroom">
+                   <graphic>
+                       <ImageView>
+                           <image>
+                               <Image url="@img/home-outline.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <Separator />
+               <Button text="Student">
+                   <graphic>
+                       <ImageView>
+                           <image>
+                               <Image url="@img/note-multiple-outline.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <Separator />
+               <Button fx:id="professorBtn" onAction="#professorButtonAction" text="Professor">
+                   <graphic>
+                       <ImageView>
+                           <image>
+                               <Image url="@img/account-box-outline.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <Separator />
+               <Pane HBox.hgrow="ALWAYS" />
+               <Separator />
+               <Button text="Back">
+                   <graphic>
+                       <ImageView>
+                           <image>
+                               <Image url="@img/email-outline.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </Button>
+           </items>
+        </ToolBar>
+    </top>
+    <center>
+        <VBox styleClass="content">
+           <children>
+               <Label styleClass="heading" text="Welcom to AC Kiosks" />
+               <Label>
+                   <text>
+                AC Timetable System. Updating...
+                </text>
+               </Label>
+           </children>
+<!-- <HBox styleClass="content">
+    <Button>
+        HBox Item 1
+    </Button>
+    <Button>
+        HBox Item 2
+    </Button>
+    <Button>
+        HBox Item 3
+    </Button>
+    <Button>
+        HBox Item 4
+    </Button>
+</HBox> -->
+        </VBox>
+    </center>
+    <bottom>
+        <HBox styleClass="footer">
+           <children>
+               <Label text="Copyright T9-Enterprises" />
+           </children>
+        </HBox>
+    </bottom>
+
+    <stylesheets>
+        <URL value="@toolbar-demo.css" />
+    </stylesheets>
+</BorderPane>
