@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import Domain.Student;
 import Domain.TimeSlot;
@@ -285,6 +286,32 @@ public class Database {
 		
 		return dow;
 	}
+	
+	/**
+	 * to get all teachers
+	 * */
+	 public  HashMap<String, ArrayList<String>> getallTeachers() {
+		
+		 HashMap<String, ArrayList<String>> teachers =  new HashMap<String, ArrayList<String>>();
+		
+		try {
+			pSt = conn.prepareStatement("SELECT * FROM TEACHEROFFICETIME Teacher;");
+			rS = pSt.executeQuery();
+			
 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		
+		return teachers;
+		
+		
+		
+		
+		
+	}
 
 }

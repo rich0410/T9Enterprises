@@ -6,9 +6,14 @@ public class User {
 	
 	private String firstName, lastName, email, userID;
 	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public User(String userID){
 		this.userID = userID;
 	}
+	
 	
 	protected String getFirstName(){
 		return firstName;
