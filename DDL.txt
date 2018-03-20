@@ -13,31 +13,23 @@ CREATE TABLE Teacher(
 );
 
 
-CREATE TABLE Courses(
-	CourseCode	VARCHAR(7)	NOT NULL PRIMARY KEY,
-	Title	VARCHAR(20)	NOT NULL
-);
-
 CREATE TABLE CourseSections(
-	CourseSectionID	VARCHAR(4) 	NOT NULL,
-	CourseCode	VARCHAR(7)	NOT NULL,
-	CourseSection	VARCHAR(3)	NOT NULL,
-	LabLecture	INTEGER(1),
-	RoomNumber	VARCHAR(5),
-	PRIMARY KEY(CourseSectionID, CourseSection),
-	CONSTRAINT	cc_fk	FOREIGN KEY(CourseCode) REFERENCES Courses(CourseCode)
-
+	CourseCodeID	VARCHAR(11)	NOT NULL,
+	LabLecture	INTEGER(1)	NOT NULL,
+	Title	VARCHAR(20)	NOT NULL,
+	RoomNumber	VARCHAR(5) NOT NULL,
+	PRIMARY KEY(CourseCodeID)
 );
 
 CREATE TABLE TeacherClasses(
 	TeacherID	VARCHAR(9) NOT NULL,
-	CourseSectionID VARCHAR(4) NOT NULL,
+	CourseCodeID VARCHAR(11) NOT NULL,
 	Duration	INTEGER(1),
 	DayOfTheWeek	VARCHAR(3),
 	StartTime	TIME,
-	PRIMARY KEY(TeacherID, CourseSectionID),
+	PRIMARY KEY(TeacherID, CourseCodeID),
 	CONSTRAINT	tid_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID),
-	CONSTRAINT	cid_fk 	FOREIGN KEY(CourseSectionID) REFERENCES CourseSections(CourseSectionID)
+	CONSTRAINT	cid_fk 	FOREIGN KEY(CourseCodeID) REFERENCES CourseSections(CourseCodeID)
 );
 
 CREATE TABLE TeacherOfficeTime(
@@ -59,10 +51,10 @@ CREATE TABLE Student(
 
 CREATE TABLE StudentClasses(
 	StudentID	VARCHAR(9)	NOT NULL,
-	CourseSectionID	VARCHAR(4)	NOT NULL,
-	CONSTRAINT sc_PK	PRIMARY KEY(StudentID, CourseSectionID),
+	CourseCodeID	VARCHAR(11)	NOT NULL,
+	CONSTRAINT sc_PK	PRIMARY KEY(StudentID, CourseCodeID),
 	CONSTRAINT	sid_fk	FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
-	CONSTRAINT	csi_fk 	FOREIGN KEY(CourseSectionID) REFERENCES CourseSections(CourseSectionID)
+	CONSTRAINT	csi_fk 	FOREIGN KEY(CourseCodeID) REFERENCES CourseSections(CourseCodeID)
 );
 
 
