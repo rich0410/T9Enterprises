@@ -12,19 +12,16 @@ import java.util.List;
 import Domain.Student;
 import Domain.TimeSlot;
 import Domain.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Database {
 	
 	private Connection conn = null;
-<<<<<<< HEAD
-	private String userName = "cst8334";;
-	private String password = "cst8334";
-	private String dbConnection = "jdbc:mysql://localhost/Algonquin_Kiosk?autoReconnect=true&useSSL=false";
-=======
-	private String userName = "assignment1";
-	private String password = "password";
-	private String dbConnection = "jdbc:mysql://localhost/assignment1";
->>>>>>> 125bc03aba0e931bc44b0412b32dbac1f96b6947
+
+  private String userName = "administrator";
+	private String password = "t9-enterprise";
+	private String dbConnection = "jdbc:mysql://localhost/Algonquin_Kiosk";
 	private PreparedStatement pSt;
 	private ResultSet rS= null;
 	private HashMap<String, String> userInfo;
@@ -38,7 +35,7 @@ public class Database {
 	 */
 	public void connectDatabase(){
 		try {
-			conn = (Connection) DriverManager.getConnection(dbConnection, userName, password);
+			conn = DriverManager.getConnection(dbConnection, userName, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -324,31 +321,39 @@ public class Database {
 		return dow;
 	}
 	
-	/**
-	 * to get all teachers
-	 * */
-	 public  HashMap<String, ArrayList<String>> getallTeachers() {
-		
-		 HashMap<String, ArrayList<String>> teachers =  new HashMap<String, ArrayList<String>>();
-		
-		try {
-			pSt = conn.prepareStatement("SELECT * FROM TEACHEROFFICETIME Teacher;");
-			rS = pSt.executeQuery();
-			
+	
+//	 public  ResultSet getallTeachers() throws SQLException {
+//
+//		 return rS;
+//	}
+//
 
-			
+	public ObservableList<User> parseUserList(){
+		this.connectDatabase();
+
+		ObservableList<User> list = FXCollections.observableArrayList();
+
+		try {
+
+			pSt = conn.prepareStatement("SELECT * FROM teacher;");
+			ResultSet rS = pSt.executeQuery();
+
+			while(rS.next()){
+				User u = new User();
+                u.setTeacherId(rS.getString("TeacherID"));
+				u.setFirstName(rS.getString("FirstName"));
+				u.setLastName(rS.getString("LastName"));
+				u.setEmailAddress(rS.getString("EmailAddress"));
+
+
+				list.add(u);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		
-		
-		return teachers;
-		
-		
-		
-		
-		
+		}
+
+		return list;
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class User {
 	
-	private String firstName, lastName, email, userID;
+	private String firstName, lastName, email, userID, teacherid;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -14,32 +14,43 @@ public class User {
 		this.userID = userID;
 	}
 	
+
 	
-	protected String getFirstName(){
+	public String getFirstName(){
 		return firstName;
 	}
-	
-	protected void setFirstName(String firstName){
+
+	public void setTeacherId(String teacherId){
+		this.teacherid = teacherId;
+	}
+
+	public String getTeacherid(){
+		return teacherid;
+	}
+
+
+	public void setFirstName(String firstName){
 		this.firstName = firstName;
 	}
 	
-	protected String geLlastName(){
+	public String getLastName(){
 		return lastName;
 	}
 	
-	protected void setLastName(String lastName){
+	public void setLastName(String lastName){
 		this.lastName = lastName;
 	}
+
 	
-	protected String getemail(){
+	public void setEmailAddress(String email){
+		this.email = email;
+	}
+
+	public  String getEmailAddress(){
 		return email;
 	}
 	
-	protected void setEmail(String email){
-		this.email = email;
-	}
-	
-	protected String getID(){
+	public String getID(){
 		return userID;
 	}
 }

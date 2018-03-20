@@ -8,11 +8,6 @@ INSERT INTO Teacher(TeacherID, FirstName, LastName, EmailAddress) VALUES
 ('053354897', 'Erin', 'Snyder', 'snyd9954@algonquincollege.com'),
 ('097546554', 'Hanna', 'Mulder', 'muld2247@algonquincollege.com');
 
-INSERT INTO Courses(CourseCode, Title) VALUES
-('CST9245', 'Electro-Engineering'),
-('CST4435', 'Java Programming'),
-('CST1134', 'Intro to Web')
-;
 
 INSERT INTO Student(StudentID, FirstName, LastName, EmailAddress)VALUES
 ('123234234', 'John', 'Jenkins', 'jenk2002@algonquinlive.com'),
@@ -23,29 +18,29 @@ INSERT INTO Student(StudentID, FirstName, LastName, EmailAddress)VALUES
 ('123235774', 'Alex', 'Hall', 'hall2446@algonquinlive.com')
 ;
 
-INSERT INTO CourseSections(CourseSectionID, CourseCode, CourseSection, LabLecture, RoomNumber) VALUES
-('9245', 'CST9245', '010', 0, 'B232'),
-('9245', 'CST9245', '014', 1, 'C144'),
-('4435', 'CST4435', '010', 0, 'T126'),
-('4435', 'CST4435', '012', 1, 'B232'),
-('1134', 'CST1134', '010', 0, 'P216'),
-('1134', 'CST1134', '013', 1, 'C144')
+INSERT INTO CourseSections(CourseCodeID, LabLecture, Title, RoomNumber) VALUES
+('CST9245-010', 0, 'Electro-Engineering', 'B232'),
+('CST9245-014', 1, 'Electro-Engineering', 'C144'),
+('CST4435-010', 0, 'Java Programming', 'T126'),
+('CST4435-012', 1, 'Java Programming', 'B232'),
+('CST1134-010', 0, 'Intro to Web', 'P216'),
+('CST1134-013', 1, 'Intro to Web', 'C144')
 ;
 
-INSERT INTO StudentClasses(StudentID, CourseSectionID) VALUES
-('123234234', '9245'),
-('123234234', '4435'),
-('174536536', '1134'),
-('108684134', '4435'),
-('123235774', '9245')
+INSERT INTO StudentClasses(StudentID, CourseCodeID) VALUES
+('123234234', 'CST9245-010'),
+('123234234', 'CST4435-012'),
+('174536536', 'CST1134-010'),
+('108684134', 'CST4435-010'),
+('123235774', 'CST9245-010')
 ;
 
-INSERT INTO TeacherClasses(TeacherID, CourseSectionID, Duration, DayOfTheWeek, StartTime) VALUES
-('078656544', '9245', 2, 'Wed', '13:00:00'),
-('026887345', '4435', 1, 'Tue', '08:00:00'),
-('096357467', '9245', 1, 'Thu', '09:00:00'),
-('054743566', '1134', 3, 'Fri', '16:30:00'),
-('000111222', '4435', 2, 'Mon', '19:30:00')
+INSERT INTO TeacherClasses(TeacherID, CourseCodeID, Duration, DayOfTheWeek, StartTime) VALUES
+('078656544', 'CST9245-010', 2, 'Wed', '13:00:00'),
+('026887345', 'CST4435-010', 1, 'Tue', '08:00:00'),
+('096357467', 'CST9245-014', 1, 'Thu', '09:00:00'),
+('054743566', 'CST1134-013', 3, 'Fri', '16:30:00'),
+('000111222', 'CST4435-012', 2, 'Mon', '19:30:00')
 ;
 
 INSERT INTO TeacherOfficeTime(TeacherID, DayOfTheWeek, StartTime, Duration, RoomNumber) VALUES
@@ -58,3 +53,26 @@ INSERT INTO TeacherOfficeTime(TeacherID, DayOfTheWeek, StartTime, Duration, Room
 ('053354897', 'Mon', '18:00:00', 1, 'B201'),
 ('097546554', 'Mon', '19:30:00', 2, 'B343')
 ;
+
+CREATE OR REPLACE VIEW vw_TeachersWithCourses AS 
+	SELECT t.TeacherID, t.FirstName, t.LastName, tc.DayOfTheWeek, tc.StartTime,
+	cs.CourseCodeID, cs.LabLecture
+	FROM Teacher t
+	INNER JOIN teacherClasses tc ON t.TeacherID = tc.TeacherID
+	INNER JOIN CourseSections cs ON tc.CourseCodeID = cs.CourseCodeID;
+
+CREATE OR REPLACE VIEW vw_StudentsWithCourses AS
+	SELECT s.StudentID, s.FirstName, s.LastName, cs.CourseCodeID, 
+	cs.LabLecture, cs.Title, cs.RoomNumber
+	FROM Student s
+	INNER JOIN studentClasses sc ON s.StudentID = sc.StudentID
+	INNER JOIN CourseSections cs ON sc.CourseCodeID = cs.CourseCodeID;
+
+CREATE OR REPLACE VIEW vw_StudentsAndTeachersCourses AS
+	SELECT t.TeacherID, t.LastName AS TeacherLastName, tc.DayOfTheWeek, tc.StartTime, cs.CourseCodeID,
+	s.StudentID, s.LastName AS StudentLastName
+	FROM Teacher t
+	INNER JOIN teacherClasses tc ON t.TeacherID = tc.TeacherID
+	INNER JOIN CourseSections cs ON tc.CourseCodeID = cs.CourseCodeID
+	INNER JOIN StudentClasses sc ON cs.CourseCodeID = sc.CourseCodeID
+	INNER JOIN Student s ON sc.StudentID = s.StudentID;

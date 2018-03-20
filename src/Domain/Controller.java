@@ -41,7 +41,6 @@ public class Controller{
 		dB = new Database();
 		dB.connectDatabase();
 		dB.setupHashMap();
-		//loadData();
 		initGUI(args);
 	}
 	
@@ -86,7 +85,7 @@ public class Controller{
 			
 			teacher.setFirstName(userData.get("First Name"));
 			teacher.setLastName(userData.get("Larst Name"));
-			teacher.setEmail(userData.get("Email"));
+			teacher.setEmailAddress(userData.get("Email"));
 			
 			createTimetable(userID);
 			

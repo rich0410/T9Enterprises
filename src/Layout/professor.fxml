@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:controller="UI.ProfessorController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1 ">
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ProfessorController">
     <top>
         <ToolBar styleClass="toolbar">
            <items>
-               <Button text="Classroom">
-                   <graphic>
-                       <ImageView>
-                           <image>
-                               <Image url="@img/home-outline.png" />
-                           </image>
-                       </ImageView>
-                   </graphic>
-               </Button>
                <Separator />
-               <Button text="Student">
-                   <graphic>
-                       <ImageView>
-                           <image>
-                               <Image url="@img/note-multiple-outline.png" />
-                           </image>
-                       </ImageView>
-                   </graphic>
-               </Button>
-               <Separator />
-               <Button text="Professor">
+               <Button text="Professor" >
                    <graphic>
                        <ImageView>
                            <image>
@@ -41,7 +32,7 @@
                <Separator />
                <Pane HBox.hgrow="ALWAYS" />
                <Separator />
-               <Button text="Back">
+               <Button text="Back" onAction="#handleBackButtonAction">
                    <graphic>
                        <ImageView>
                            <image>
@@ -54,18 +45,18 @@
         </ToolBar>
     </top>
 	<center>
-		<VBox styleClass="content">
+		<VBox prefHeight="591.0" prefWidth="693.0" styleClass="content">
 			<children>
 				<Label styleClass="heading" text="Professor Page" />
 
 				<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml">
 					<children>
-						<TableView fx:id="tableView" layoutX="-4.0" layoutY="-1.0" prefHeight="229.0" prefWidth="800.0">
+						<TableView fx:id="tableView" layoutX="-4.0" prefHeight="228.0" prefWidth="641.0">
 							<columns>
-								<TableColumn fx:id="TeacherID" prefWidth="200.0" text="Teacher ID" />
-								<TableColumn fx:id="FirstName" prefWidth="200.0" text="First Name" />
-								<TableColumn fx:id="LastName" prefWidth="200.0" text="Last Name" />
-								<TableColumn fx:id="Email" prefWidth="200.0" text="AC Email" />
+								<TableColumn fx:id="TeacherID" prefWidth="117.0" text="Teacher ID" />
+								<TableColumn fx:id="FirstName" prefWidth="134.0" text="First Name" />
+								<TableColumn fx:id="LastName" prefWidth="165.0" text="Last Name" />
+								<TableColumn fx:id="Email" prefWidth="223.0" text="AC Email" />
 							</columns>
 						</TableView>
 					</children>
@@ -86,4 +77,3 @@
         <URL value="@toolbar-demo.css" />
     </stylesheets>
 </BorderPane>
-
