@@ -53,3 +53,26 @@ INSERT INTO TeacherOfficeTime(TeacherID, DayOfTheWeek, StartTime, Duration, Room
 ('053354897', 'Mon', '18:00:00', 1, 'B201'),
 ('097546554', 'Mon', '19:30:00', 2, 'B343')
 ;
+
+CREATE OR REPLACE VIEW vw_TeachersWithCourses AS 
+	SELECT t.TeacherID, t.FirstName, t.LastName, tc.DayOfTheWeek, tc.StartTime,
+	cs.CourseCodeID, cs.LabLecture
+	FROM Teacher t
+	INNER JOIN teacherClasses tc ON t.TeacherID = tc.TeacherID
+	INNER JOIN CourseSections cs ON tc.CourseCodeID = cs.CourseCodeID;
+
+CREATE OR REPLACE VIEW vw_StudentsWithCourses AS
+	SELECT s.StudentID, s.FirstName, s.LastName, cs.CourseCodeID, 
+	cs.LabLecture, cs.Title, cs.RoomNumber
+	FROM Student s
+	INNER JOIN studentClasses sc ON s.StudentID = sc.StudentID
+	INNER JOIN CourseSections cs ON sc.CourseCodeID = cs.CourseCodeID;
+
+CREATE OR REPLACE VIEW vw_StudentsAndTeachersCourses AS
+	SELECT t.TeacherID, t.LastName AS TeacherLastName, tc.DayOfTheWeek, tc.StartTime, cs.CourseCodeID,
+	s.StudentID, s.LastName AS StudentLastName
+	FROM Teacher t
+	INNER JOIN teacherClasses tc ON t.TeacherID = tc.TeacherID
+	INNER JOIN CourseSections cs ON tc.CourseCodeID = cs.CourseCodeID
+	INNER JOIN StudentClasses sc ON cs.CourseCodeID = sc.CourseCodeID
+	INNER JOIN Student s ON sc.StudentID = s.StudentID;
