@@ -14,32 +14,39 @@ public class User {
 		this.userID = userID;
 	}
 	
+	public User(String firstName,String lastName,String email,String userID){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.userID = userID;
+		
+	}
 	
-	protected String getFirstName(){
+	public String getFirstName(){
 		return firstName;
 	}
 	
-	protected void setFirstName(String firstName){
+	public void setFirstName(String firstName){
 		this.firstName = firstName;
 	}
 	
-	protected String geLlastName(){
+	public String geLlastName(){
 		return lastName;
 	}
 	
-	protected void setLastName(String lastName){
+	public void setLastName(String lastName){
 		this.lastName = lastName;
 	}
 	
-	protected String getemail(){
+	public String getemail(){
 		return email;
 	}
 	
-	protected void setEmail(String email){
+	public void setEmail(String email){
 		this.email = email;
 	}
 	
-	protected String getID(){
+	public String getID(){
 		return userID;
 	}
 }

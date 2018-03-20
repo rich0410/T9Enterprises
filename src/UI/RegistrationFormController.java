@@ -46,9 +46,9 @@ public class RegistrationFormController {
         if ((emailField.getText().equals(user1) && passwordField.getText().equals(password1)) || (emailField.getText().equals(user2) && passwordField.getText().equals(password2)) || (emailField.getText().equals(user3) && passwordField.getText().equals(password3))) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../Layout/toolbar-demo.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("../Layout/Welcome.fxml"));
 
-                Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
+                Scene scene = new Scene(fxmlLoader.load(), 800, 600);
                 Stage stage = new Stage();
                 stage.setTitle("New Window");
                 stage.setScene(scene);

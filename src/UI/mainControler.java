@@ -7,17 +7,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class mainControler implements Initializable {
 
     @FXML
-    private StackPane root;
+    private  StackPane root;
 
-    public  static StackPane rootP;
 
 
     @Override
@@ -26,9 +25,6 @@ public class mainControler implements Initializable {
         if (!RegistrationFormController.isSplashLoaded) {
             loadSplashScreen();
         }
-
-
-        rootP = root;
     }
 
     private void loadSplashScreen() {

@@ -41,6 +41,7 @@ public class Controller{
 		dB = new Database();
 		dB.connectDatabase();
 		dB.setupHashMap();
+		
 		//loadData();
 		initGUI(args);
 	}
