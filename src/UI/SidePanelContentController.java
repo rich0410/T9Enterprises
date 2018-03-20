@@ -4,11 +4,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+
 
 
 public class SidePanelContentController implements Initializable {
@@ -41,20 +44,24 @@ public class SidePanelContentController implements Initializable {
                 BorderPane Content1 = FXMLLoader.load(getClass().getResource(("../Layout/professor.fxml")));
                 Welcome.rootP.getChildren().setAll(Content1);
                 break;
-            case "Book Appointment":
-                BorderPane Content2 = FXMLLoader.load(getClass().getResource(("../Layout/Appointment.fxml")));
+            case "Book an Appointment":
+                GridPane Content2 = FXMLLoader.load(getClass().getResource(("../Layout/Book_an_Appointment.fxml")));
                 Welcome.rootP.getChildren().setAll(Content2);
                 break;
-            case "cancel appointment":
-                BorderPane Content3 = FXMLLoader.load(getClass().getResource(("../Layout/CancleAppointment.fxml")));
+            case "View Appointments":
+                BorderPane Content3 = FXMLLoader.load(getClass().getResource(("../Layout/Appointment.fxml")));
                 Welcome.rootP.getChildren().setAll(Content3);
+                break;
+            case "Cancel Appointment":
+                BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/CancleAppointment.fxml")));
+                Welcome.rootP.getChildren().setAll(Content4);
+                break;
+
+            case "EXIT":
+                Platform.exit();
                 break;
         }
     }
 
-    @FXML
-    private void exit(ActionEvent event) {
-        System.exit(0);
-    }
     
 }

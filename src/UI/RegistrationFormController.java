@@ -32,10 +32,7 @@ public class RegistrationFormController {
 
     private String user1 = "student";
     private String password1 = "student";
-    private String user2 = "teacher";
-    private String password2 = "teacher";
-    private String user3 = "admin";
-    private String password3 = "admin";
+
 
 
     @FXML
@@ -43,11 +40,10 @@ public class RegistrationFormController {
 
         Window owner = submitButton.getScene().getWindow();
 
-        if ((emailField.getText().equals(user1) && passwordField.getText().equals(password1)) || (emailField.getText().equals(user2) && passwordField.getText().equals(password2)) || (emailField.getText().equals(user3) && passwordField.getText().equals(password3))) {
+        if ((emailField.getText().equals(user1) && passwordField.getText().equals(password1))) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("../Layout/Welcome.fxml"));
-
                 Scene scene = new Scene(fxmlLoader.load(), 800, 600);
                 Stage stage = new Stage();
                 stage.setTitle("New Window");

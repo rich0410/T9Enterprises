@@ -15,12 +15,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ProfessorController">
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ProfessorController">
     <top>
         <ToolBar styleClass="toolbar">
            <items>
                <Separator />
-               <Button text="Professor">
+               <Button text="Professor" >
                    <graphic>
                        <ImageView>
                            <image>
@@ -32,7 +32,7 @@
                <Separator />
                <Pane HBox.hgrow="ALWAYS" />
                <Separator />
-               <Button text="Back">
+               <Button text="Back" onAction="#handleBackButtonAction">
                    <graphic>
                        <ImageView>
                            <image>

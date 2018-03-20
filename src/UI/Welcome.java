@@ -30,7 +30,11 @@ public class Welcome implements Initializable {
     @FXML
     private AnchorPane root;
 
+    @FXML
+    private Label lebel;
+
     public  static AnchorPane rootP;
+
 
 
     @Override
@@ -61,5 +65,7 @@ public class Welcome implements Initializable {
             }
         });
     }
+
+
 
 }

@@ -19,8 +19,11 @@ public class mainControler implements Initializable {
 
 
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
         if (!RegistrationFormController.isSplashLoaded) {
             loadSplashScreen();

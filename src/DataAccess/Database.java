@@ -12,13 +12,15 @@ import java.util.List;
 import Domain.Student;
 import Domain.TimeSlot;
 import Domain.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Database {
 	
 	private Connection conn = null;
-	private String userName = "assignment1";
-	private String password = "password";
-	private String dbConnection = "jdbc:mysql://localhost/assignment1";
+	private String userName = "administrator";
+	private String password = "t9-enterprise";
+	private String dbConnection = "jdbc:mysql://localhost/Algonquin_Kiosk";
 	private PreparedStatement pSt;
 	private ResultSet rS= null;
 	private HashMap<String, String> userInfo;
@@ -32,7 +34,7 @@ public class Database {
 	 */
 	public void connectDatabase(){
 		try {
-			conn = (Connection) DriverManager.getConnection(dbConnection, userName, password);
+			conn = DriverManager.getConnection(dbConnection, userName, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -288,11 +290,38 @@ public class Database {
 	}
 	
 	
-	 public  ResultSet getallTeachers() throws SQLException {
-		 conn = (Connection) DriverManager.getConnection(dbConnection, userName, password);
-		 pSt = conn.prepareStatement("SELECT * FROM Teacher;");
-		 ResultSet rS = pSt.executeQuery();
-		 return rS;
+//	 public  ResultSet getallTeachers() throws SQLException {
+//
+//		 return rS;
+//	}
+//
+
+	public ObservableList<User> parseUserList(){
+		this.connectDatabase();
+
+		ObservableList<User> list = FXCollections.observableArrayList();
+
+		try {
+
+			pSt = conn.prepareStatement("SELECT * FROM teacher;");
+			ResultSet rS = pSt.executeQuery();
+
+			while(rS.next()){
+				User u = new User();
+                u.setTeacherId(rS.getString("TeacherID"));
+				u.setFirstName(rS.getString("FirstName"));
+				u.setLastName(rS.getString("LastName"));
+				u.setEmailAddress(rS.getString("EmailAddress"));
+
+
+				list.add(u);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 }

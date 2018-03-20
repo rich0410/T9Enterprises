@@ -16,15 +16,16 @@ public class Email {
             @Override
             public void run() {
                 try {
-                    sender_class sender = new sender_class("NO reply mail",
-                            "password");
+                    sender_class sender = new sender_class(
+                            "homemanagement001@gmail.com",
+                            "8437839094");
 
-                    sender.sendMail("Confirmation email" , "An appointment is booked"
+                    sender.sendMail("Confirmation email" , "An appointment is booked on"
                                       ,
-                            "NO reply mail", email);
+                            "homemanagement001@gmail.com", email);
 
                 } catch (Exception e) {
-                  System.out.print(e.getStackTrace());
+                  System.out.print(e.getMessage());
                 }
 
             }
