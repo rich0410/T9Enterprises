@@ -18,7 +18,8 @@ import javafx.collections.ObservableList;
 public class Database {
 	
 	private Connection conn = null;
-	private String userName = "administrator";
+
+  private String userName = "administrator";
 	private String password = "t9-enterprise";
 	private String dbConnection = "jdbc:mysql://localhost/Algonquin_Kiosk";
 	private PreparedStatement pSt;
@@ -72,7 +73,7 @@ public class Database {
 		boolean idPresent = false;
 		
 		try {
-			pSt = conn.prepareStatement("");		//SQL query will go here to retrieve teacher user's data if their userID is in the Teacher table.
+			pSt = conn.prepareStatement("SELECT * FROM TEACHER WHERE TEACHERID = ?");		//SQL query will go here to retrieve teacher user's data if their userID is in the Teacher table.
 			pSt.setString(1, userID);
 			rS = pSt.executeQuery();
 			
@@ -93,7 +94,7 @@ public class Database {
 		boolean idPresent = false;
 		
 		try {
-			pSt = conn.prepareStatement("");		//SQL query will go here to retrieve student user's data if their userID is in the Student table..
+			pSt = conn.prepareStatement("SELECT * FROM STUDENT WHERE STUDENTID = ?");		//SQL query will go here to retrieve student user's data if their userID is in the Student table..
 			pSt.setString(1, userID);
 			rS = pSt.executeQuery();
 			
@@ -111,7 +112,20 @@ public class Database {
 	 * @return
 	 */
 	public HashMap<String, String> getStudentInfo(String userID) {
-		return null;		
+		userInfo = new HashMap<String, String>();
+		try {
+			pSt = conn.prepareStatement("SELECT * FROM STUDENT WHERE STUDENTID = ?");
+			pSt.setString(1, userID);
+			rS = pSt.executeQuery();
+
+			rS.next();
+			userInfo.put("First Nmae", rS.getString("FirstName"));
+			userInfo.put("Last Name", rS.getString("LastName"));
+			userInfo.put("Email", rS.getString("EmailAddress"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return userInfo;
 	}
 
 	/**
@@ -257,6 +271,24 @@ public class Database {
 		}
 		
 		return schedInfo;
+	}
+
+	public void setOfficeData(String userID, HashMap<String, ArrayList<String>> data) {
+		try {
+			pSt = conn.prepareStatement("UPDATE TABLE TEACHEROFFICETIME" +
+					"(TEACHERID, DAYOFTHEWEEK, STARTTIME, DURATION, ROOMNUMBER)" +
+					"VALUES(?, ?, ?, ?, ?)" +
+					"WHERE TEACHERID = ?");
+			pSt.setString(1, userID);
+			pSt.setString(2, data.get("Day").get(0).substring(0, 3));
+			pSt.setString(3, data.get("Time").get(0));
+			pSt.setString(4, data.get("Duration").get(0));
+			pSt.setString(5, data.get("Room").get(0));
+			pSt.setString(6, userID);
+			pSt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
