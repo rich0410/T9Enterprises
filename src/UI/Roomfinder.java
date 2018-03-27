@@ -1,0 +1,74 @@
+package UI;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+
+public class Roomfinder implements Initializable {
+
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    private BorderPane border;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+
+        WebPage currentPage = new WebPage();
+        WebView webView = currentPage.getWebView();
+        WebEngine webEngine = currentPage.createWebEngine();
+        webEngine.load("https://lyceum.algonquincollege.com/roomfinder/");
+        border.setCenter(webView);
+
+
+    }
+
+
+    public static void getRoomFinder() {
+        WebPage currentPage = new WebPage();
+        WebView webView = currentPage.getWebView();
+        WebEngine webEngine = currentPage.createWebEngine();
+        webEngine.load("https://lyceum.algonquincollege.com/roomfinder/");
+        BorderPane b = new BorderPane();
+        b.setCenter(webView);
+        Stage s = new Stage();
+        Scene scene = new Scene(b, 800, 500);
+        s.setScene(scene);
+        s.show();
+    }
+
+
+    static class WebPage {
+        private WebView webview = new WebView();
+        private static WebEngine engine;
+
+        public WebEngine createWebEngine() {
+
+
+            WebView wv = getWebView();
+            engine = wv.getEngine();
+
+            return engine;
+        }
+
+        public WebView getWebView() {
+            return webview;
+        }
+
+        public static WebEngine getWebEngine() {
+            return engine;
+        }
+    }
+
+}
