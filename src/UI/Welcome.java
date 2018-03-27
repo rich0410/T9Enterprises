@@ -35,6 +35,12 @@ public class Welcome implements Initializable {
 
     public  static AnchorPane rootP;
 
+    @FXML
+    private AnchorPane fragment;
+
+    @FXML
+    public static AnchorPane fragementP;
+
 
 
     @Override
@@ -42,6 +48,7 @@ public class Welcome implements Initializable {
 
 
         rootP = root;
+        fragementP = fragment;
 
         try {
             VBox box = FXMLLoader.load(getClass().getResource("../Layout/SidePanelContent.fxml"));

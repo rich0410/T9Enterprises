@@ -1,49 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ProfessorController">
-    <top>
-        <ToolBar styleClass="toolbar">
-           <items>
-               <Separator />
-               <Button text="Professor" >
-                   <graphic>
-                       <ImageView>
-                           <image>
-                               <Image url="@img/account-box-outline.png" />
-                           </image>
-                       </ImageView>
-                   </graphic>
-               </Button>
-               <Separator />
-               <Pane HBox.hgrow="ALWAYS" />
-               <Separator />
-               <Button text="Back" onAction="#handleBackButtonAction">
-                   <graphic>
-                       <ImageView>
-                           <image>
-                               <Image url="@img/email-outline.png" />
-                           </image>
-                       </ImageView>
-                   </graphic>
-               </Button>
-           </items>
-        </ToolBar>
-    </top>
 	<center>
 		<VBox prefHeight="591.0" prefWidth="693.0" styleClass="content">
 			<children>
@@ -51,7 +17,7 @@
 
 				<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml">
 					<children>
-						<TableView fx:id="tableView" layoutX="-4.0" prefHeight="228.0" prefWidth="641.0">
+						<TableView fx:id="tableView" layoutX="-4.0" prefHeight="228.0" prefWidth="641.0" >
 							<columns>
 								<TableColumn fx:id="TeacherID" prefWidth="117.0" text="Teacher ID" />
 								<TableColumn fx:id="FirstName" prefWidth="134.0" text="First Name" />

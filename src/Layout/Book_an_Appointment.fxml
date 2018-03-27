@@ -25,34 +25,45 @@
     </Label>
     <!-- Add Email Text Field -->
     <TextField fx:id="professor" prefHeight="35.0" prefWidth="504.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlesearchAction" prefHeight="43.0" prefWidth="101.0" text="Search" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handleUpdateAction" prefHeight="43.0" prefWidth="101.0" text="Update" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+
+    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlecheckAction" prefHeight="43.0" prefWidth="138.0" text="Check Availability" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+
+    <Label text="Room Number : " GridPane.columnIndex="0" GridPane.rowIndex="3">
+    </Label>
+    <!-- Add Email Text Field -->
+    <TextField fx:id="room" prefHeight="35.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlebackroomAction" prefHeight="43.0" prefWidth="101.0" text="RoomFinder" GridPane.columnIndex="3" GridPane.rowIndex="3" />
 
 
-
-    <Label text=" Date :" GridPane.columnIndex="0" GridPane.rowIndex="3">
+    <Label text=" Date :" GridPane.columnIndex="0" GridPane.rowIndex="4">
     </Label>
     <!-- Add Password Field -->
-    <JFXDatePicker fx:id="date" prefHeight="32.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <JFXDatePicker fx:id="date" prefHeight="32.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-    <Label text=" Start Time :" GridPane.columnIndex="0" GridPane.rowIndex="4">
+    <Label text=" Start Time :" GridPane.columnIndex="0" GridPane.rowIndex="5">
     </Label>
-    <JFXTimePicker fx:id="starttime" prefHeight="34.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <JFXTimePicker fx:id="starttime" prefHeight="34.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-    <Label prefHeight="47.0" prefWidth="59.0" text=" End Time :" GridPane.columnIndex="0" GridPane.rowIndex="5">
+    <Label prefHeight="47.0" prefWidth="59.0" text=" End Time :" GridPane.columnIndex="0" GridPane.rowIndex="6">
     </Label>
-    <JFXTimePicker fx:id="endtime" prefHeight="32.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <JFXTimePicker fx:id="endtime" prefHeight="32.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
 
 
 
     <!-- Add Submit Button -->
-    <Button fx:id="add_appointment" defaultButton="true" onAction="#handleappointmentButtonAction" prefHeight="41.0" prefWidth="100" text="Add" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="1">
-      
+    <Button fx:id="add_appointment" defaultButton="true" onAction="#handleappointmentButtonAction" prefHeight="41.0" prefWidth="100" text="Add" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="1">
+
     </Button>
-      <Button defaultButton="true" mnemonicParsing="false" onAction="#handlebackButtonAction" prefHeight="43.0" prefWidth="101.0" text="Back" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="1" />
-      <columnConstraints>
+       <columnConstraints>
          <ColumnConstraints maxWidth="157.0" minWidth="70.0" prefWidth="157.0" />
-         <ColumnConstraints maxWidth="527.0" minWidth="440.0" prefWidth="440.0" />
-         <ColumnConstraints />
+         <ColumnConstraints maxWidth="527.0" minWidth="307.0" prefWidth="307.0" />
+         <ColumnConstraints maxWidth="93.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="234.0" minWidth="93.0" prefWidth="141.0" />
+      <ColumnConstraints maxWidth="242.0" minWidth="108.0" prefWidth="194.0" />
       </columnConstraints>
       <rowConstraints>
          <RowConstraints />
