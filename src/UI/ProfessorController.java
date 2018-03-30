@@ -70,6 +70,5 @@ public class ProfessorController implements Initializable {
         return user;
     }
 
-
 }
     

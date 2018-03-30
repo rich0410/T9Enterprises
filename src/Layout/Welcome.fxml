@@ -1,59 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
 
-<?import com.jfoenix.controls.JFXDrawer?>
-<?import com.jfoenix.controls.JFXHamburger?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<!--<?import com.jfoenix.controls.JFXDrawer?>-->
+<!--<?import com.jfoenix.controls.JFXHamburger?>-->
+<!--<?import javafx.scene.control.Label?>-->
+<!--<?import javafx.scene.layout.AnchorPane?>-->
+<!--<?import javafx.scene.text.Font?>-->
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Welcome">
-    <children>
-        <AnchorPane fx:id="fragment" prefHeight="600.0" prefWidth="800.0">
-            <children>
-                <Label layoutX="24.0" layoutY="14.0" text="Hello Student,">
-                    <font>
-                        <Font name="System Bold Italic" size="32.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="131.0" layoutY="72.0" text="Welcome to Kiosk">
-                    <font>
-                        <Font name="System Bold Italic" size="18.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="131.0" layoutY="115.0"
-                       text="- T9-Enterprise provide you some functionality where you can:">
-                    <font>
-                        <Font name="System Bold Italic" size="18.0"/>
-                    </font>
-                </Label>
+<!--<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"-->
+            <!--xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Welcome">-->
+    <!--<children>-->
+        <!--<AnchorPane fx:id="fragment" prefHeight="600.0" prefWidth="800.0">-->
+            <!--<children>-->
+                <!--<Label  fx:id="l" layoutX="24.0" layoutY="14.0" text="Hello Student,">-->
+                    <!--<font>-->
+                        <!--<Font name="System Bold Italic" size="32.0"/>-->
+                    <!--</font>-->
+                <!--</Label>-->
+                <!--<Label layoutX="131.0" layoutY="72.0" text="Welcome to Kiosk">-->
+                    <!--<font>-->
+                        <!--<Font name="System Bold Italic" size="18.0"/>-->
+                    <!--</font>-->
+                <!--</Label>-->
+                <!--<Label layoutX="131.0" layoutY="115.0"-->
+                       <!--text="- T9-Enterprise provide you some functionality where you can:">-->
+                    <!--<font>-->
+                        <!--<Font name="System Bold Italic" size="18.0"/>-->
+                    <!--</font>-->
+                <!--</Label>-->
 
-                <Label layoutX="131.0" layoutY="165.0" text="- Check Professors Availability.">
-                    <font>
-                        <Font name="System Bold Italic" size="18.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="131.0" layoutY="218.0" text="- Book an Appointment with Professor.">
-                    <font>
-                        <Font name="System Bold Italic" size="18.0"/>
-                    </font>
-                </Label>
+                <!--<Label layoutX="131.0" layoutY="165.0" text="- Check Professors Availability.">-->
+                    <!--<font>-->
+                        <!--<Font name="System Bold Italic" size="18.0"/>-->
+                    <!--</font>-->
+                <!--</Label>-->
+                <!--<Label layoutX="131.0" layoutY="218.0" text="- Book an Appointment with Professor.">-->
+                    <!--<font>-->
+                        <!--<Font name="System Bold Italic" size="18.0"/>-->
+                    <!--</font>-->
+                <!--</Label>-->
 
-                <Label layoutX="131.0" layoutY="274.0" text="- Cancel an Appointment with professor.">
-                    <font>
-                        <Font name="System Bold Italic" size="18.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="131.0" layoutY="330.0"
-                       text="- To explore the application click on the menu button above.">
-                    <font>
-                        <Font name="System Bold Italic" size="18.0"/>
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
-        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutX="7.0" layoutY="2.0" prefHeight="600.0"
-                   prefWidth="108.0"/>
-        <JFXHamburger fx:id="hamburger" layoutX="744.0" layoutY="21.0"/>
-    </children>
-</AnchorPane>
+                <!--<Label layoutX="131.0" layoutY="274.0" text="- Cancel an Appointment with professor.">-->
+                    <!--<font>-->
+                        <!--<Font name="System Bold Italic" size="18.0"/>-->
+                    <!--</font>-->
+                <!--</Label>-->
+                <!--<Label layoutX="131.0" layoutY="330.0"-->
+                       <!--text="- To explore the application click on the menu button above.">-->
+                    <!--<font>-->
+                        <!--<Font name="System Bold Italic" size="18.0"/>-->
+                    <!--</font>-->
+                <!--</Label>-->
+            <!--</children>-->
+        <!--</AnchorPane>-->
+        <!--<JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutX="7.0" layoutY="2.0" prefHeight="600.0"-->
+                   <!--prefWidth="108.0"/>-->
+        <!--<JFXHamburger fx:id="hamburger" layoutX="744.0" layoutY="21.0"/>-->
+    <!--</children>-->
+<!--</AnchorPane>-->

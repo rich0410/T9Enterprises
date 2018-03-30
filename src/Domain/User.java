@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class User {
 	
-	private String firstName, lastName, email, userID, teacherid;
+	private String firstName, lastName, email, userID;
+	private int role;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -19,15 +20,6 @@ public class User {
 	public String getFirstName(){
 		return firstName;
 	}
-
-	public void setTeacherId(String teacherId){
-		this.teacherid = teacherId;
-	}
-
-	public String getTeacherid(){
-		return teacherid;
-	}
-
 
 	public void setFirstName(String firstName){
 		this.firstName = firstName;
@@ -49,8 +41,19 @@ public class User {
 	public  String getEmailAddress(){
 		return email;
 	}
+	public void setID(String id){
+		this.userID = id;
+	}
 	
 	public String getID(){
 		return userID;
 	}
+
+	public void setRole(int role){
+		this.role = role;
+	}
+
+    public int getRole() {
+        return role;
+    }
 }

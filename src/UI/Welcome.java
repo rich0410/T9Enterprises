@@ -30,15 +30,13 @@ public class Welcome implements Initializable {
     @FXML
     private AnchorPane root;
 
-    @FXML
-    private Label lebel;
 
     public  static AnchorPane rootP;
 
     @FXML
     private AnchorPane fragment;
 
-    @FXML
+
     public static AnchorPane fragementP;
 
 

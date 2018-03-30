@@ -17,14 +17,13 @@ public class mainControler implements Initializable {
     @FXML
     private  StackPane root;
 
-
+    public static StackPane rootp;
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        rootp =root;
         if (!RegistrationFormController.isSplashLoaded) {
             loadSplashScreen();
         }

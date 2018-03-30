@@ -12,7 +12,20 @@
 <?import javafx.scene.text.Font?>
 
 <GridPane fx:id="root" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.BookAnAppointment">
-    <Label id="header-text" text="Book an Appointment" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1">
+    <padding><Insets bottom="40" left="40" right="40" top="40" /></padding>
+    <columnConstraints>
+        <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="150.0" prefWidth="150.0">
+        </ColumnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="200.0" prefWidth="252.0">
+        </ColumnConstraints>
+      <ColumnConstraints maxWidth="63.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="135.0" minWidth="69.0" prefWidth="135.0" />
+      <ColumnConstraints maxWidth="132.0" minWidth="65.0" prefWidth="96.0" />
+      <ColumnConstraints maxWidth="96.0" minWidth="41.0" prefWidth="41.0" />
+    </columnConstraints>
+
+
+    <Label id="header-text" text="Book an Appointment" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="1">
         <font>
             <Font name="Arial" size="24" />
         </font>
@@ -58,23 +71,17 @@
     <Button fx:id="add_appointment" defaultButton="true" onAction="#handleappointmentButtonAction" prefHeight="41.0" prefWidth="100" text="Add" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="1">
 
     </Button>
-       <columnConstraints>
-         <ColumnConstraints maxWidth="157.0" minWidth="70.0" prefWidth="157.0" />
-         <ColumnConstraints maxWidth="527.0" minWidth="307.0" prefWidth="307.0" />
-         <ColumnConstraints maxWidth="93.0" minWidth="0.0" prefWidth="0.0" />
-      <ColumnConstraints maxWidth="234.0" minWidth="93.0" prefWidth="141.0" />
-      <ColumnConstraints maxWidth="242.0" minWidth="108.0" prefWidth="194.0" />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints maxHeight="57.0" minHeight="30.0" prefHeight="48.0" />
-         <RowConstraints maxHeight="46.0" minHeight="25.0" prefHeight="46.0" />
-         <RowConstraints maxHeight="55.0" minHeight="23.0" prefHeight="48.0" />
-         <RowConstraints maxHeight="54.0" minHeight="8.0" prefHeight="48.0" />
-         <RowConstraints maxHeight="54.0" minHeight="8.0" prefHeight="48.0" />
-      <RowConstraints maxHeight="73.0" minHeight="34.0" prefHeight="35.0" />
-      </rowConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+      
 
 
 

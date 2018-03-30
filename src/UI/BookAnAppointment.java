@@ -1,5 +1,7 @@
 package UI;
 
+import Domain.TimeSlot;
+import Domain.Time_Table;
 import User.Email;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
@@ -42,7 +44,9 @@ public class BookAnAppointment implements Initializable {
     @FXML
     private GridPane root;
 
+    private Time_Table time_table;
 
+    private TimeSlot t_slot;
 
 
     @Override
@@ -60,6 +64,8 @@ public class BookAnAppointment implements Initializable {
         AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
                 "Your Appointment request is accepted");
 
+
+
     }
 
     @FXML
@@ -75,6 +81,7 @@ public class BookAnAppointment implements Initializable {
             fxmlLoader.setLocation(getClass().getResource("../Layout/professor.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 800, 400);
+            scene.getStylesheets().add(getClass().getResource("../Layout/demo.css").toExternalForm());
             Stage stage = new Stage();
             stage.setTitle("Professors");
             stage.setScene(scene);
@@ -101,6 +108,7 @@ public class BookAnAppointment implements Initializable {
             fxmlLoader.setLocation(getClass().getResource("../Layout/Avalibility.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 800, 400);
+            scene.getStylesheets().add(getClass().getResource("../Layout/demo.css").toExternalForm());
             Stage stage = new Stage();
             stage.setTitle("Availability");
             stage.setScene(scene);

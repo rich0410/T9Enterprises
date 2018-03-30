@@ -14,8 +14,7 @@ import java.util.ResourceBundle;
 
 public class Roomfinder implements Initializable {
 
-    @FXML
-    private AnchorPane root;
+
 
     @FXML
     private BorderPane border;
@@ -30,6 +29,8 @@ public class Roomfinder implements Initializable {
         WebEngine webEngine = currentPage.createWebEngine();
         webEngine.load("https://lyceum.algonquincollege.com/roomfinder/");
         border.setCenter(webView);
+
+
 
 
     }

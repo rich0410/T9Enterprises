@@ -25,6 +25,7 @@ public class Controller{
 	private HashMap<String, ArrayList<String>> office;
 	public DataGenerator dG;
 	private HashMap<String, String> userData;
+	private User user;
 
 
 	private Controller(){
@@ -56,14 +57,14 @@ public class Controller{
 	 * @return
 	 */
 	public boolean authenticateUser(String userID, String password){
-		boolean verify = false;
-		UserLogin uL = new UserLogin();
-		if (uL.authenticate(userID, password)){
+//		boolean verify = false;
+//		UserLogin uL = new UserLogin();
+//		if (uL.authenticate(userID, password)){
+
+			set_user(loadUser(userID));
 			
-			loadUser(userID);
-			
-			verify = true;
-		}
+		boolean	verify = true;
+//		}
 		return verify;
 	}
 	
@@ -72,12 +73,13 @@ public class Controller{
 	 * role is determined the proper user object will be created to represent the user's data.
 	 * @param userID
 	 */
-	private void loadUser(String userID) {
-
+	private User loadUser(String userID) {
+      User user = null;
 		if(dB.userIsAdmin(userID)){
 			admin = new Admin(userID);
 			userData = dB.getAdminInfo(userID);
-			
+			admin.setRole(1);
+			user = admin;
 		}
 		else if(dB.userIsTeacher(userID)){
 			teacher = new Teacher(userID);
@@ -87,13 +89,21 @@ public class Controller{
 			teacher.setLastName(userData.get("Larst Name"));
 			teacher.setEmailAddress(userData.get("Email"));
 			
-			createTimetable(userID);
-			
+			//createTimetable(userID);
+			teacher.setRole(2);
+            user = teacher;
 		}
 		else if(dB.userIsStudent(userID)){
 			student = new Student(userID);
 			userData = dB.getStudentInfo(userID);
+			student.setFirstName(userData.get("First Name"));
+			student.setLastName(userData.get("Larst Name"));
+			student.setEmailAddress(userData.get("Email"));
+			student.setRole(3);
+			user = student;
 		}
+
+	return user;
 	}
 
 	private void invokeHomepage() {
@@ -131,10 +141,19 @@ public class Controller{
 	
 	
 	public void addSlotToTimeTable(){
+
 		
 	}
-	
-	/**
+
+	public void set_user(User user){
+		this.user = user;
+	}
+
+    public User getUser() {
+        return user;
+    }
+
+    /**
 	 * Reads the teacher timetable data to be passed to the presentation layer.
 	 */
 	/*protected void loadData(){
