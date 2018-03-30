@@ -41,7 +41,7 @@ public class ProfessorController implements Initializable {
 
         Database db = new Database();
 
-       tableView.setItems(db.parseUserList());              //this is causing a null pointer.
+       //tableView.setItems(db.parseUserList());              //this is causing a null pointer.
         
     }
 

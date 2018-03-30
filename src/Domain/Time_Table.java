@@ -3,6 +3,8 @@ package Domain;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * This represents a teacher's timetable. A collection of TimeSlot objects will be bundled with a String representing a day of the week.
@@ -64,18 +66,27 @@ public class Time_Table {
 	}
 
     /**
-     * Retrieves a time slot from the timetable. At this point the method needs to be revised.
+     * Retrieves a time slot from the timetable. Using the course code provided it will iterate over the HashMap keys then iterate 
+     * over the ArrayList items comparing the course and if a match is found the TimeSlot object will be returned.
      * @param courseCode
      * @return
      */
     protected TimeSlot getTimeSlot(String courseCode){
-    	TimeSlot timeSlot = null;
+    	TimeSlot t = null;
+    	Set<String> key = schedule.keySet();
+    	Iterator<String> keySet = key.iterator();
     	
-    	do{
-    	//	schedule.get
-    	}while(timeSlot != null);
-
-        return  timeSlot;
+    	while(keySet.hasNext()){
+    		String day = keySet.next();
+    		for(TimeSlot slot: schedule.get(day)){
+    			if(slot.getCourse().equals(courseCode)){
+    				t = slot;
+    				break;
+    			}
+    		}
+    	}
+    	
+    	return t;
     }
     
     /**

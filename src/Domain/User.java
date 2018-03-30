@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 public class User {
 	
-	private String firstName, lastName, email, userID, teacherid;
+	private String firstName, lastName, email, userID;
 	
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public User(String userID){
@@ -19,15 +18,6 @@ public class User {
 	public String getFirstName(){
 		return firstName;
 	}
-
-	public void setTeacherId(String teacherId){
-		this.teacherid = teacherId;
-	}
-
-	public String getTeacherid(){
-		return teacherid;
-	}
-
 
 	public void setFirstName(String firstName){
 		this.firstName = firstName;

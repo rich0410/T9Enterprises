@@ -19,10 +19,9 @@ public class Controller{
 	private Student student;
 	private Teacher teacher;
 	private Admin admin;
-
 	private Database dB;
-	private HashMap<String, ArrayList<String>> schedule;
-	private HashMap<String, ArrayList<String>> office;
+	
+	private String userID;
 	public DataGenerator dG;
 	private HashMap<String, String> userData;
 
@@ -34,19 +33,19 @@ public class Controller{
 		return ctl;
 	}
 	
+	public String getUserID(){
+		return userID;
+	}
+	
 	/**
 	 * Load data and initiate the GUI object.
 	 */
-	public void startup(String[] args){
+	public void startup(){
 		dB = new Database();
 		dB.connectDatabase();
-		dB.setupHashMap();
-		initGUI(args);
 	}
 	
-	public User getTeacher(){
-		return teacher;
-	}
+	
 	
 	/**
 	 * Called by the GUI layer this method will pass the user ID and password to the UserLogin object to actually perform
@@ -63,6 +62,8 @@ public class Controller{
 			loadUser(userID);
 			
 			verify = true;
+			
+			this.userID = userID;		//Store the userID for future operations.
 		}
 		return verify;
 	}
@@ -78,60 +79,121 @@ public class Controller{
 			admin = new Admin(userID);
 			userData = dB.getAdminInfo(userID);
 			
+			admin.setFirstName(userData.get("First Name"));
+			admin.setLastName(userData.get("Larst Name"));
+			admin.setEmailAddress(userData.get("Email"));
+			
 		}
 		else if(dB.userIsTeacher(userID)){
 			teacher = new Teacher(userID);
 			userData = dB.getTeacherInfo(userID);
 			
 			teacher.setFirstName(userData.get("First Name"));
-			teacher.setLastName(userData.get("Larst Name"));
+			teacher.setLastName(userData.get("Last Name"));
 			teacher.setEmailAddress(userData.get("Email"));
 			
-			createTimetable(userID);
-			
+			teacher.setClasses(dB.getTeacherClasses(userID));
+			teacher.setOfficeHours(dB.getTeacherOffice(userID));
+
 		}
 		else if(dB.userIsStudent(userID)){
 			student = new Student(userID);
 			userData = dB.getStudentInfo(userID);
+			
+			student.setFirstName(userData.get("First Name"));
+			student.setLastName(userData.get("Last Name"));
+			student.setEmailAddress(userData.get("Email"));
+			
+			student.setClasses(dB.getStudentClasses(userID));
 		}
 	}
-
-	private void invokeHomepage() {
-
-		
-			
-			/*Invoke the teacher home page displaying the teacher's timetable*/
-			
+	
+	public Student getStudent(){
+		return student;
 	}
-
+	
+	public Teacher getTeacher(){
+		return teacher;
+	}
+	
+	public Admin getAdmin(){
+		return admin;
+	}
+	
 	/**
 	 * Instantiate the GUI object and invoke the method to display the interface.
 	 */
-	private void initGUI(String[] args) {
+	public void initGUI(String[] args) {
 
 		Application.launch(GUI.class,args);
 
 	}
+	
+	/**
+	 * Returns a collection of resource bundles representing all of the office hours for a teacher.
+	 * @return
+	 */
+	public ArrayList<HashMap<String,String>> getTeacherOfficeTimes(String id){
+		
+		return dB.getTeacherOffice(id);
+	}
+
+	
+	/**
+	 * Updates the database with the new meeting information and sends and email to the teacher. A resource bundle representing the office time
+	 * for the teacher is passed back as a parameter from the presentation layer.
+	 * @param office
+	 */
+	public void bookMeeting(HashMap<String, String> office){
+		
+		dB.bookMeeting(userID, office);
+		
+		//sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
+	}
+	
+	/**
+	 * Returns an ArrayList of Strings containing the details for each meeting.
+	 * @return
+	 */
+	public ArrayList<HashMap<String,String>> getAllStudentMeetings(){
+		return dB.getAllStudentMeetings(student.getID());
+	}
+	
+	/**
+	 * Returns an ArrayList of Strings containing the details for each meeting.
+	 * @return
+	 */
+	public ArrayList<HashMap<String,String>> getAllTeacherMeetings(){
+		return dB.getAllTeacherMeetings(teacher.getID());
+	}
+	
+	public String getStudentEmail(String sID){
+		return dB.getStudetEmail(sID);
+	}
+	
+	public String getTeacherEmail(String tID){
+		return dB.getTeacherEmail(tID);
+	}
+	
+	public ArrayList<String> getAllStudentEmails(String courseCode){
+		return dB.getClassStudentsEmail(courseCode);
+	}
+	
+	private void sendEmail(String emailAddress, HashMap<String, String> office) {
+		
+		
+	}
+	
+	private void sendEmail(ArrayList<String> emailAddress) {
+		
+		
+	}
 
 	
 	
-	/**
-	 * Adds a new timetable to the teacher. The old timetable will be overwritten.
-	 */
-	private void createTimetable(String userID){
-		schedule = dB.getScheduleData(userID);
-		office = dB.getOfficeData(userID);
+	public void cancelClass(HashMap<String, String> course){
 		
-		Time_Table tTable = new Time_Table();
-		tTable.addSlots(schedule);
-		tTable.addSlots(office);
-		
-		teacher.setTimeTable(tTable);
-	}
-	
-	
-	public void addSlotToTimeTable(){
-		
+		ArrayList<String> emails = dB.getClassStudentsEmail(course.get("Course"));
 	}
 	
 	/**
@@ -143,6 +205,18 @@ public class Controller{
 		names = dG.getNames();
 		schedule =dG.getSched();
 	}*/
+	
+	public void logout(){
+		userID = null;
+		student = null;
+		teacher = null;
+		admin = null;
+		
+	}
+
+	public void resetMeetings(HashMap<String, String> office) {
+		dB.resetMeetings(office);
+	}
 
 
 	

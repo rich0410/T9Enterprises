@@ -1,6 +1,7 @@
 package Domain;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This represents a teacher user. The user will have a collection of TimeTable objects (one for every week in the semester). 
@@ -9,30 +10,14 @@ import java.util.Date;
  */
 public class Teacher extends User{
 	
-	//A collection of 15 Timetable objects, one for every week in the semester.
-	private Time_Table[] timetable = new Time_Table[15];
+	private ArrayList<HashMap<String,String>> timetable = new ArrayList<HashMap<String,String>>();	
+	private ArrayList<HashMap<String,String>> officehours = new ArrayList<HashMap<String,String>>();	
 
 	public Teacher(String userID){
 		super(userID);
 	}
-
-	/**
-	* This method is used to add or update the timeSlot.
-	* */
-	protected void updateSchedule(){
-
-       //timetable.addSlot();
-	}
-
-	/**
-	 *This method is used to cancel the Time slot
-	 **/
-	protected void cancelClass(){
-
-		// timetable.removeSlot();
-	}
 	
-	public Time_Table[] getTimeTable(){
+	public ArrayList<HashMap<String,String>> getClasses(){
 		return timetable;
 	}
 	
@@ -40,12 +25,16 @@ public class Teacher extends User{
 	 * Set the timetable, creating an entry for every week in the semester.
 	 * @param tTable
 	 */
-	public void setTimeTable(Time_Table tTable){
-		
-		for(int i=0; i < 15; i++){
-			timetable[i] = tTable;
-		}
-		
+	public void setClasses(ArrayList<HashMap<String,String>> timetable){
+		this.timetable = timetable;
+	}
+
+	public ArrayList<HashMap<String,String>> getOfficeHours() {
+		return officehours;
+	}
+
+	public void setOfficeHours(ArrayList<HashMap<String,String>> officehours) {
+		this.officehours = officehours;
 	}
 	
 }

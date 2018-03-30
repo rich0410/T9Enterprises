@@ -1,6 +1,5 @@
 package Domain;
 
-import java.sql.Time;
 import java.time.LocalTime;
 
 public class TimeSlot {
@@ -8,8 +7,8 @@ public class TimeSlot {
     private String room_number;
     private int duration;
     private boolean cancelled = false;
-    private String course;
-
+    private String course;				//This will be the course code and title concatenated (CST8344-305 Programming 1) or simply 'Office'
+    									//to mark this time slot as office hours.
     public TimeSlot(){}
 
     protected LocalTime getStartTime(){

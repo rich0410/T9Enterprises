@@ -1,78 +1,59 @@
 INSERT INTO Teacher(TeacherID, FirstName, LastName, EmailAddress) VALUES
-('000111222', 'Roland', 'Biggs', 'bigg2212@algonquincollege.com'),
-('054743566', 'Jack', 'Jefferson', 'jeff2364@algonquincollege.com'),
-('078656544', 'Hugo', 'Bertrani', 'bert0443@algonquincollege.com'),
-('026887345', 'Jeff', 'Akil', 'akil2020@algonquincollege.com'),
-('023435788', 'Alfonso', 'Isabella', 'isab0023@algonquincollege.com'),
-('096357467', 'Sigfried', 'VonEden', 'vone6744@algonquincollege.com'),
-('053354897', 'Erin', 'Snyder', 'snyd9954@algonquincollege.com'),
-('097546554', 'Hanna', 'Mulder', 'muld2247@algonquincollege.com');
+('bigg2212', 'Roland', 'Biggs', 'bigg2212@algonquincollege.com'),
+('jeff2364', 'Jack', 'Jefferson', 'jeff2364@algonquincollege.com'),
+('bert0443', 'Hugo', 'Bertrani', 'bert0443@algonquincollege.com'),
+('akil2020', 'Jeff', 'Akil', 'akil2020@algonquincollege.com'),
+('isab0023', 'Alfonso', 'Isabella', 'isab0023@algonquincollege.com'),
+('vone6744', 'Sigfried', 'VonEden', 'vone6744@algonquincollege.com'),
+('snyd9954', 'Erin', 'Snyder', 'snyd9954@algonquincollege.com'),
+('muld2247', 'Hanna', 'Mulder', 'muld2247@algonquincollege.com');
 
 
 INSERT INTO Student(StudentID, FirstName, LastName, EmailAddress)VALUES
-('123234234', 'John', 'Jenkins', 'jenk2002@algonquinlive.com'),
-('164853565', 'Alice', 'Morner', 'morn2332@algonquinlive.com'),
-('184325644', 'Eric', 'Tyler', 'tyle2343@algonquinlive.com'),
-('174536536', 'Naiomi', 'Scott', 'scot2456@algonquinlive.com'),
-('108684134', 'Nick', 'Richards', 'rich0067@algonquinlive.com'),
-('123235774', 'Alex', 'Hall', 'hall2446@algonquinlive.com')
+('jenk2002', 'John', 'Jenkins', 'jenk2002@algonquinlive.com'),
+('morn2332', 'Alice', 'Morner', 'morn2332@algonquinlive.com'),
+('tyle2343', 'Eric', 'Tyler', 'tyle2343@algonquinlive.com'),
+('scot2456', 'Naiomi', 'Scott', 'scot2456@algonquinlive.com'),
+('rich0067', 'Nick', 'Richards', 'rich0067@algonquinlive.com'),
+('hall2446', 'Alex', 'Hall', 'hall2446@algonquinlive.com')
 ;
 
-INSERT INTO CourseSections(CourseCodeID, LabLecture, Title, RoomNumber) VALUES
-('CST9245-010', 0, 'Electro-Engineering', 'B232'),
-('CST9245-014', 1, 'Electro-Engineering', 'C144'),
-('CST4435-010', 0, 'Java Programming', 'T126'),
-('CST4435-012', 1, 'Java Programming', 'B232'),
-('CST1134-010', 0, 'Intro to Web', 'P216'),
-('CST1134-013', 1, 'Intro to Web', 'C144')
+INSERT INTO Admin(AdminID, FirstName, LastName, EmailAddress)VALUES
+('dens1234', 'Dave', 'Denison, 'dens1234@algonquincollege.com'),
 ;
 
-INSERT INTO StudentClasses(StudentID, CourseCodeID) VALUES
-('123234234', 'CST9245-010'),
-('123234234', 'CST4435-012'),
-('174536536', 'CST1134-010'),
-('108684134', 'CST4435-010'),
-('123235774', 'CST9245-010')
+INSERT INTO Courses(CourseCode, LabLecture, Title) VALUES
+('CST9245-010', 0, 'Electro-Engineering'),
+('CST9245-014', 1, 'Electro-Engineering'),
+('CST4435-010', 0, 'Java Programming'),
+('CST4435-012', 1, 'Java Programming'),
+('CST1134-010', 0, 'Intro to Web'),
+('CST1134-013', 1, 'Intro to Web')
 ;
 
-INSERT INTO TeacherClasses(TeacherID, CourseCodeID, Duration, DayOfTheWeek, StartTime) VALUES
-('078656544', 'CST9245-010', 2, 'Wed', '13:00:00'),
-('026887345', 'CST4435-010', 1, 'Tue', '08:00:00'),
-('096357467', 'CST9245-014', 1, 'Thu', '09:00:00'),
-('054743566', 'CST1134-013', 3, 'Fri', '16:30:00'),
-('000111222', 'CST4435-012', 2, 'Mon', '19:30:00')
+INSERT INTO Schedule(ScheduleID, TeacherID, CourseCode, Duration, DayOfTheWeek, StartTime, RoomNumber) VALUES
+('S001', 'bigg2212', 'CST9245-010', 2, 'Wed', '13:00:00', 'T130'),
+('S002', 'jeff2364', 'CST4435-010', 1, 'Tue', '08:00:00', 'T210'),
+('S003', 'bert0443', 'CST9245-014', 1, 'Thu', '09:00:00', 'T109'),
+('S004', 'isab0023', 'CST1134-013', 3, 'Fri', '16:30:00', 'P213'),
+('S005', 'snyd9954', 'CST4435-012', 2, 'Mon', '19:30:00', 'B220')
 ;
 
-INSERT INTO TeacherOfficeTime(TeacherID, DayOfTheWeek, StartTime, Duration, RoomNumber) VALUES
-('000111222', 'Wed', '09:30:00', 2, 'B231'),
-('054743566', 'Tue', '12:00:00', 1, 'T315'),
-('078656544', 'Thu', '15:30:00', 3, 'T317'),
-('026887345', 'Fri', '13:00:00', 3, 'J115'),
-('023435788', 'Thu', '12:30:00', 2, 'B404'),
-('096357467', 'Wed', '17:00:00', 1, 'E410'),
-('053354897', 'Mon', '18:00:00', 1, 'B201'),
-('097546554', 'Mon', '19:30:00', 2, 'B343')
+INSERT INTO OfficeHours(OfficeID, TeacherID, DayOfTheWeek, Time, RoomNumber, Available) VALUES
+('O001', 'akil2020', 'Wed', '09:00:00', 'B231', 1),
+('O002', 'snyd9954', 'Tue', '12:00:00', 'T315', 1),
+('O003', 'bigg2212', 'Thu', '15:00:00', 'T317', 1),
+('O004', 'jeff2364', 'Fri', '13:00:00', 'J115', 1),
+('O005', 'snyd9954', 'Thu', '12:00:00', 'B404', 1),
+('O006', 'isab0023', 'Wed', '17:00:00', 'E410', 1),
+('O007', 'muld2247', 'Mon', '18:00:00', 'B201', 1),
+('O008', 'bigg2212', 'Mon', '19:00:00', 'B343', 1)
 ;
 
-CREATE OR REPLACE VIEW vw_TeachersWithCourses AS 
-	SELECT t.TeacherID, t.FirstName, t.LastName, tc.DayOfTheWeek, tc.StartTime,
-	cs.CourseCodeID, cs.LabLecture
-	FROM Teacher t
-	INNER JOIN teacherClasses tc ON t.TeacherID = tc.TeacherID
-	INNER JOIN CourseSections cs ON tc.CourseCodeID = cs.CourseCodeID;
-
-CREATE OR REPLACE VIEW vw_StudentsWithCourses AS
-	SELECT s.StudentID, s.FirstName, s.LastName, cs.CourseCodeID, 
-	cs.LabLecture, cs.Title, cs.RoomNumber
-	FROM Student s
-	INNER JOIN studentClasses sc ON s.StudentID = sc.StudentID
-	INNER JOIN CourseSections cs ON sc.CourseCodeID = cs.CourseCodeID;
-
-CREATE OR REPLACE VIEW vw_StudentsAndTeachersCourses AS
-	SELECT t.TeacherID, t.LastName AS TeacherLastName, tc.DayOfTheWeek, tc.StartTime, cs.CourseCodeID,
-	s.StudentID, s.LastName AS StudentLastName
-	FROM Teacher t
-	INNER JOIN teacherClasses tc ON t.TeacherID = tc.TeacherID
-	INNER JOIN CourseSections cs ON tc.CourseCodeID = cs.CourseCodeID
-	INNER JOIN StudentClasses sc ON cs.CourseCodeID = sc.CourseCodeID
-	INNER JOIN Student s ON sc.StudentID = s.StudentID;
+INSERT INTO StudentCourses(StudentID, CourseCode) VALUES
+('jenk2002', 'CST9245-010'),
+('jenk2002', 'CST4435-012'),
+('morn2332', 'CST1134-010'),
+('scot2456', 'CST4435-010'),
+('hall2446', 'CST9245-010')
+;

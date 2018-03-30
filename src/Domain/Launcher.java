@@ -9,7 +9,8 @@ public class Launcher {
 	public static void main(String[] args) {
 
 		ctl = Controller.getController();
-		ctl.startup(args);
+		ctl.startup();
+		ctl.initGUI(args);
 		
 
 	}
