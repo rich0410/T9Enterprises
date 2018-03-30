@@ -15,9 +15,9 @@ import Domain.User;
 public class Database {
 	
 	private Connection conn = null;
-	private String userName = "assignment1";;
-	private String password = "password";
-	private String dbConnection = "jdbc:mysql://localhost/assignment1?autoReconnect=true&useSSL=false";
+	private String userName = "algonquin";
+	private String password = "algonquin";
+	private String dbConnection = "jdbc:mysql://localhost/Algonquin_Kiosk?autoReconnect=true&useSSL=false";
 	private PreparedStatement pSt;
 	private ResultSet rS= null;
 	private HashMap<String, String> userInfo;
@@ -31,7 +31,7 @@ public class Database {
 	 */
 	public void connectDatabase(){
 		try {
-			conn = (Connection) DriverManager.getConnection(dbConnection, userName, password);
+			conn = DriverManager.getConnection(dbConnection, userName, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,14 +69,15 @@ public class Database {
 		boolean idPresent = false;
 		
 		try {
-			pSt = conn.prepareStatement("");		//SQL query will go here to retrieve teacher user's data if their userID is in the Teacher table.
+			pSt = conn.prepareStatement("SELECT * FROM TEACHER WHERE TEACHERID = ?");		//SQL query will go here to retrieve teacher user's data if their userID is in the Teacher table.
 			pSt.setString(1, userID);
 			rS = pSt.executeQuery();
 			
 			idPresent = rS.next();		
 			
 		}catch(SQLException e){
-			
+			System.out.println("Error");
+			e.printStackTrace();
 		}
 			return idPresent;
 	}

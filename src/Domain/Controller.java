@@ -35,7 +35,8 @@ public class Controller {
 		dB = new Database();
 		dB.connectDatabase();
 		dB.setupHashMap();
-		//loadData();
+		loadUser("000111222");
+		loadData();
 		//initGUI();
 	}
 	
@@ -79,7 +80,7 @@ public class Controller {
 			userData = dB.getTeacherInfo(userID);
 			
 			teacher.setFirstName(userData.get("First Name"));
-			teacher.setLastName(userData.get("Larst Name"));
+			teacher.setLastName(userData.get("Last Name"));
 			teacher.setEmail(userData.get("Email"));
 			
 			createTimetable(userID);
@@ -131,12 +132,10 @@ public class Controller {
 	/**
 	 * Reads the teacher timetable data to be passed to the presentation layer.
 	 */
-	/*protected void loadData(){
-		dG = new DataGenerator();
-		dG.readFile();
-		names = dG.getNames();
-		schedule =dG.getSched();
-	}*/
+	protected void loadData(){
+		System.out.println(teacher.getFirstName()+" "+teacher.geLlastName());
+		System.out.println(teacher.getemail());
+	}
 	
 	
 }
