@@ -43,29 +43,17 @@ public class RegistrationFormController {
         Window owner = submitButton.getScene().getWindow();
         Controller conn = Controller.getController();
         if ((conn.authenticateUser(emailField.getText(), passwordField.getText()))) {
-            User u = conn.getUser();
             try {
-                if (u.getRole() == 1) {
-                    System.out.println("admin");
-                } else if (u.getRole() == 2) {
-                    System.out.println("teacher");
-
-                } else if (u.getRole() == 3) {
-
-
-                    AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layout/Student.fxml"));
-                    mainControler.rootp.getChildren().setAll(pane);
-                }
-
+                User u = conn.getUser();
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layout/Student.fxml"));
+                mainControler.rootp.getChildren().setAll(pane);
+                Welcome.lebelP.setText("Hello " + u.getFirstName()+" "+u.getLastName()+ ",");
 
             } catch (IOException e) {
                 Logger logger = Logger.getLogger(getClass().getName());
                 logger.log(Level.SEVERE, "Failed to create new Window.", e);
             }
-            catch (Exception e){
-                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Error",
-                        "Wrong login and password!");
-            }
+
 
         } else {
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Error",

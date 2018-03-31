@@ -123,7 +123,7 @@ public class Database {
             rS = pSt.executeQuery();
 
             rS.next();
-            userInfo.put("First Nmae", rS.getString("FirstName"));
+            userInfo.put("First Name", rS.getString("FirstName"));
             userInfo.put("Last Name", rS.getString("LastName"));
             userInfo.put("Email", rS.getString("EmailAddress"));
         } catch (SQLException e) {
@@ -191,6 +191,9 @@ public class Database {
      * @param userID
      * @return
      */
+
+
+
     public HashMap<String, ArrayList<String>> getScheduleData(String userID) {
 
         try {
@@ -342,6 +345,9 @@ public class Database {
 //	}
 //
 
+
+
+
     public ObservableList<User> parseUserList() {
         this.connectDatabase();
 
@@ -368,5 +374,6 @@ public class Database {
 
         return list;
     }
+
 
 }

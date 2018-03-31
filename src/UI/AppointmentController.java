@@ -1,14 +1,17 @@
 package UI;
 
+import Domain.TimeSlot;
+import Domain.User;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -16,17 +19,40 @@ public class AppointmentController implements Initializable {
 
     @FXML private BorderPane root;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
+    @FXML
+    private TableView<TimeSlot> tableView1;
 
     @FXML
-    protected void handleBackButtonAction(ActionEvent event) throws IOException {
-        AnchorPane Content = FXMLLoader.load(getClass().getResource(("../Layout/Welcome.fxml")));
-        root.getChildren().setAll(Content);
+    private TableColumn<TimeSlot, String> CourseCodeID;
+
+    @FXML
+    private TableColumn<TimeSlot, String> LabLecture;
+
+    @FXML
+    private TableColumn<TimeSlot, String> Title;
+
+    @FXML
+    private TableColumn<TimeSlot, String> Room;
+
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        CourseCodeID.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("teacherid"));
+        LabLecture.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("firstName"));
+        Title.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("lastName"));
+        Room.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("emailAddress"));
 
 
     }
+
+
+
+    @FXML
+    protected void handleDeleteAction(ActionEvent event) {
+
+    }
+
+
 
 }
