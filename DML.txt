@@ -54,6 +54,11 @@ INSERT INTO TeacherOfficeTime(TeacherID, DayOfTheWeek, StartTime, Duration, Room
 ('097546554', 'Mon', '19:30:00', 2, 'B343')
 ;
 
+INSERT INTO BookedAppointments(OfficeTimeID, StudentID) VALUES
+(1, '123234234'),
+(3, '123235774')
+;
+
 CREATE OR REPLACE VIEW vw_TeachersWithCourses AS 
 	SELECT t.TeacherID, t.FirstName, t.LastName, tc.DayOfTheWeek, tc.StartTime,
 	cs.CourseCodeID, cs.LabLecture
@@ -76,3 +81,30 @@ CREATE OR REPLACE VIEW vw_StudentsAndTeachersCourses AS
 	INNER JOIN CourseSections cs ON tc.CourseCodeID = cs.CourseCodeID
 	INNER JOIN StudentClasses sc ON cs.CourseCodeID = sc.CourseCodeID
 	INNER JOIN Student s ON sc.StudentID = s.StudentID;
+
+CREATE OR REPLACE VIEW vw_StudentsAndTeachersCoursesOfficeTime AS
+	SELECT t.LastName AS TeacherLastName, t.EmailAddress, cs.CourseCodeID, tc.DayOfTheWeek, 
+	tc.StartTime, tot.DayOfTheWeek AS TeacherOfficeHour, tot.StartTime AS OfficeHourTime,
+	tot.Duration, tot.RoomNumber AS OfficeHoursRoomNumber, s.StudentID AS StudentID
+	FROM TeacherOfficeTime tot
+	INNER JOIN Teacher t ON tot.TeacherID = t.TeacherID
+	INNER JOIN teacherClasses tc ON t.TeacherID = tc.TeacherID
+	INNER JOIN CourseSections cs ON tc.CourseCodeID = cs.CourseCodeID
+	INNER JOIN StudentClasses sc ON cs.CourseCodeID = sc.CourseCodeID
+	INNER JOIN Student s ON sc.StudentID = s.StudentID
+	WHERE tot.Duration > 0;
+
+CREATE OR REPLACE VIEW vw_TeachersWithOfficeHours AS 
+	SELECT t.TeacherID, t.FirstName, t.LastName, tot.DayOfTheWeek, tot.StartTime,
+	tot.duration, tot.RoomNumber
+	FROM Teacher t
+	INNER JOIN TeacherOfficeTime tot ON t.TeacherID = tot.TeacherID;
+
+
+CREATE OR REPLACE VIEW vw_BookedAppointments AS
+ 	SELECT tot.DayOfTheWeek, tot.StartTime, tot.Duration,t.TeacherID, t.LastName AS TLastName,
+    	tot.RoomNumber, s.StudentID, s.LastName AS SLastName, s.FirstName
+    	FROM Teacher t
+    	INNER JOIN TeacherOfficeTime tot ON t.TeacherID = tot.TeacherID
+    	INNER JOIN BookedAppointments ba ON tot.OfficeTimeID = ba.OfficeTimeID
+    	INNER JOIN Student s ON ba.StudentID = s.StudentID;

@@ -33,12 +33,13 @@ CREATE TABLE TeacherClasses(
 );
 
 CREATE TABLE TeacherOfficeTime(
+	OfficeTimeID	INTEGER(6)	NOT NULL AUTO_INCREMENT,
 	TeacherID	VARCHAR(9) NOT NULL,
 	DayOfTheWeek	VARCHAR(9) NOT NULL,
 	StartTime	TIME	NOT NULL,
 	Duration	INTEGER(1),
 	RoomNumber	VARCHAR(5),
-	PRIMARY KEY(TeacherID, DayOfTheWeek, StartTime),
+	PRIMARY KEY(OfficeTimeID),
 	CONSTRAINT	tot_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID)
 );
 
@@ -57,6 +58,14 @@ CREATE TABLE StudentClasses(
 	CONSTRAINT	csi_fk 	FOREIGN KEY(CourseCodeID) REFERENCES CourseSections(CourseCodeID)
 );
 
+CREATE TABLE BookedAppointments(
+	AppointmentID	INTEGER(6)	NOT NULL AUTO_INCREMENT,
+	OfficeTimeID	INTEGER(6)	NOT NULL,
+	StudentID	VARCHAR(9)	NOT NULL,
+	PRIMARY KEY(AppointmentID),
+	CONSTRAINT 	bot_fk 	FOREIGN KEY(OfficeTimeID) REFERENCES TeacherOfficeTime(OfficeTimeID),
+	CONSTRAINT 	sa_fk 	FOREIGN KEY(StudentID) REFERENCES Student(StudentID)	
+);
 
 CREATE USER 'administrator'@'%' IDENTIFIED BY 't9-enterprise';
 CREATE USER 'teacherUser'@'%' IDENTIFIED BY 'teacherPassword';
