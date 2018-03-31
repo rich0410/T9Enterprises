@@ -5,15 +5,11 @@ import Domain.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
@@ -33,7 +29,7 @@ public class RegistrationFormController {
     @FXML
     private Button submitButton;
 
-    private static String name;
+    private static User user;
 
 
 
@@ -45,9 +41,10 @@ public class RegistrationFormController {
         if ((conn.authenticateUser(emailField.getText(), passwordField.getText()))) {
             try {
                 User u = conn.getUser();
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layout/Student.fxml"));
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layout/Welcome.fxml"));
                 mainControler.rootp.getChildren().setAll(pane);
                 Welcome.lebelP.setText("Hello " + u.getFirstName()+" "+u.getLastName()+ ",");
+                setUser(u);
 
             } catch (IOException e) {
                 Logger logger = Logger.getLogger(getClass().getName());
@@ -58,15 +55,19 @@ public class RegistrationFormController {
         } else {
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Error",
                     "Wrong login and password!");
+        }}
+
+        private static void setUser(User user){
+            RegistrationFormController.user = user;
+        }
+
+        public static User getUser(){
+            return user;
         }
 
 
     }
 
-    public static String getFullname(){
-        return name;
-    }
 
 
 
-}

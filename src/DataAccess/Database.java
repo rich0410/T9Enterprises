@@ -123,6 +123,7 @@ public class Database {
             rS = pSt.executeQuery();
 
             rS.next();
+            userInfo.put("ID",rS.getString("StudentID"));
             userInfo.put("First Name", rS.getString("FirstName"));
             userInfo.put("Last Name", rS.getString("LastName"));
             userInfo.put("Email", rS.getString("EmailAddress"));
@@ -147,6 +148,7 @@ public class Database {
             rS = pSt.executeQuery();
 
             rS.next();
+            userInfo.put("ID",rS.getString("TeacherID"));
             userInfo.put("First Name", rS.getString("FirstName"));
             userInfo.put("Last Name", rS.getString("LastName"));
             userInfo.put("Email", rS.getString("EmailAddress"));

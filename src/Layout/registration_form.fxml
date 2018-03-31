@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="root" alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.RegistrationFormController">
+<GridPane fx:id="root" alignment="center" hgap="20" vgap="20" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="UI.RegistrationFormController">
     <padding><Insets bottom="40" left="40" right="40" top="40" /></padding>
     <columnConstraints>
         <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="100" prefWidth="100">
@@ -30,7 +30,7 @@
     </Label>
 
     <!-- Add Email Label -->
-    <Label text="AC Email : " GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <Label text="User id: " GridPane.columnIndex="0" GridPane.rowIndex="2">
     </Label>
     <!-- Add Email Text Field -->
     <TextField fx:id="emailField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />

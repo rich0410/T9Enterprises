@@ -46,16 +46,16 @@ public class Welcome implements Initializable {
 
     public static Label lebelP;
 
-
+    public static JFXDrawer drawerP;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lebelP = lebel;
         rootP = root;
         fragementP = fragment;
+        drawerP = drawer;
         Controller conn = Controller.getController();
-
-            User u = conn.getUser();
+        User u = conn.getUser();
             try {
                 if (u.getRole() == 1) {
                     System.out.println("admin");

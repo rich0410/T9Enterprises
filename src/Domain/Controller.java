@@ -85,7 +85,7 @@ public class Controller {
         } else if (dB.userIsTeacher(userID)) {
             teacher = new Teacher(userID);
             userData = dB.getTeacherInfo(userID);
-            teacher.setID(userData.get("TeacherID"));
+            teacher.setID(userData.get("ID"));
             teacher.setFirstName(userData.get("First Name"));
             teacher.setLastName(userData.get("Last Name"));
             teacher.setEmailAddress(userData.get("Email"));
@@ -96,6 +96,7 @@ public class Controller {
         } else if (dB.userIsStudent(userID)) {
             student = new Student(userID);
             userData = dB.getStudentInfo(userID);
+            student.setID(userData.get("ID"));
             student.setFirstName(userData.get("First Name"));
             student.setLastName(userData.get("Last Name"));
             student.setEmailAddress(userData.get("Email"));
@@ -104,6 +105,13 @@ public class Controller {
         }
 
         return user;
+    }
+
+
+    public HashMap<String, ArrayList<String>> getTeacherTimetable(String userID){
+
+        HashMap<String, ArrayList<String>>  data =   dB.getScheduleData(userID);
+        return data;
     }
 
     private void invokeHomepage() {
