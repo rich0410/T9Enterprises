@@ -27,7 +27,7 @@ public class Time_Table {
      */
     private void initSchedule() {
     	schedule = new HashMap<String, ArrayList<TimeSlot>>();
-    	
+
 		schedule.put("Monday", new ArrayList<TimeSlot>());						//There will be a collection of TimeSlots identified by
 		schedule.put("Tuesday", new ArrayList<TimeSlot>());						//a day of the week. 
 		schedule.put("Wednesday", new ArrayList<TimeSlot>());
@@ -43,10 +43,9 @@ public class Time_Table {
      * @param day
      * @param tSlot
      */
-	protected void addSlot(String day, TimeSlot tSlot){    
+	protected void addSlot(String day, TimeSlot tSlot){
     	ArrayList<TimeSlot> dailySched = schedule.get(day);
-    	
-    	dailySched.add(tSlot); 	
+		dailySched.add(tSlot);
     }
 
 	/**

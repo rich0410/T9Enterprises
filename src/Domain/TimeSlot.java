@@ -9,45 +9,53 @@ public class TimeSlot {
     private int duration;
     private boolean cancelled = false;
     private String course;
+    private String day;
 
     public TimeSlot(){}
 
-    protected LocalTime getStartTime(){
+    public LocalTime getStartTime(){
         return startTime;
     }
-    protected int getDuration(){
+    public int getDuration(){
         return duration;
     }
 
-    protected String getRoom_number(){
+    public String getRoom_number(){
         return room_number;
     }
 
-    protected  String getCourse(){
+    public  String getCourse(){
         return  course;
     }
 
-    protected boolean isCancelled(){
+    public String getDay(){
+        return day;
+    }
+    public boolean isCancelled(){
         return cancelled;
     }
 
-    protected void setStartTime(String startTime){
+    public void setStartTime(String startTime){
         this.startTime = LocalTime.parse(startTime);
     }
 
-    protected  void setRoom_number(String room_number){
+    public void setDay(String day){
+        this.day = day;
+    }
+
+    public  void setRoom_number(String room_number){
         this.room_number = room_number;
     }
 
-    protected void setDuration(int duration){
+    public void setDuration(int duration){
         this.duration = duration;
     }
     
-    protected void cancel(){
+    public void cancel(){
     	cancelled = true;
     }
 
-    protected  void setCourse(String course){
+    public  void setCourse(String course){
         this.course = course;
     }
 }

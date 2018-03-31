@@ -45,10 +45,9 @@ public class User {
 		this.userID = id;
 	}
 	
-	public String getID(){
+	public String getUserID(){
 		return userID;
 	}
-
 	public void setRole(int role){
 		this.role = role;
 	}

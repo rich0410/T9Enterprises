@@ -9,16 +9,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,9 +47,24 @@ public class BookAnAppointment implements Initializable {
 
     private TimeSlot t_slot;
 
+    private Availability a;
+
+    public static TextField professorP;
+
+    public static JFXDatePicker dateP;
+    public static JFXTimePicker starttimeP;
+    public static JFXTimePicker endtimeP;
+    public static TextField roomP;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        professorP =professor;
+        dateP = date;
+        starttimeP = starttime;
+        endtimeP = endtime;
+        roomP = room;
 
 
     }
@@ -60,7 +74,13 @@ public class BookAnAppointment implements Initializable {
 
         Email e = new Email();
         e.email_Thread(ProfessorController.getUser().getEmailAddress());
+        time_table = new Time_Table();
+        t_slot = new TimeSlot();
+        t_slot.setStartTime(starttime.getValue().toString());
+        t_slot.setDay(starttime.getValue().toString());
+        t_slot.setRoom_number(room.getText());
 
+        //time_table.addSlot(date.getValue().getDayOfWeek().toString(),t_slot);
         AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
                 "Your Appointment request is accepted");
 
@@ -93,19 +113,13 @@ public class BookAnAppointment implements Initializable {
 
     }
 
-    @FXML
-    protected void handleUpdateAction(ActionEvent event) {
-
-        this.professor.setText(ProfessorController.getUser().getFirstName() + " "+ProfessorController.getUser().getLastName());
-
-    }
 
     @FXML
     protected void handlecheckAction(ActionEvent event) {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("../Layout/Avalibility.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("../Layout/Availability.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 800, 400);
             scene.getStylesheets().add(getClass().getResource("../Layout/demo.css").toExternalForm());

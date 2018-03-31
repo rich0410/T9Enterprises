@@ -25,7 +25,7 @@ public class Database {
     private PreparedStatement pSt;
     private ResultSet rS = null;
     private HashMap<String, String> userInfo;
-    private HashMap<String, ArrayList<String>> schedInfo;
+    private static HashMap<String, ArrayList<String>> schedInfo ;
 
     public Database() {
     }
@@ -242,7 +242,7 @@ public class Database {
      * @return
      */
     public HashMap<String, ArrayList<String>> getOfficeData(String userID) {
-
+        this.connectDatabase();
         try {
             pSt = conn.prepareStatement("SELECT * FROM TEACHEROFFICETIME WHERE TEACHERID = ?");
 
@@ -311,23 +311,23 @@ public class Database {
 
         switch (day) {
 
-            case "MON":
+            case "Mon":
                 dow = "MONDAY";
                 break;
 
-            case "TUE":
+            case "Tue":
                 dow = "TUESDAY";
                 break;
 
-            case "WED":
+            case "Wed":
                 dow = "WEDNESDAY";
                 break;
 
-            case "THU":
+            case "Thu":
                 dow = "THURSDAY";
                 break;
 
-            case "FRI":
+            case "Fri":
                 dow = "FRIDAY";
                 break;
         }

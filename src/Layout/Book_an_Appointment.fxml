@@ -39,7 +39,6 @@
     <!-- Add Email Text Field -->
     <TextField fx:id="professor" prefHeight="35.0" prefWidth="504.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlesearchAction" prefHeight="43.0" prefWidth="101.0" text="Search" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handleUpdateAction" prefHeight="43.0" prefWidth="101.0" text="Update" GridPane.columnIndex="4" GridPane.rowIndex="2" />
 
     <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlecheckAction" prefHeight="43.0" prefWidth="138.0" text="Check Availability" GridPane.columnIndex="3" GridPane.rowIndex="4" />
 

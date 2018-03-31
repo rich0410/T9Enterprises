@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,34 +10,32 @@
 
 <?import javafx.scene.control.Button?>
 <BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="UI.ProfessorController">
+            fx:controller="UI.Availability">
     <center>
         <VBox prefHeight="591.0" prefWidth="693.0" styleClass="content">
             <children>
-                <Label styleClass="heading" text="Professor Page"/>
+                <Label styleClass="heading" text="Professor Availability"/>
 
                 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                             minWidth="-Infinity" prefHeight="281.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml">
                     <children>
-                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="228.0" prefWidth="641.0">
+                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="228.0" prefWidth="625.0">
                             <columns>
-                                <TableColumn fx:id="TeacherID" prefWidth="117.0" text="Teacher ID"/>
-                                <TableColumn fx:id="FirstName" prefWidth="134.0" text="First Name"/>
-                                <TableColumn fx:id="LastName" prefWidth="165.0" text="Last Name"/>
-                                <TableColumn fx:id="Email" prefWidth="223.0" text="AC Email"/>
+                                <TableColumn fx:id="DayOfTheWeek" prefWidth="117.0" text="DayOfTheWeek"/>
+                                <TableColumn fx:id="StartTime" prefWidth="100.0" text="StartTime"/>
+                                <TableColumn fx:id="Duration" prefWidth="100.0" text="Duration"/>
+                                <TableColumn fx:id="RoomNumber" prefWidth="165.0" text="RoomNumber"/>
+                                <TableColumn fx:id="Location" prefWidth="165.0" text="Course"/>
                             </columns>
                         </TableView>
                     </children>
                 </AnchorPane>
 
             </children>
-
             <Button contentDisplay="LEFT" defaultButton="true" mnemonicParsing="false" onAction="#handleUpdateAction" prefHeight="43.0" prefWidth="101.0" text="Update" />
 
         </VBox>
-
     </center>
-
     <bottom>
         <HBox styleClass="footer">
             <children>
@@ -50,5 +47,4 @@
     <stylesheets>
         <URL value="@toolbar-demo.css"/>
     </stylesheets>
-
 </BorderPane>

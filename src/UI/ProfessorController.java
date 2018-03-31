@@ -5,10 +5,12 @@ import java.util.ResourceBundle;
 
 import DataAccess.Database;
 import Domain.Teacher;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import Domain.User;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,6 +32,7 @@ public class ProfessorController implements Initializable {
     private TableColumn<User, String> LastName;
     @FXML
     private TableColumn<User, String> Email;
+
     @FXML
     private BorderPane root;
     private static User user;
@@ -53,12 +56,10 @@ public class ProfessorController implements Initializable {
     }
 
     public void clickItem(MouseEvent event) {
-        if (event.getClickCount() == 2) //Checking double click
+        if (event.getClickCount() == 1) //Checking double click
         {
             setUser(tableView.getSelectionModel().getSelectedItem());
-            Stage stage = (Stage) tableView.getScene().getWindow();
 
-            stage.close();
         }
     }
 
@@ -68,6 +69,13 @@ public class ProfessorController implements Initializable {
 
     public static User getUser() {
         return user;
+    }
+
+    @FXML
+    protected void handleUpdateAction(ActionEvent event) {
+        BookAnAppointment.professorP.setText(ProfessorController.getUser().getFirstName() + " "+ProfessorController.getUser().getLastName());
+        Stage stage = (Stage) tableView.getScene().getWindow();
+        stage.close();
     }
 
 }

@@ -44,7 +44,6 @@ public class RegistrationFormController {
         Controller conn = Controller.getController();
         if ((conn.authenticateUser(emailField.getText(), passwordField.getText()))) {
             User u = conn.getUser();
-            name = u.getFirstName() + " " +u.getLastName();
             try {
                 if (u.getRole() == 1) {
                     System.out.println("admin");
@@ -62,6 +61,10 @@ public class RegistrationFormController {
             } catch (IOException e) {
                 Logger logger = Logger.getLogger(getClass().getName());
                 logger.log(Level.SEVERE, "Failed to create new Window.", e);
+            }
+            catch (Exception e){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Error",
+                        "Wrong login and password!");
             }
 
         } else {
