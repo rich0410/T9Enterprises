@@ -1,36 +1,39 @@
 package UI;
-import java.io.IOException;
+
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import DataAccess.Database;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import Domain.Teacher;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import Domain.User;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-
+import javafx.stage.Stage;
 
 
 public class ProfessorController implements Initializable {
-    
-	
-	@FXML private TableView<User> tableView;
-    @FXML private TableColumn<User, String> TeacherID;
-    @FXML private TableColumn<User, String> FirstName;
-    @FXML private TableColumn<User, String> LastName;
-    @FXML private TableColumn<User, String> Email;
-    @FXML private BorderPane root;
 
-   
+
+    @FXML
+    private TableView<User> tableView;
+    @FXML
+    private TableColumn<User, String> TeacherID;
+    @FXML
+    private TableColumn<User, String> FirstName;
+    @FXML
+    private TableColumn<User, String> LastName;
+    @FXML
+    private TableColumn<User, String> Email;
+    @FXML
+    private BorderPane root;
+    private static User user;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,18 +44,32 @@ public class ProfessorController implements Initializable {
 
         Database db = new Database();
 
-       tableView.setItems(db.parseUserList());              //this is causing a null pointer.
-        
-    }
-
-    @FXML
-    protected void handleBackButtonAction(ActionEvent event) throws IOException {
-        AnchorPane Content = FXMLLoader.load(getClass().getResource(("../Layout/Welcome.fxml")));
-        root.getChildren().setAll(Content);
-
-    }
-
+        tableView.setItems(db.parseUserList());              //this is causing a null pointer.
+        tableView.setOnMouseClicked(event -> {
+            clickItem(event);
+        });
 
 
     }
+
+    public void clickItem(MouseEvent event) {
+        if (event.getClickCount() == 2) //Checking double click
+        {
+            setUser(tableView.getSelectionModel().getSelectedItem());
+            Stage stage = (Stage) tableView.getScene().getWindow();
+
+            stage.close();
+        }
+    }
+
+    public static void setUser(User u) {
+        ProfessorController.user = u;
+    }
+
+    public static User getUser() {
+        return user;
+    }
+
+
+}
     

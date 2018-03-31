@@ -30,6 +30,7 @@ public class Teacher extends User{
 	protected void cancelClass(){
 
 		// timetable.removeSlot();
+		// timetable.removeSlot();
 	}
 	
 	public Time_Table[] getTimeTable(){
