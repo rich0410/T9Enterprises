@@ -22,10 +22,9 @@
                     <children>
                         <TableView fx:id="tableView" layoutX="-4.0" prefHeight="228.0" prefWidth="641.0">
                             <columns>
-                                <TableColumn fx:id="TeacherID" prefWidth="117.0" text="Teacher ID"/>
-                                <TableColumn fx:id="FirstName" prefWidth="134.0" text="First Name"/>
-                                <TableColumn fx:id="LastName" prefWidth="165.0" text="Last Name"/>
-                                <TableColumn fx:id="Email" prefWidth="223.0" text="AC Email"/>
+                                <TableColumn fx:id="FirstName" prefWidth="200.0" text="First Name"/>
+                                <TableColumn fx:id="LastName" prefWidth="200.0" text="Last Name"/>
+                                <TableColumn fx:id="Email" prefWidth="240.0" text="AC Email"/>
                             </columns>
                         </TableView>
                     </children>

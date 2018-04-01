@@ -24,8 +24,7 @@ public class ProfessorController implements Initializable {
 
     @FXML
     private TableView<User> tableView;
-    @FXML
-    private TableColumn<User, String> TeacherID;
+
     @FXML
     private TableColumn<User, String> FirstName;
     @FXML
@@ -40,7 +39,6 @@ public class ProfessorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TeacherID.setCellValueFactory(new PropertyValueFactory<User, String>("teacherid"));
         FirstName.setCellValueFactory(new PropertyValueFactory<User, String>("firstName"));
         LastName.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
         Email.setCellValueFactory(new PropertyValueFactory<User, String>("emailAddress"));

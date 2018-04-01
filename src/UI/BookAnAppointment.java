@@ -1,5 +1,6 @@
 package UI;
 
+import Domain.Controller;
 import Domain.TimeSlot;
 import Domain.Time_Table;
 import User.Email;
@@ -28,7 +29,7 @@ public class BookAnAppointment implements Initializable {
     private TextField professor;
 
     @FXML
-    private JFXDatePicker date;
+    private TextField  date;
 
     @FXML
     private JFXTimePicker starttime;
@@ -51,7 +52,7 @@ public class BookAnAppointment implements Initializable {
 
     public static TextField professorP;
 
-    public static JFXDatePicker dateP;
+    public static TextField  dateP;
     public static JFXTimePicker starttimeP;
     public static JFXTimePicker endtimeP;
     public static TextField roomP;
@@ -71,14 +72,12 @@ public class BookAnAppointment implements Initializable {
 
     @FXML
     protected void handleappointmentButtonAction(ActionEvent event) {
-
+        Controller c = Controller.getController();
         Email e = new Email();
         e.email_Thread(ProfessorController.getUser().getEmailAddress());
         time_table = new Time_Table();
-        t_slot = new TimeSlot();
-        t_slot.setStartTime(starttime.getValue().toString());
-        t_slot.setDay(starttime.getValue().toString());
-        t_slot.setRoom_number(room.getText());
+
+       // c.bookMeeting();
 
         //time_table.addSlot(date.getValue().getDayOfWeek().toString(),t_slot);
         AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",

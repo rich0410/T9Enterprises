@@ -1,6 +1,7 @@
 package UI;
 
 import DataAccess.Database;
+import Domain.Controller;
 import Domain.TimeSlot;
 import Domain.User;
 import javafx.collections.FXCollections;
@@ -8,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -37,8 +39,6 @@ public class Availability implements Initializable {
     @FXML
     private TableColumn<TimeSlot, String> StartTime;
 
-    @FXML
-    private TableColumn<TimeSlot, String> Duration;
 
     @FXML
     private TableColumn<TimeSlot, String> RoomNumber;
@@ -60,10 +60,9 @@ public class Availability implements Initializable {
 
         DayOfTheWeek.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Day"));
         StartTime.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("StartTime"));
-        Duration.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Duration"));
         RoomNumber.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Room_number"));
-        Location.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Course"));
-        user =ProfessorController.getUser();
+        Location.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Avalibility"));
+        user = ProfessorController.getUser();
         tableView.setItems(this.gettimeSlots());
         tableView.setOnMouseClicked(event -> {
             clickItem(event);
@@ -82,36 +81,36 @@ public class Availability implements Initializable {
 
     public ObservableList<TimeSlot> gettimeSlots() {
 
-        db = new Database();
+        Controller con = Controller.getController();
         ObservableList<TimeSlot> list = FXCollections.observableArrayList();
-        HashMap<String, ArrayList<String>> teacherslot = db.getOfficeData(user.getUserID());
 
-        t_slot = new TimeSlot();
-        for (Map.Entry<String, ArrayList<String>> entry : teacherslot.entrySet()) {
-            String key = entry.getKey();
-            ArrayList<String> value = entry.getValue();
+        ArrayList<HashMap<String, String>> teacherslot = con.getTeacherOfficeTimes(user.getUserID());
 
-            for (String aString : value) {
-                if (key.equals("Duration")){
-                    t_slot.setDuration(Integer.parseInt(aString));
+        for (int i = 0; i < teacherslot.size(); i++) {
+
+            Iterator<String> myVeryOwnIterator = teacherslot.get(i).keySet().iterator();
+            t_slot = new TimeSlot();
+            while (myVeryOwnIterator.hasNext()) {
+                String key = (String) myVeryOwnIterator.next();
+                String value = teacherslot.get(i).get(key);
+                if (key.equals("Day")) {
+                    t_slot.setDay(value);
                 }
-                if (key.equals("Course")){
-                    t_slot.setCourse(aString);
+                if (key.equals("Time")) {
+                    t_slot.setStartTime(value);
                 }
-                if (key.equals("Day")){
-                    t_slot.setDay(aString);
+                if (key.equals("Booked")) {
+                    t_slot.setAvalibility(value);
+
                 }
-                if (key.equals("Room")){
-                    t_slot.setRoom_number(aString);
-                }
-                if (key.equals("Time")){
-                    t_slot.setStartTime(aString);
+                if (key.equals("Room")) {
+                    t_slot.setRoom_number(value);
                 }
 
             }
-
+            list.add(t_slot);
         }
-        list.add(t_slot);
+
 
 
         return list;
@@ -119,10 +118,15 @@ public class Availability implements Initializable {
 
     @FXML
     protected void handleUpdateAction(ActionEvent event) {
-        BookAnAppointment.dateP.setValue(LocalDate.now());
-        BookAnAppointment.starttimeP.setValue(getT_slot().getStartTime());
-        BookAnAppointment.endtimeP.setValue(getT_slot().getStartTime().plusMinutes(15));
-        BookAnAppointment.roomP.setText(getT_slot().getRoom_number());
+        try {
+            BookAnAppointment.dateP.setText(getT_slot().getDay());
+            BookAnAppointment.starttimeP.setValue(getT_slot().getStartTime());
+            BookAnAppointment.endtimeP.setValue(getT_slot().getStartTime().plusMinutes(15));
+            BookAnAppointment.roomP.setText(getT_slot().getRoom_number());
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+                    "No data Available!");
+        }
         Stage stage = (Stage) tableView.getScene().getWindow();
         stage.close();
 

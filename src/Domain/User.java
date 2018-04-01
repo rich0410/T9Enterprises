@@ -44,7 +44,11 @@ public class User {
 	public void setID(String id){
 		this.userID = id;
 	}
-	
+
+	public String getID(){
+		return userID;
+	}
+
 	public String getUserID(){
 		return userID;
 	}

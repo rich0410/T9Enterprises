@@ -10,6 +10,8 @@ public class TimeSlot {
     private boolean cancelled = false;
     private String course;
     private String day;
+    private String Time;
+    private String avalib;
 
     public TimeSlot(){}
 
@@ -35,9 +37,18 @@ public class TimeSlot {
         return cancelled;
     }
 
+    public String getTime(){
+        return Time;
+    }
+
     public void setStartTime(String startTime){
         this.startTime = LocalTime.parse(startTime);
     }
+
+    public void setTime(String startTime){
+        this.Time = startTime;
+    }
+
 
     public void setDay(String day){
         this.day = day;
@@ -57,5 +68,12 @@ public class TimeSlot {
 
     public  void setCourse(String course){
         this.course = course;
+    }
+
+    public void setAvalibility(String ava){
+        this.avalib = ava;
+    }
+    public String getAvalibility(){
+        return avalib;
     }
 }

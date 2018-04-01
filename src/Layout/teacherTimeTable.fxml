@@ -20,11 +20,11 @@
                         <children>
                             <TableView fx:id="tableView" layoutX="-4.0" prefHeight="500.0" prefWidth="800.0">
                                 <columns>
-                                    <TableColumn fx:id="CourseCodeID" prefWidth="180.0" text="CourseCodeID"/>
-                                    <TableColumn fx:id="DayOfTheWeek" prefWidth="150.0" text="DayOfTheWeek"/>
-                                    <TableColumn fx:id="StartTime" prefWidth="150.0" text="StartTime"/>
-                                    <TableColumn fx:id="Duration" prefWidth="150.0" text="Duration"/>
-                                    <TableColumn fx:id="RoomNumber" prefWidth="150.0" text="RoomNumber"/>
+                                    <TableColumn fx:id="CourseCodeID" prefWidth="300.0" text="CourseCodeID"/>
+                                    <TableColumn fx:id="DayOfTheWeek" prefWidth="125.0" text="DayOfTheWeek"/>
+                                    <TableColumn fx:id="StartTime" prefWidth="125.0" text="StartTime"/>
+                                    <TableColumn fx:id="Duration" prefWidth="125.0" text="Duration"/>
+                                    <TableColumn fx:id="RoomNumber" prefWidth="125.0" text="RoomNumber"/>
                                 </columns>
                             </TableView>
                         </children>

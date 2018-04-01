@@ -16,9 +16,10 @@ import javafx.scene.layout.BorderPane;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
-public class TeacherTimeTable implements Initializable{
+public class TeacherTimeTable implements Initializable {
 
     @FXML
     private TableView<TimeSlot> tableView;
@@ -31,7 +32,7 @@ public class TeacherTimeTable implements Initializable{
     @FXML
     private TableColumn<TimeSlot, String> Duration;
     @FXML
-    private TableColumn<TimeSlot, String>  StartTime;
+    private TableColumn<TimeSlot, String> StartTime;
     @FXML
     private TableColumn<TimeSlot, String> RoomNumber;
 
@@ -43,11 +44,11 @@ public class TeacherTimeTable implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        CourseCodeID.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("CourseCodeID"));
+        CourseCodeID.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Course"));
         Duration.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Duration"));
-        DayOfTheWeek.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("DayOfTheWeek"));
-        StartTime.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("StartTime"));
-        RoomNumber.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("RoomNumber"));
+        DayOfTheWeek.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Day"));
+        StartTime.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Time"));
+        RoomNumber.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Room_number"));
 
 
         tableView.setItems(this.getdata());              //this is causing a null pointer.
@@ -60,9 +61,33 @@ public class TeacherTimeTable implements Initializable{
         User u = RegistrationFormController.getUser();
         System.out.println(u.getUserID());
         ObservableList<TimeSlot> list = FXCollections.observableArrayList();
-        HashMap<String, ArrayList<String>> teacherslot = c.getTeacherTimetable(u.getUserID());
-        System.out.println(u.getFirstName());
-        TimeSlot t_slot = new TimeSlot();
+        ArrayList<HashMap<String, String>> teacherslot = c.getAllTeacherMeetings();
+
+        for (int i = 0; i < teacherslot.size(); i++) {
+            Iterator<String> myVeryOwnIterator = teacherslot.get(i).keySet().iterator();
+            TimeSlot t_slot = new TimeSlot();
+            while (myVeryOwnIterator.hasNext()) {
+                String key = (String) myVeryOwnIterator.next();
+                String value = teacherslot.get(i).get(key);
+                if (key.equals("Duration")) {
+                    t_slot.setDuration(Integer.parseInt(value));
+                }
+                if (key.equals("Course")) {
+                    t_slot.setCourse(value);
+                }
+                if (key.equals("Day")) {
+                    t_slot.setDay(value);
+                }
+                if (key.equals("Time")) {
+                    t_slot.setTime(value);
+                }
+                if (key.equals("Room")) {
+                    t_slot.setRoom_number(value);
+                }
+
+            }
+            list.add(t_slot);
+        }
 
         return list;
     }

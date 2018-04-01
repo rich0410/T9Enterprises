@@ -58,7 +58,8 @@ public class Welcome implements Initializable {
         User u = conn.getUser();
             try {
                 if (u.getRole() == 1) {
-                    System.out.println("admin");
+                    VBox box = FXMLLoader.load(getClass().getResource("../Layout/SlidePanelAdmin.fxml"));
+                    drawer.setSidePane(box);
                 } else if (u.getRole() == 2) {
                     VBox box = FXMLLoader.load(getClass().getResource("../Layout/Slide_panel_for_teacher.fxml"));
                     drawer.setSidePane(box);

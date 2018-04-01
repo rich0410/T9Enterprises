@@ -19,10 +19,9 @@ public class Controller {
     private Student student;
     private Teacher teacher;
     private Admin admin;
-
     private Database dB;
-    private HashMap<String, ArrayList<String>> schedule;
-    private HashMap<String, ArrayList<String>> office;
+
+    private String userID;
     public DataGenerator dG;
     private HashMap<String, String> userData;
     private User user;
@@ -35,19 +34,18 @@ public class Controller {
         return ctl;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
     /**
      * Load data and initiate the GUI object.
      */
-    public void startup(String[] args) {
+    public void startup() {
         dB = new Database();
         dB.connectDatabase();
-        dB.setupHashMap();
-        initGUI(args);
     }
 
-    public User getTeacher() {
-        return teacher;
-    }
 
     /**
      * Called by the GUI layer this method will pass the user ID and password to the UserLogin object to actually perform
@@ -58,14 +56,16 @@ public class Controller {
      * @return
      */
     public boolean authenticateUser(String userID, String password) {
-//		boolean verify = false;
-//		UserLogin uL = new UserLogin();
-//		if (uL.authenticate(userID, password)){
+        boolean verify = false;
+        UserLogin uL = new UserLogin();
+        if (uL.authenticate(userID, password)) {
 
-        set_user(loadUser(userID));
+            set_user(loadUser(userID));
 
-        boolean verify = true;
-//		}
+            verify = true;
+
+            this.userID = userID;        //Store the userID for future operations.
+        }
         return verify;
     }
 
@@ -107,49 +107,122 @@ public class Controller {
         return user;
     }
 
-
-    public HashMap<String, ArrayList<String>> getTeacherTimetable(String userID){
-
-        HashMap<String, ArrayList<String>>  data =   dB.getScheduleData(userID);
-        return data;
+    public Student getStudent() {
+        return student;
     }
 
-    private void invokeHomepage() {
+    public Teacher getTeacher() {
+        return teacher;
+    }
 
-		
-			
-			/*Invoke the teacher home page displaying the teacher's timetable*/
-
+    public Admin getAdmin() {
+        return admin;
     }
 
     /**
      * Instantiate the GUI object and invoke the method to display the interface.
      */
-    private void initGUI(String[] args) {
+    public void initGUI(String[] args) {
 
         Application.launch(GUI.class, args);
 
     }
 
-
     /**
-     * Adds a new timetable to the teacher. The old timetable will be overwritten.
+     * Returns a collection of resource bundles representing all of the office hours for a teacher.
+     *
+     * @return
      */
-    private void createTimetable(String userID) {
-        schedule = dB.getScheduleData(userID);
-        office = dB.getOfficeData(userID);
+    public ArrayList<HashMap<String, String>> getTeacherOfficeTimes(String id) {
 
-        Time_Table tTable = new Time_Table();
-        tTable.addSlots(schedule);
-        tTable.addSlots(office);
-
-        teacher.setTimeTable(tTable);
+        return dB.getTeacherOffice(id);
     }
 
 
-    public void addSlotToTimeTable() {
+    /**
+     * Updates the database with the new meeting information and sends and email to the teacher. A resource bundle representing the office time
+     * for the teacher is passed back as a parameter from the presentation layer.
+     *
+     * @param office
+     */
+    public void bookMeeting(HashMap<String, String> office) {
+
+        dB.bookMeeting(userID, office);
+
+        //sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
+    }
+
+    /**
+     * Returns an ArrayList of Strings containing the details for each meeting.
+     *
+     * @return
+     */
+    public ArrayList<HashMap<String, String>> getAllStudentMeetings() {
+        return dB.getAllStudentMeetings(student.getUserID());
+    }
+
+    /**
+     * Returns an ArrayList of Strings containing the details for each meeting.
+     *
+     * @return
+     */
+    public ArrayList<HashMap<String, String>> getAllTeacherMeetings() {
+        return dB.getTeacherClasses(teacher.getUserID());
+    }
+    public ArrayList<HashMap<String, String>> getAllTeacherAppointments() {
+        return dB.getAllTeacherMeetings(teacher.getUserID());
+    }
+    public ArrayList<HashMap<String, String>> getStudentData() {
+        return dB.getStudentClasses(student.getUserID());
+    }
+
+    public String getStudentEmail(String sID) {
+        return dB.getStudetEmail(sID);
+    }
+
+    public String getTeacherEmail(String tID) {
+        return dB.getTeacherEmail(tID);
+    }
+
+    public ArrayList<String> getAllStudentEmails(String courseCode) {
+        return dB.getClassStudentsEmail(courseCode);
+    }
+
+    private void sendEmail(String emailAddress, HashMap<String, String> office) {
 
 
+    }
+
+    private void sendEmail(ArrayList<String> emailAddress) {
+
+
+    }
+
+
+    public void cancelClass(HashMap<String, String> course) {
+
+        ArrayList<String> emails = dB.getClassStudentsEmail(course.get("Course"));
+    }
+
+    /**
+     * Reads the teacher timetable data to be passed to the presentation layer.
+     */
+	/*protected void loadData(){
+		dG = new DataGenerator();
+		dG.readFile();
+		names = dG.getNames();
+		schedule =dG.getSched();
+	}*/
+    public void logout() {
+        userID = null;
+        student = null;
+        teacher = null;
+        admin = null;
+
+    }
+
+    public void resetMeetings(HashMap<String, String> office) {
+        dB.resetMeetings(office);
     }
 
     public void set_user(User user) {
@@ -159,16 +232,6 @@ public class Controller {
     public User getUser() {
         return user;
     }
-
-    /**
-     * Reads the teacher timetable data to be passed to the presentation layer.
-     */
-    /*protected void loadData(){
-		dG = new DataGenerator();
-		dG.readFile();
-		names = dG.getNames();
-		schedule =dG.getSched();
-	}*/
 
 
 }

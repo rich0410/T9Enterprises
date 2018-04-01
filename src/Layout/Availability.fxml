@@ -23,9 +23,8 @@
                             <columns>
                                 <TableColumn fx:id="DayOfTheWeek" prefWidth="117.0" text="DayOfTheWeek"/>
                                 <TableColumn fx:id="StartTime" prefWidth="100.0" text="StartTime"/>
-                                <TableColumn fx:id="Duration" prefWidth="100.0" text="Duration"/>
                                 <TableColumn fx:id="RoomNumber" prefWidth="165.0" text="RoomNumber"/>
-                                <TableColumn fx:id="Location" prefWidth="165.0" text="Course"/>
+                                <TableColumn fx:id="Location" prefWidth="165.0" text="Open/Booked"/>
                             </columns>
                         </TableView>
                     </children>
