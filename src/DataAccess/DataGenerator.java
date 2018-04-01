@@ -30,11 +30,11 @@ public class DataGenerator {
 	/**
 	 * Reads the .csv file one line at a time. Creating the records necessary to create a timetable object.
 	 */
-	public void readFile(){
+	public void readFile(File file){
 		
 		//Create the scanner object to read the file.
 		try {
-			schedScanner = new Scanner(new FileReader(new File("schedule.csv")));
+			schedScanner = new Scanner(new FileReader(file));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

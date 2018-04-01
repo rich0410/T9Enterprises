@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -59,8 +60,8 @@ public class SlidePanelForTeacher implements Initializable{
                 break;
             case "Add TimeTable":
                 Welcome.drawerP.close();
-//                BorderPane Content3 = FXMLLoader.load(getClass().getResource(("../Layout/Appointment.fxml")));
-//                Welcome.fragementP.getChildren().setAll(Content3);
+                AnchorPane Content3 = FXMLLoader.load(getClass().getResource(("../Layout/Upload_TimeTable.fxml")));
+                Welcome.fragementP.getChildren().setAll(Content3);
 
                 break;
             case "Remove TimeTable":

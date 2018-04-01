@@ -23,8 +23,6 @@ public class teacher_Appointments implements Initializable {
     @FXML
     private BorderPane root;
 
-    @FXML
-    private TableView<TimeSlot> tableView1;
 
     @FXML
     private TableView<TimeSlot> tableView;
