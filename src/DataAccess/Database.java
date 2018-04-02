@@ -5,19 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import Domain.Student;
-import Domain.Teacher;
-import Domain.TimeSlot;
-import Domain.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class Database {
 	
@@ -282,6 +272,62 @@ public class Database {
 	}
 	
 	/**
+	 * Removes all records from the Schedule table and the OfficeHours table for a given teacher. The tables are then updated to include the new 
+	 * information passed to the method in the form of a HashMap.
+	 * @param userID
+	 * @return
+	 */
+	public void updateTeacherClasses(String userID, ArrayList<HashMap<String,String>> classInfo) {
+		
+		try {
+			
+			pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS WHERE TEACHERID = ? ");
+			pSt.setString(1, userID);
+			pSt.executeQuery();
+			
+			pSt = conn.prepareStatement("DELETE FROM SCHEDULE WHERE TEACHERID = ? ");
+			pSt.setString(1, userID);
+			pSt.executeQuery();
+			
+			for(HashMap<String,String> classes: classInfo){
+								
+				if(classes.get("Course").equals("Office")){
+					pSt = conn.prepareStatement("INSERT INTO OFFICEHOURS (TeacherID, DayOfTheWeek, Time, RoomNumber, Available) "
+							+ "VALUES (?, ?, ?, ?, ?)");
+					
+					pSt.setString(1, userID);
+					pSt.setString(2, classes.get("Day"));
+					pSt.setString(3, classes.get("Time"));
+					pSt.setString(4, classes.get("Room"));
+					pSt.setInt(5, 0);
+					
+					pSt.executeQuery();
+					
+				}else{
+					
+					pSt = conn.prepareStatement("INSERT INTO SCHEDULE (TeacherID, CourseCode, Duration, DayOfTheWeek, StartTime, RoomNumber) "
+							+ "VALUES (?, ?, ?, ?, ?, ?)");
+					
+					pSt.setString(1, userID);
+					pSt.setString(2, classes.get("Course"));
+					pSt.setString(3, classes.get("Duration"));
+					pSt.setString(4, classes.get("Day"));
+					pSt.setString(5, classes.get("Time"));
+					pSt.setString(6, classes.get("Room"));
+					
+					pSt.executeQuery();
+					
+				}
+			}
+			
+			conn.commit();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Returns a collection of resource bundles representing all the office hours a given teacher has. 
 	 * @param userID
 	 * @return
@@ -510,6 +556,8 @@ public class Database {
 			pSt.setString(2, userID);
 			pSt.executeUpdate();
 			
+			conn.commit();
+			
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -527,6 +575,9 @@ public class Database {
 			pSt = conn.prepareStatement("UPDATE OFFICEHOURS SET AVAILABLE = 1 WHERE OFFICEID = ?");
 			pSt.setString(1, office.get("ID"));
 			pSt.executeUpdate();
+			
+			
+			conn.commit();
 			
 		}catch (SQLException e) {
 			e.printStackTrace();

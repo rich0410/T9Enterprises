@@ -31,23 +31,23 @@ INSERT INTO Courses(CourseCode, LabLecture, Title) VALUES
 ('CST1134-013', 1, 'Intro to Web')
 ;
 
-INSERT INTO Schedule(ScheduleID, TeacherID, CourseCode, Duration, DayOfTheWeek, StartTime, RoomNumber) VALUES
-('S001', 'bigg2212', 'CST9245-010', 2, 'Wed', '13:00:00', 'T130'),
-('S002', 'jeff2364', 'CST4435-010', 1, 'Tue', '08:00:00', 'T210'),
-('S003', 'bert0443', 'CST9245-014', 1, 'Thu', '09:00:00', 'T109'),
-('S004', 'isab0023', 'CST1134-013', 3, 'Fri', '16:30:00', 'P213'),
-('S005', 'snyd9954', 'CST4435-012', 2, 'Mon', '19:30:00', 'B220')
+INSERT INTO Schedule(TeacherID, CourseCode, Duration, DayOfTheWeek, StartTime, RoomNumber) VALUES
+('bigg2212', 'CST9245-010', 2, 'Wed', '13:00:00', 'T130'),
+('jeff2364', 'CST4435-010', 1, 'Tue', '08:00:00', 'T210'),
+('bert0443', 'CST9245-014', 1, 'Thu', '09:00:00', 'T109'),
+('isab0023', 'CST1134-013', 3, 'Fri', '16:00:00', 'P213'),
+('snyd9954', 'CST4435-012', 2, 'Mon', '19:00:00', 'B220')
 ;
 
-INSERT INTO OfficeHours(OfficeID, TeacherID, DayOfTheWeek, Time, RoomNumber, Available) VALUES
-('O001', 'akil2020', 'Wed', '09:00:00', 'B231', 1),
-('O002', 'snyd9954', 'Tue', '12:00:00', 'T315', 1),
-('O003', 'bigg2212', 'Thu', '15:00:00', 'T317', 1),
-('O004', 'jeff2364', 'Fri', '13:00:00', 'J115', 1),
-('O005', 'snyd9954', 'Thu', '12:00:00', 'B404', 1),
-('O006', 'isab0023', 'Wed', '17:00:00', 'E410', 1),
-('O007', 'muld2247', 'Mon', '18:00:00', 'B201', 1),
-('O008', 'bigg2212', 'Mon', '19:00:00', 'B343', 1)
+INSERT INTO OfficeHours(TeacherID, DayOfTheWeek, Time, RoomNumber, Available) VALUES
+('akil2020', 'Wed', '09:00:00', 'B231', 1),
+('snyd9954', 'Tue', '12:00:00', 'T315', 1),
+('bigg2212', 'Thu', '15:00:00', 'T317', 1),
+('jeff2364', 'Fri', '13:00:00', 'J115', 1),
+('snyd9954', 'Thu', '12:00:00', 'B404', 1),
+('isab0023', 'Wed', '17:00:00', 'E410', 1),
+('muld2247', 'Mon', '18:00:00', 'B201', 1),
+('bigg2212', 'Mon', '19:00:00', 'B343', 1)
 ;
 
 INSERT INTO StudentCourses(StudentID, CourseCode) VALUES

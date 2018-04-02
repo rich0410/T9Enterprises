@@ -1,9 +1,10 @@
 package Domain;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import DataAccess.DataGenerator;
+import DataAccess.ScheduleReader;
 import DataAccess.Database;
 import UI.GUI;
 import User.UserLogin;
@@ -22,7 +23,7 @@ public class Controller{
 	private Database dB;
 	
 	private String userID;
-	public DataGenerator dG;
+	public ScheduleReader dG;
 	private HashMap<String, String> userData;
 
 
@@ -187,6 +188,12 @@ public class Controller{
 	private void sendEmail(ArrayList<String> emailAddress) {
 		
 		
+	}
+	
+	public void updateSchedule(File schedule){
+		ScheduleReader sR = new ScheduleReader();
+		dB.updateTeacherClasses(userID, sR.readFile(schedule));
+		loadUser(userID);
 	}
 
 	
