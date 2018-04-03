@@ -52,9 +52,10 @@ public class Availability implements Initializable {
 
     private TimeSlot t_slot;
 
-    private User user;
 
-    private static String id;
+    private  User user;
+
+    private static TimeSlot t_static;
 
 
     @Override
@@ -114,7 +115,7 @@ public class Availability implements Initializable {
 
             }
             list.add(t_slot);
-            setId(t_slot.getid());
+            setTimeSlot(t_slot);
         }
 
 
@@ -139,19 +140,12 @@ public class Availability implements Initializable {
     }
 
 
-    public TimeSlot getT_slot() {
-        return t_slot;
+    public static  TimeSlot getT_slot() {
+        return t_static;
     }
 
-    public void setTimeSlot(TimeSlot timeSlot) {
-        this.t_slot = timeSlot;
-    }
 
-    public static String getOfficeid(){
-        return id;
-    }
-
-    private static void setId(String id){
-        Availability.id = id;
+    private static void setTimeSlot(TimeSlot t){
+        Availability.t_static = t;
     }
 }

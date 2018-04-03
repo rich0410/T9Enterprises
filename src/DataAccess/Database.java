@@ -24,17 +24,17 @@ public class Database {
     private String password = "t9-enterprise";
     private String dbConnection = "jdbc:mysql://localhost/Algonquin_Kiosk";
     private PreparedStatement pSt;
-    private ResultSet rS= null;
+    private ResultSet rS = null;
     private HashMap<String, String> userInfo;
-    private ArrayList<HashMap<String,String>> schedInfo;
+    private ArrayList<HashMap<String, String>> schedInfo;
 
-    public Database(){
+    public Database() {
     }
 
     /**
      * Creates a connection to the database.
      */
-    public void connectDatabase(){
+    public void connectDatabase() {
         try {
             conn = DriverManager.getConnection(dbConnection, userName, password);
         } catch (SQLException e) {
@@ -45,6 +45,7 @@ public class Database {
     /**
      * Queries the database to determine the role of the user. If the user ID is stored in the Admin table the method will return a true, otherwise false.
      * Note: at this point the table Admin has not been created in the database and will need to be for future implementations.
+     *
      * @param userID
      * @return
      */
@@ -57,11 +58,11 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            if(rS.next()){
+            if (rS.next()) {
                 idPresent = true;
             }
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
 
         }
         return idPresent;
@@ -69,6 +70,7 @@ public class Database {
 
     /**
      * Queries the database to determine the role of the user. If the user ID is stored in the Teacher table the method will return a true, otherwise false.
+     *
      * @param userID
      * @return
      */
@@ -80,11 +82,11 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            if(rS.next()){
+            if (rS.next()) {
                 idPresent = true;
             }
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
 
         }
         return idPresent;
@@ -92,6 +94,7 @@ public class Database {
 
     /**
      * Queries the database to determine the role of the user. If the user ID is stored in the Student table the method will return a true, otherwise false.
+     *
      * @param userID
      * @return
      */
@@ -103,11 +106,11 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            if(rS.next()){
+            if (rS.next()) {
                 idPresent = true;
             }
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
 
         }
         return idPresent;
@@ -115,6 +118,7 @@ public class Database {
 
     /**
      * This method will be used to retrieve the student's personal info(Name and email).
+     *
      * @param userID
      * @return
      */
@@ -138,6 +142,7 @@ public class Database {
 
     /**
      * This method will be used to retrieve the teacher's personal info(Name and email).
+     *
      * @param userID
      * @return
      */
@@ -165,6 +170,7 @@ public class Database {
 
     /**
      * This method will be used to retrieve the Admin's personal info(Name and email).
+     *
      * @param userID
      * @return
      */
@@ -191,11 +197,12 @@ public class Database {
 
     /**
      * Returns a collection of resource bundles representing all the courses a given student is enrolled in.
+     *
      * @param userID
      * @return
      */
-    public ArrayList<HashMap<String,String>> getStudentClasses(String userID) {
-        schedInfo = new ArrayList<HashMap<String,String>>();
+    public ArrayList<HashMap<String, String>> getStudentClasses(String userID) {
+        schedInfo = new ArrayList<HashMap<String, String>>();
 
         try {
             pSt = conn.prepareStatement("SELECT A.COURSECODE, B.LABLECTURE, B.TITLE, C.DURATION, C.DAYOFTHEWEEK, C.STARTTIME, C.ROOMNUMBER, "
@@ -206,17 +213,17 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            while(rS.next()){
+            while (rS.next()) {
 
-                HashMap<String,String> classes = new HashMap<String,String>();
+                HashMap<String, String> classes = new HashMap<String, String>();
 
-                String course = rS.getString("COURSECODE")+" - "+rS.getString("TITLE")+" - "+((rS.getInt("LABLECTURE") == 1) ? "Lab" : "Lecture");
+                String course = rS.getString("COURSECODE") + " - " + rS.getString("TITLE") + " - " + ((rS.getInt("LABLECTURE") == 1) ? "Lab" : "Lecture");
                 String day = rS.getString("DAYOFTHEWEEK");
                 int duration = rS.getInt("DURATION");
                 LocalTime time = rS.getTime("STARTTIME").toLocalTime();
-                String timeString = time+" - "+time.plusHours(duration);
+                String timeString = time + " - " + time.plusHours(duration);
                 String room = rS.getString("ROOMNUMBER");
-                String teacher = rS.getString("FIRSTNAME")+" "+rS.getString("LASTNAME");
+                String teacher = rS.getString("FIRSTNAME") + " " + rS.getString("LASTNAME");
                 String email = rS.getString("EMAILADDRESS");
                 String teacherID = rS.getString("TEACHERID");
 
@@ -240,11 +247,12 @@ public class Database {
 
     /**
      * Returns a collection of resource bundles representing all the courses a given teacher is teaching.
+     *
      * @param userID
      * @return
      */
-    public ArrayList<HashMap<String,String>> getTeacherClasses(String userID) {
-        schedInfo = new ArrayList<HashMap<String,String>>();
+    public ArrayList<HashMap<String, String>> getTeacherClasses(String userID) {
+        schedInfo = new ArrayList<HashMap<String, String>>();
 
         try {
             pSt = conn.prepareStatement("SELECT A.COURSECODE, A.LABLECTURE, A.TITLE, B.ROOMNUMBER, B.DURATION, B.DAYOFTHEWEEK, B.STARTTIME"
@@ -253,20 +261,20 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            while(rS.next()){
+            while (rS.next()) {
 
-                HashMap<String,String> classes = new HashMap<String,String>();
+                HashMap<String, String> classes = new HashMap<String, String>();
 
-                String course = rS.getString("COURSECODE")+" - "+rS.getString("TITLE")+" - "+((rS.getInt("LABLECTURE") == 1) ? "Lab" : "Lecture");
+                String course = rS.getString("COURSECODE") + " - " + rS.getString("TITLE") + " - " + ((rS.getInt("LABLECTURE") == 1) ? "Lab" : "Lecture");
                 String day = rS.getString("DAYOFTHEWEEK");
                 int duration = rS.getInt("DURATION");
                 LocalTime time = rS.getTime("STARTTIME").toLocalTime();
-                String timeString = time+" - "+time.plusHours(duration);
+                String timeString = time + " - " + time.plusHours(duration);
                 String room = rS.getString("ROOMNUMBER");
 
                 classes.put("Course", course);
                 classes.put("Day", day);
-                classes.put("Duration",Integer.toString(duration));
+                classes.put("Duration", Integer.toString(duration));
                 classes.put("Time", timeString);
                 classes.put("Room", room);
 
@@ -283,11 +291,12 @@ public class Database {
 
     /**
      * Returns a collection of resource bundles representing all the office hours a given teacher has.
+     *
      * @param userID
      * @return
      */
-    public ArrayList<HashMap<String,String>> getTeacherOffice(String userID) {
-        schedInfo = new ArrayList<HashMap<String,String>>();
+    public ArrayList<HashMap<String, String>> getTeacherOffice(String userID) {
+        schedInfo = new ArrayList<HashMap<String, String>>();
 
         try {
             pSt = conn.prepareStatement("SELECT OFFICEID, ROOMNUMBER, DAYOFTHEWEEK, TIME, AVAILABLE FROM OFFICEHOURS WHERE TEACHERID = ? ");
@@ -295,9 +304,9 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            while(rS.next()){
+            while (rS.next()) {
 
-                HashMap<String,String> hours = new HashMap<String,String>();
+                HashMap<String, String> hours = new HashMap<String, String>();
 
                 String id = rS.getString("OFFICEID");
                 String day = rS.getString("DAYOFTHEWEEK");
@@ -325,27 +334,28 @@ public class Database {
     /**
      * This will return a collection of data representing all the meetings currently booked for a given teacher. Each meeting will be represented
      * as a HashMap - a resource bundle of Strings.
+     *
      * @param id
      * @return
      */
-    public ArrayList<HashMap<String,String>> getAllTeacherMeetings(String id) {
-        schedInfo = new ArrayList<HashMap<String,String>>();
+    public ArrayList<HashMap<String, String>> getAllTeacherMeetings(String id) {
+        schedInfo = new ArrayList<HashMap<String, String>>();
 
         try {
-            pSt = conn.prepareStatement("SELECT A.DayOfTheWeek, A.TIME, A.ROOMNUMBER, C.FIRSTNAME, C.LASTNAME, C.EMAILADDRESS FROM OFFICEHOURS A"
+            pSt = conn.prepareStatement("SELECT A.DAYOFTHEWEEK, A.TIME, A.ROOMNUMBER, C.FIRSTNAME, C.LASTNAME, C.EMAILADDRESS FROM OFFICEHOURS A "
                     + "INNER JOIN BOOKEDMEETINGS B ON A.OFFICEID = B.OFFICEID INNER JOIN STUDENT C ON B.STUDENTID = C.STUDENTID WHERE "
                     + "A.AVAILABLE = 0");
 
             rS = pSt.executeQuery();
 
-            while(rS.next()){
+            while (rS.next()) {
 
-                HashMap<String,String> appts = new HashMap<String,String>();			//There will be one HashMap for each meeting
+                HashMap<String, String> appts = new HashMap<String, String>();            //There will be one HashMap for each meeting
 
-                String day = rS.getString("DAYOFTHEWEEK");								//These are the details for each meeting.
+                String day = rS.getString("DAYOFTHEWEEK");                                //These are the details for each meeting.
                 String time = rS.getTime("TIME").toString();
                 String room = rS.getString("ROOMNUMBER");
-                String student = rS.getString("FIRSTNAME")+" "+rS.getString("LASTNAME");
+                String student = rS.getString("FIRSTNAME") + " " + rS.getString("LASTNAME");
                 String email = rS.getString("EMAILADDRESS");
 
                 appts.put("Day", day);
@@ -368,11 +378,12 @@ public class Database {
     /**
      * This will return a collection of data representing all the meetings currently booked for a given student. Each meeting will be represented
      * as a HashMap - a resource bundle of Strings.
+     *
      * @param userID
      * @return
      */
-    public ArrayList<HashMap<String,String>> getAllStudentMeetings(String userID) {
-        schedInfo = new ArrayList<HashMap<String,String>>();
+    public ArrayList<HashMap<String, String>> getAllStudentMeetings(String userID) {
+        schedInfo = new ArrayList<HashMap<String, String>>();
 
         try {
             pSt = conn.prepareStatement("SELECT A.OFFICEID, B.DAYOFTHEWEEK, B.TIME, B.ROOMNUMBER, C.FIRSTNAME, C.LASTNAME, C.EMAILADDRESS FROM BOOKEDMEETINGS A"
@@ -382,13 +393,13 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            while(rS.next()){
+            while (rS.next()) {
 
-                HashMap<String,String> classes = new HashMap<String,String>();			//There will be one HashMap for each meeting
+                HashMap<String, String> classes = new HashMap<String, String>();            //There will be one HashMap for each meeting
 
-                String teacher = rS.getString("FIRSTNAME")+" "+rS.getString("LASTNAME");
+                String teacher = rS.getString("FIRSTNAME") + " " + rS.getString("LASTNAME");
                 String email = rS.getString("EMAILADDRESS");
-                String day = rS.getString("DAYOFTHEWEEK");								//These are the details for each meeting.
+                String day = rS.getString("DAYOFTHEWEEK");                                //These are the details for each meeting.
                 String time = rS.getTime("TIME").toString();
                 String room = rS.getString("ROOMNUMBER");
 
@@ -410,11 +421,9 @@ public class Database {
     }
 
 
-
-
-
     /**
      * Provides the email address for a given teacher.
+     *
      * @param userID
      * @return
      */
@@ -426,7 +435,7 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            if(rS.next()!=false){
+            if (rS.next() != false) {
 
                 email = rS.getString("EMAILADDRESS");
 
@@ -441,6 +450,7 @@ public class Database {
 
     /**
      * Provides the email address for a given student.
+     *
      * @param userID
      * @return
      */
@@ -452,7 +462,7 @@ public class Database {
             pSt.setString(1, userID);
             rS = pSt.executeQuery();
 
-            if(rS.next()!=false){
+            if (rS.next() != false) {
 
                 email = rS.getString("EMAILADDRESS");
 
@@ -467,8 +477,8 @@ public class Database {
 
     /**
      * Returns all email addresses for students enrolled in a given course.
-     * @param courseID
      *
+     * @param courseID
      * @return
      */
     public ArrayList<String> getClassStudentsEmail(String courseID) {
@@ -480,7 +490,7 @@ public class Database {
             pSt.setString(1, courseID);
             rS = pSt.executeQuery();
 
-            while(rS.next()){
+            while (rS.next()) {
 
                 emails.add(rS.getString("EMAILADDRESS"));
 
@@ -496,6 +506,7 @@ public class Database {
     /**
      * This will update the database with a new meeting between a student and teacher. The BOOKEDAPPOINTMENTS table and the TEACHEROFFICETIME
      * will be updated to reflect the new meeting.
+     *
      * @param userID
      * @param office
      */
@@ -510,16 +521,17 @@ public class Database {
             pSt.setString(2, userID);
             pSt.executeUpdate();
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     /**
      * This method is only called from the test cases
+     *
      * @param office
      */
-    public void resetMeetings(HashMap<String, String> office){
+    public void resetMeetings(HashMap<String, String> office) {
         try {
             pSt = conn.prepareStatement("TRUNCATE BOOKEDMEETINGS");
             pSt.executeUpdate();
@@ -528,7 +540,7 @@ public class Database {
             pSt.setString(1, office.get("ID"));
             pSt.executeUpdate();
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -536,20 +548,21 @@ public class Database {
     /**
      * Removes all records from the Schedule table and the OfficeHours table for a given teacher. The tables are then updated to include the new
      * information passed to the method in the form of a HashMap.
+     *
      * @param userID
      * @return
      */
-    public void updateTeacherClasses(String userID, ArrayList<HashMap<String,String>> classInfo) {
+    public void updateTeacherClasses(String userID, ArrayList<HashMap<String, String>> classInfo) {
 
         try {
 
             pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS WHERE TEACHERID = ? ");
             pSt.setString(1, userID);
-            pSt.executeQuery();
+            pSt.executeUpdate();
 
             pSt = conn.prepareStatement("DELETE FROM SCHEDULE WHERE TEACHERID = ? ");
             pSt.setString(1, userID);
-            pSt.executeQuery();
+            pSt.executeUpdate();
 
             for(HashMap<String,String> classes: classInfo){
 
@@ -563,7 +576,7 @@ public class Database {
                     pSt.setString(4, classes.get("Room"));
                     pSt.setInt(5, 0);
 
-                    pSt.executeQuery();
+                    pSt.executeUpdate();
 
                 }else{
 
@@ -572,17 +585,17 @@ public class Database {
 
                     pSt.setString(1, userID);
                     pSt.setString(2, classes.get("Course"));
-                    pSt.setString(3, classes.get("Duration"));
+                    pSt.setInt(3, Integer.parseInt(classes.get("Duration")));
                     pSt.setString(4, classes.get("Day"));
                     pSt.setString(5, classes.get("Time"));
                     pSt.setString(6, classes.get("Room"));
 
-                    pSt.executeQuery();
+                    pSt.executeUpdate();
 
                 }
             }
 
-            conn.commit();
+//            conn.commit();
 
         } catch (SQLException e) {
             e.printStackTrace();

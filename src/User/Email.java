@@ -20,7 +20,7 @@ public class Email {
                             "homemanagement001@gmail.com",
                             "8437839094");
 
-                    sender.sendMail("Confirmation email" , "An appointment is booked on"
+                    sender.sendMail("Confirmation email" , "An appointment has been booked on"
                                       ,
                             "homemanagement001@gmail.com", email);
 

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -76,12 +77,17 @@ public class BookAnAppointment implements Initializable {
         Email e = new Email();
         e.email_Thread(ProfessorController.getUser().getEmailAddress());
         HashMap<String, String> meeting = new HashMap<String, String>();
-        meeting.put("ID", Availability.getOfficeid());
+        meeting.put("ID", Availability.getT_slot().getid());
+        meeting.put("Email",ProfessorController.getUser().getEmailAddress());
         c.bookMeeting(meeting);
-
-        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
-                "Your Appointment request is accepted");
-
+//        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
+//                "Your Appointment request is accepted");
+        try {
+            BorderPane Content = FXMLLoader.load(getClass().getResource(("../Layout/Appointment.fxml")));
+            Welcome.fragementP.getChildren().setAll(Content);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
 
     }
 

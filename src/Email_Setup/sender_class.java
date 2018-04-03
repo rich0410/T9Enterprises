@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
  * Sender classes uses to send the email via SMTP
  */
 
-public class sender_class extends javax.mail.Authenticator{
+public class sender_class extends javax.mail.Authenticator {
     private String host = "smtp.gmail.com";
     private String user_name;
     private String password;
@@ -36,7 +36,7 @@ public class sender_class extends javax.mail.Authenticator{
         props.put("mail.smtp.socketFactory.fallback", "false");
         props.setProperty("mail.smtp.quitwait", "false");
 
-        session = Session.getDefaultInstance(props,this);
+        session = Session.getDefaultInstance(props, this);
     }
 
 

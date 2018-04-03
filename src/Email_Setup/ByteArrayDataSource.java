@@ -21,14 +21,6 @@ public class ByteArrayDataSource implements DataSource {
             this.type = type;
         }
 
-        public ByteArrayDataSource(byte[] data) {
-            super();
-            this.data = data;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
 
         public String getContentType() {
             if (type == null)

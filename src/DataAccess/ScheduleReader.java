@@ -45,12 +45,12 @@ public class ScheduleReader {
                 line = schedScanner.nextLine();        //Store the line as a string
                 records = line.split(",");                //Separate the values
 
-                time = new HashMap<String, String>();
+                time = new HashMap<String,String>();
 
                 time.put("Course", records[0]);
-                time.put("Duration", records[1]);
-                time.put("Day", records[2]);
-                time.put("Time", records[3]);
+                time.put("Time", records[1]);
+                time.put("Duration", records[2]);
+                time.put("Day", records[3]);
                 time.put("Room", records[4]);
 
                 schedule.add(time);

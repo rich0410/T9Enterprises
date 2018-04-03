@@ -7,7 +7,7 @@ import DataAccess.Database;
 import UI.GUI;
 import User.UserLogin;
 import javafx.application.Application;
-
+import User.Email;
 
 public class Controller {
 
@@ -21,6 +21,7 @@ public class Controller {
 
     private HashMap<String, String> userData;
     private User user;
+
 
 
     private Controller() {
@@ -144,15 +145,13 @@ public class Controller {
     public void bookMeeting(HashMap<String, String> office) {
 
         dB.bookMeeting(userID, office);
-
-        //sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
+        sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
     }
 
     public void ResetMeeting(HashMap<String, String> office) {
 
         dB.resetMeetings(office);
-
-        //sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
+        sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
     }
 
 
@@ -200,7 +199,10 @@ public class Controller {
     }
 
     private void sendEmail(String emailAddress, HashMap<String, String> office) {
-
+        Email e = new Email();
+        e.email_Thread(emailAddress);
+        e.email_Thread(office.get("Email"));
+        e.email_Thread(office.get("prabpannu0786@gmail.com"));
 
     }
 
