@@ -3,15 +3,11 @@ package Domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import DataAccess.DataGenerator;
 import DataAccess.Database;
 import UI.GUI;
 import User.UserLogin;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 
 public class Controller {
 
@@ -22,7 +18,7 @@ public class Controller {
     private Database dB;
 
     private String userID;
-    public DataGenerator dG;
+
     private HashMap<String, String> userData;
     private User user;
 
@@ -152,6 +148,15 @@ public class Controller {
         //sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
     }
 
+    public void ResetMeeting(HashMap<String, String> office) {
+
+        dB.resetMeetings(office);
+
+        //sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
+    }
+
+
+
     /**
      * Returns an ArrayList of Strings containing the details for each meeting.
      *
@@ -169,11 +174,17 @@ public class Controller {
     public ArrayList<HashMap<String, String>> getAllTeacherMeetings() {
         return dB.getTeacherClasses(teacher.getUserID());
     }
+
     public ArrayList<HashMap<String, String>> getAllTeacherAppointments() {
         return dB.getAllTeacherMeetings(teacher.getUserID());
     }
+
     public ArrayList<HashMap<String, String>> getStudentData() {
         return dB.getStudentClasses(student.getUserID());
+    }
+
+    public void  setUpdatedData(ArrayList<HashMap<String,String>> classInfo){
+        dB.updateTeacherClasses(teacher.getUserID(), classInfo);
     }
 
     public String getStudentEmail(String sID) {
@@ -207,7 +218,7 @@ public class Controller {
     /**
      * Reads the teacher timetable data to be passed to the presentation layer.
      */
-	/*protected void loadData(){
+    /*protected void loadData(){
 		dG = new DataGenerator();
 		dG.readFile();
 		names = dG.getNames();
@@ -221,9 +232,6 @@ public class Controller {
 
     }
 
-    public void resetMeetings(HashMap<String, String> office) {
-        dB.resetMeetings(office);
-    }
 
     public void set_user(User user) {
         this.user = user;

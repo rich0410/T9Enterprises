@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class BookAnAppointment implements Initializable {
     private TextField professor;
 
     @FXML
-    private TextField  date;
+    private TextField date;
 
     @FXML
     private JFXTimePicker starttime;
@@ -52,16 +53,15 @@ public class BookAnAppointment implements Initializable {
 
     public static TextField professorP;
 
-    public static TextField  dateP;
+    public static TextField dateP;
     public static JFXTimePicker starttimeP;
     public static JFXTimePicker endtimeP;
     public static TextField roomP;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        professorP =professor;
+        professorP = professor;
         dateP = date;
         starttimeP = starttime;
         endtimeP = endtime;
@@ -75,14 +75,12 @@ public class BookAnAppointment implements Initializable {
         Controller c = Controller.getController();
         Email e = new Email();
         e.email_Thread(ProfessorController.getUser().getEmailAddress());
-        time_table = new Time_Table();
+        HashMap<String, String> meeting = new HashMap<String, String>();
+        meeting.put("ID", Availability.getOfficeid());
+        c.bookMeeting(meeting);
 
-       // c.bookMeeting();
-
-        //time_table.addSlot(date.getValue().getDayOfWeek().toString(),t_slot);
         AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
                 "Your Appointment request is accepted");
-
 
 
     }
@@ -132,7 +130,6 @@ public class BookAnAppointment implements Initializable {
         }
 
     }
-
 
 
 }

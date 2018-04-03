@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -64,6 +65,8 @@ public class AppointmentController implements Initializable {
     @FXML
     private TableColumn<TimeSlot, String> Day;
 
+    private TimeSlot t;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,12 +84,26 @@ public class AppointmentController implements Initializable {
         Email.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Avalibility"));
         RoomNumber.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Room_number"));
         tableView.setItems(this.getAppointmentSlots());
+        tableView.setOnMouseClicked(event -> {
+            clickItem(event);
+        });
     }
 
 
+    public void clickItem(MouseEvent event) {
+        if (event.getClickCount() == 1) //Checking double click
+        {
+            setTimeSlot(tableView.getSelectionModel().getSelectedItem());
+
+        }
+    }
+
     @FXML
     protected void handleDeleteAction(ActionEvent event) {
-
+        Controller c = Controller.getController();
+        HashMap<String, String> office = new HashMap<String, String>();
+        office.put("ID",this.getTimeSlot().getid());
+        c.ResetMeeting(office);
     }
 
     public ObservableList<TimeSlot> gettimeSlots() {
@@ -172,4 +189,11 @@ public class AppointmentController implements Initializable {
     }
 
 
+    private void setTimeSlot(TimeSlot t){
+        this.t = t;
+    }
+
+    private TimeSlot getTimeSlot(){
+        return t;
+    }
 }

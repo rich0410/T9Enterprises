@@ -12,6 +12,7 @@ public class TimeSlot {
     private String day;
     private String Time;
     private String avalib;
+    private String id;
 
     public TimeSlot(){}
 
@@ -75,5 +76,12 @@ public class TimeSlot {
     }
     public String getAvalibility(){
         return avalib;
+    }
+
+    public String getid(){
+        return id;
+    }
+    public void setId(String id){
+        this.id = id;
     }
 }

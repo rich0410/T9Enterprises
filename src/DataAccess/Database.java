@@ -332,7 +332,7 @@ public class Database {
         schedInfo = new ArrayList<HashMap<String,String>>();
 
         try {
-            pSt = conn.prepareStatement("SELECT A.DAYOFTHEWEEK, A.TIME, A.ROOMNUMBER, C.FIRSTNAME, C.LASTNAME, C.EMAILADDRESS FROM OFFICEHOURS A"
+            pSt = conn.prepareStatement("SELECT A.DayOfTheWeek, A.TIME, A.ROOMNUMBER, C.FIRSTNAME, C.LASTNAME, C.EMAILADDRESS FROM OFFICEHOURS A"
                     + "INNER JOIN BOOKEDMEETINGS B ON A.OFFICEID = B.OFFICEID INNER JOIN STUDENT C ON B.STUDENTID = C.STUDENTID WHERE "
                     + "A.AVAILABLE = 0");
 
@@ -532,6 +532,63 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Removes all records from the Schedule table and the OfficeHours table for a given teacher. The tables are then updated to include the new
+     * information passed to the method in the form of a HashMap.
+     * @param userID
+     * @return
+     */
+    public void updateTeacherClasses(String userID, ArrayList<HashMap<String,String>> classInfo) {
+
+        try {
+
+            pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS WHERE TEACHERID = ? ");
+            pSt.setString(1, userID);
+            pSt.executeQuery();
+
+            pSt = conn.prepareStatement("DELETE FROM SCHEDULE WHERE TEACHERID = ? ");
+            pSt.setString(1, userID);
+            pSt.executeQuery();
+
+            for(HashMap<String,String> classes: classInfo){
+
+                if(classes.get("Course").equals("Office")){
+                    pSt = conn.prepareStatement("INSERT INTO OFFICEHOURS (TeacherID, DayOfTheWeek, Time, RoomNumber, Available) "
+                            + "VALUES (?, ?, ?, ?, ?)");
+
+                    pSt.setString(1, userID);
+                    pSt.setString(2, classes.get("Day"));
+                    pSt.setString(3, classes.get("Time"));
+                    pSt.setString(4, classes.get("Room"));
+                    pSt.setInt(5, 0);
+
+                    pSt.executeQuery();
+
+                }else{
+
+                    pSt = conn.prepareStatement("INSERT INTO SCHEDULE (TeacherID, CourseCode, Duration, DayOfTheWeek, StartTime, RoomNumber) "
+                            + "VALUES (?, ?, ?, ?, ?, ?)");
+
+                    pSt.setString(1, userID);
+                    pSt.setString(2, classes.get("Course"));
+                    pSt.setString(3, classes.get("Duration"));
+                    pSt.setString(4, classes.get("Day"));
+                    pSt.setString(5, classes.get("Time"));
+                    pSt.setString(6, classes.get("Room"));
+
+                    pSt.executeQuery();
+
+                }
+            }
+
+            conn.commit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public ObservableList<User> parseUserList() {
         this.connectDatabase();

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<BorderPane prefHeight="500.0" prefWidth="800.0" fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane prefHeight="600.0" prefWidth="800.0" fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="UI.AppointmentController">
 
     <center>
@@ -18,9 +18,9 @@
                 <Label styleClass="heading" text="Your TimeTable"/>
 
                 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                            minWidth="-Infinity" prefHeight="200" prefWidth="500" xmlns:fx="http://javafx.com/fxml">
+                            minWidth="-Infinity" prefHeight="150" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
                     <children>
-                        <TableView fx:id="tableView1" layoutX="-4.0" prefHeight="200.0" prefWidth="641.0">
+                        <TableView fx:id="tableView1" layoutX="-4.0" prefHeight="150.0" prefWidth="641.0">
                             <columns>
                                 <TableColumn fx:id="CourseCodeID" prefWidth="220.0" text="CourseCodeID"/>
                                 <TableColumn fx:id="Day" prefWidth="100.0" text="Day"/>
@@ -34,9 +34,9 @@
 
                 <Label styleClass="heading" text="Your TimeSlots"/>
                 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                            minWidth="-Infinity" prefHeight="200" prefWidth="500" xmlns:fx="http://javafx.com/fxml">
+                            minWidth="-Infinity" prefHeight="150" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
                     <children>
-                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="200.0" prefWidth="641.0">
+                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="150.0" prefWidth="641.0">
                             <columns>
                                 <TableColumn fx:id="Teacher" prefWidth="117.0" text="Professor"/>
                                 <TableColumn fx:id="StartTime" prefWidth="117.0" text="Start Time"/>
@@ -46,12 +46,12 @@
                             </columns>
                         </TableView>
                     </children>
-                </AnchorPane>
+                     </AnchorPane>
 
 
             </children>
-            <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false"
-                    onAction="#handleDeleteAction" prefHeight="43.0" prefWidth="101.0" text="Delete"/>
+            <!--<Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false"-->
+                    <!--onAction="#handleDeleteAction" prefHeight="43.0" prefWidth="101.0" text="Delete"/>-->
         </VBox>
     </center>
     <bottom>

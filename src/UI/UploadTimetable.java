@@ -1,6 +1,7 @@
 package UI;
 
-import DataAccess.DataGenerator;
+import DataAccess.ScheduleReader;
+import Domain.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class UploadTimetable implements Initializable {
@@ -22,7 +25,7 @@ public class UploadTimetable implements Initializable {
 
     private File file;
 
-    private DataGenerator dG;
+    private ScheduleReader dG;
 
 
     @Override
@@ -66,15 +69,15 @@ public class UploadTimetable implements Initializable {
     @FXML
     protected void handleUploadAction(ActionEvent event) {
         try {
+            Controller c = Controller.getController();
+            dG = new ScheduleReader();
+            ArrayList<HashMap<String, String>> data =dG.readFile(this.get_file());
 
-            dG = new DataGenerator();
-            dG.readFile(this.get_file());
-            System.out.println(dG.getNames());
-            System.out.println(dG.getSched());
-
+            c.setUpdatedData(data);
 
 
         } catch (Exception e) {
+            e.printStackTrace();
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
                     "No data Available!");
         }

@@ -54,6 +54,8 @@ public class Availability implements Initializable {
 
     private User user;
 
+    private static String id;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,6 +95,9 @@ public class Availability implements Initializable {
             while (myVeryOwnIterator.hasNext()) {
                 String key = (String) myVeryOwnIterator.next();
                 String value = teacherslot.get(i).get(key);
+                if (key.equals("ID")) {
+                    t_slot.setId(value);
+                }
                 if (key.equals("Day")) {
                     t_slot.setDay(value);
                 }
@@ -109,6 +114,7 @@ public class Availability implements Initializable {
 
             }
             list.add(t_slot);
+            setId(t_slot.getid());
         }
 
 
@@ -139,5 +145,13 @@ public class Availability implements Initializable {
 
     public void setTimeSlot(TimeSlot timeSlot) {
         this.t_slot = timeSlot;
+    }
+
+    public static String getOfficeid(){
+        return id;
+    }
+
+    private static void setId(String id){
+        Availability.id = id;
     }
 }
