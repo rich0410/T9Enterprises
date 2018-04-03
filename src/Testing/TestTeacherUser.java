@@ -2,10 +2,12 @@ package Testing;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,6 +27,7 @@ public class TestTeacherUser {
 		ctl = Controller.getController();
 		ctl.startup();
 	}
+	
 	
 	@Before
 	public void setup(){
@@ -89,11 +92,42 @@ public class TestTeacherUser {
 		
 		classes = teacher.getClasses();
 		
-		String course = classes.get(0).get("Course").substring(0, classes.get(0).get("Course").indexOf(" "));
+		String course = classes.get(1).get("Course").substring(0, classes.get(0).get("Course").indexOf(" "));
 		
 		ArrayList<String> emails = ctl.getAllStudentEmails(course);
 		
-		assertTrue(emails.get(1).equals("jenk2002@algonquinlive.com"));
+		assertTrue(emails.get(0) != null);
+		
+		assertTrue(emails.get(0).contains("@algonquinlive.com"));
+	}
+	
+	@Test
+	public void testTeacherUpdateSchedule(){
+				
+		File file = new File("schedule.csv");
+		
+		ctl.updateSchedule(file);
+		
+		ArrayList<HashMap<String,String>> classes;
+		
+		teacher = ctl.getTeacher();
+		
+		classes = teacher.getClasses();
+		
+		assertTrue(classes.get(2).get("Course").equals("CST1134-010 - Intro to Web - Lecture"));
+		assertTrue(classes.size() == 3);
+		assertFalse(classes.get(0).get("Course").equals("CST9245-010 - Electro-Engineering - Lecture"));
+		
+		classes = teacher.getOfficeHours();
+		
+		assertTrue(classes.get(0).get("Day").equals("Tue"));
+		assertFalse(classes.get(0).get("Room").equals("B343"));
+		assertFalse(classes.get(0).get("Day").equals("Thu"));
+		assertTrue(classes.get(0).get("Room").equals("T309"));
+		
+		assertTrue(classes.size() == 6);
+		assertFalse(classes.size() == 2);
+				
 	}
 
 }

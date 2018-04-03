@@ -21,9 +21,9 @@ public class Controller{
 	private Teacher teacher;
 	private Admin admin;
 	private Database dB;
+	private ScheduleReader sR;
 	
 	private String userID;
-	public ScheduleReader dG;
 	private HashMap<String, String> userData;
 
 
@@ -191,7 +191,7 @@ public class Controller{
 	}
 	
 	public void updateSchedule(File schedule){
-		ScheduleReader sR = new ScheduleReader();
+		sR = new ScheduleReader();
 		dB.updateTeacherClasses(userID, sR.readFile(schedule));
 		loadUser(userID);
 	}
@@ -224,7 +224,7 @@ public class Controller{
 	public void resetMeetings(HashMap<String, String> office) {
 		dB.resetMeetings(office);
 	}
-
+	
 
 	
 	

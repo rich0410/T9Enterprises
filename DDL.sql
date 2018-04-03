@@ -25,7 +25,7 @@ CREATE TABLE Admin(
 	FirstName		VARCHAR(12)	NOT NULL,
 	LastName		VARCHAR(24)	NOT NULL,
 	EmailAddress	VARCHAR(30)	NOT NULL UNIQUE,
-	PRIMARY KEY(StudentID)	
+	PRIMARY KEY(AdminID)	
 );
 
 CREATE TABLE Courses(
@@ -36,7 +36,7 @@ CREATE TABLE Courses(
 );
 
 CREATE TABLE Schedule(
-	ScheduleID		INTEGER(5) NOT NULL AUTO INCREMENT,
+	ScheduleID		INTEGER(5) NOT NULL AUTO_INCREMENT,
 	TeacherID		VARCHAR(9) NOT NULL,
 	CourseCode	 	VARCHAR(11) NOT NULL,
 	Duration		INTEGER(1) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE Schedule(
 );
 
 CREATE TABLE OfficeHours(
-	OfficeID		INTEGER(5) NOT NULL AUTO INCREMENT,
+	OfficeID		INTEGER(5) NOT NULL AUTO_INCREMENT,
 	TeacherID		VARCHAR(9) NOT NULL,
 	DayOfTheWeek	VARCHAR(9) NOT NULL,
 	Time			TIME NOT NULL,
@@ -69,11 +69,9 @@ CREATE TABLE StudentCourses(
 );
 
 CREATE TABLE BookedMeetings(
-	OfficeID		VARCHAR(9) NOT NULL,
+	OfficeID		INTEGER(5)  NOT NULL,
 	StudentID		VARCHAR(9)	NOT NULL,
 	PRIMARY KEY(OfficeID, StudentID),
 	CONSTRAINT	studentmeeting_fk FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
 	CONSTRAINT	officemeeting_fk FOREIGN KEY(OfficeID) REFERENCES OfficeHours(OfficeID)
 );
-
-

@@ -33,6 +33,8 @@ public class ScheduleReader {
 	 */
 	public ArrayList<HashMap<String, String>> readFile(File file){
 		
+		schedule = new ArrayList<HashMap<String,String>>();
+		
 		//Create the scanner object to read the file.
 		try {
 			schedScanner = new Scanner(new FileReader(file));
@@ -50,9 +52,9 @@ public class ScheduleReader {
 				time = new HashMap<String,String>();
 				
 				time.put("Course", records[0]);
-				time.put("Duration", records[1]);
-				time.put("Day", records[2]);
-				time.put("Time", records[3]);
+				time.put("Time", records[1]);
+				time.put("Duration", records[2]);
+				time.put("Day", records[3]);
 				time.put("Room", records[4]);
 				
 				schedule.add(time);

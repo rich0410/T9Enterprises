@@ -32,7 +32,7 @@ public class UserLogin {
 			returnCode = connection.getResponseCode();
 			
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

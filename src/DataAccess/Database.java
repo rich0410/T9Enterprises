@@ -283,11 +283,11 @@ public class Database {
 			
 			pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS WHERE TEACHERID = ? ");
 			pSt.setString(1, userID);
-			pSt.executeQuery();
+			pSt.executeUpdate();
 			
 			pSt = conn.prepareStatement("DELETE FROM SCHEDULE WHERE TEACHERID = ? ");
 			pSt.setString(1, userID);
-			pSt.executeQuery();
+			pSt.executeUpdate();
 			
 			for(HashMap<String,String> classes: classInfo){
 								
@@ -301,7 +301,7 @@ public class Database {
 					pSt.setString(4, classes.get("Room"));
 					pSt.setInt(5, 0);
 					
-					pSt.executeQuery();
+					pSt.executeUpdate();
 					
 				}else{
 					
@@ -315,7 +315,7 @@ public class Database {
 					pSt.setString(5, classes.get("Time"));
 					pSt.setString(6, classes.get("Room"));
 					
-					pSt.executeQuery();
+					pSt.executeUpdate();
 					
 				}
 			}
@@ -583,5 +583,6 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
+
 
 }
