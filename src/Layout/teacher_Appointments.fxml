@@ -9,19 +9,20 @@
             fx:controller="UI.teacher_Appointments">
 
         <center>
-            <VBox prefHeight="475.0" prefWidth="800.0" styleClass="content">
+            <VBox prefHeight="450.0" prefWidth="800.0" styleClass="content">
                 <children>
-                    <Label styleClass="heading" text="Your TimeSlots"/>
+                    <Label styleClass="heading" text="Your Appointments"/>
                     <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                minWidth="-Infinity" prefHeight="500" prefWidth="500" xmlns:fx="http://javafx.com/fxml">
+                                minWidth="-Infinity" prefHeight="300" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
                         <children>
-                            <TableView fx:id="tableView" layoutX="-4.0" prefHeight="450.0" prefWidth="641.0">
+                            <TableView fx:id="tableView" layoutX="-4.0" prefHeight="300.0" prefWidth="800">
                                 <columns>
                                     <TableColumn fx:id="Student" prefWidth="117.0" text="Student"/>
                                     <TableColumn fx:id="StartTime" prefWidth="117.0" text="Start Time"/>
                                     <TableColumn fx:id="EndTime" prefWidth="134.0" text="End Time"/>
-                                    <TableColumn fx:id="Email" prefWidth="135.0" text="Email"/>
+                                    <TableColumn fx:id="Email" prefWidth="200.0" text="Email"/>
                                     <TableColumn fx:id="RoomNumber" prefWidth="135.0" text="Room Number"/>
+                                    <TableColumn fx:id="Options" prefWidth="100.0" text="Options"/>
                                 </columns>
                             </TableView>
                         </children>
@@ -29,8 +30,7 @@
 
 
                 </children>
-                <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false"
-                        onAction="#handleDeleteAction" prefHeight="43.0" prefWidth="101.0" text="Delete"/>
+
             </VBox>
         </center>
         <bottom>

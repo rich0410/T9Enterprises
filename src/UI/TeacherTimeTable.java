@@ -62,7 +62,7 @@ public class TeacherTimeTable implements Initializable {
         System.out.println(u.getUserID());
         ObservableList<TimeSlot> list = FXCollections.observableArrayList();
         ArrayList<HashMap<String, String>> teacherslot = c.getAllTeacherMeetings();
-
+        ArrayList<HashMap<String, String>> OfficeSlot = c.getTeacherOfficeTimesOpen();
         for (int i = 0; i < teacherslot.size(); i++) {
             Iterator<String> myVeryOwnIterator = teacherslot.get(i).keySet().iterator();
             TimeSlot t_slot = new TimeSlot();
@@ -74,6 +74,33 @@ public class TeacherTimeTable implements Initializable {
                 }
                 if (key.equals("Course")) {
                     t_slot.setCourse(value);
+                }
+                if (key.equals("Day")) {
+                    t_slot.setDay(value);
+                }
+                if (key.equals("Time")) {
+                    t_slot.setTime(value);
+                }
+                if (key.equals("Room")) {
+                    t_slot.setRoom_number(value);
+                }
+
+            }
+            list.add(t_slot);
+        }
+
+
+        for (int i = 0; i < OfficeSlot.size(); i++) {
+            Iterator<String> myVeryOwnIterator = OfficeSlot.get(i).keySet().iterator();
+            TimeSlot t_slot = new TimeSlot();
+            while (myVeryOwnIterator.hasNext()) {
+                String key = (String) myVeryOwnIterator.next();
+                String value = OfficeSlot.get(i).get(key);
+                if (key.equals("Duration")) {
+                    t_slot.setDuration(Integer.parseInt(value));
+                }
+                if (key.equals("ID")) {
+                    t_slot.setCourse("Office");
                 }
                 if (key.equals("Day")) {
                     t_slot.setDay(value);

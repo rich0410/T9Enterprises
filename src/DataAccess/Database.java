@@ -342,7 +342,7 @@ public class Database {
         schedInfo = new ArrayList<HashMap<String, String>>();
 
         try {
-            pSt = conn.prepareStatement("SELECT A.DAYOFTHEWEEK, A.TIME, A.ROOMNUMBER, C.FIRSTNAME, C.LASTNAME, C.EMAILADDRESS FROM OFFICEHOURS A "
+            pSt = conn.prepareStatement("SELECT A.OFFICEID ,A.DAYOFTHEWEEK, A.TIME, A.ROOMNUMBER, C.FIRSTNAME, C.LASTNAME, C.EMAILADDRESS FROM OFFICEHOURS A "
                     + "INNER JOIN BOOKEDMEETINGS B ON A.OFFICEID = B.OFFICEID INNER JOIN STUDENT C ON B.STUDENTID = C.STUDENTID WHERE "
                     + "A.AVAILABLE = 0");
 
@@ -351,13 +351,14 @@ public class Database {
             while (rS.next()) {
 
                 HashMap<String, String> appts = new HashMap<String, String>();            //There will be one HashMap for each meeting
-
+                String Officeid = rS.getString("OFFICEID");
                 String day = rS.getString("DAYOFTHEWEEK");                                //These are the details for each meeting.
                 String time = rS.getTime("TIME").toString();
                 String room = rS.getString("ROOMNUMBER");
                 String student = rS.getString("FIRSTNAME") + " " + rS.getString("LASTNAME");
                 String email = rS.getString("EMAILADDRESS");
 
+                appts.put("ID",Officeid);
                 appts.put("Day", day);
                 appts.put("Time", time);
                 appts.put("Room", room);

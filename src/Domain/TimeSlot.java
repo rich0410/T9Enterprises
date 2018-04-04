@@ -1,5 +1,7 @@
 package Domain;
 
+import javafx.scene.control.Button;
+
 import java.sql.Time;
 import java.time.LocalTime;
 
@@ -13,6 +15,7 @@ public class TimeSlot {
     private String Time;
     private String avalib;
     private String id;
+    private Button button;
 
     public TimeSlot(){}
 
@@ -83,5 +86,12 @@ public class TimeSlot {
     }
     public void setId(String id){
         this.id = id;
+    }
+
+    public Button getButton(){
+        return button;
+    }
+    public void setButton(Button button){
+        this.button = button;
     }
 }

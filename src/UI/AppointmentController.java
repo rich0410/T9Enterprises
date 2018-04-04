@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -65,6 +66,9 @@ public class AppointmentController implements Initializable {
     @FXML
     private TableColumn<TimeSlot, String> Day;
 
+    @FXML
+    private TableColumn<TimeSlot, String> Options;
+
     private TimeSlot t;
 
 
@@ -83,6 +87,7 @@ public class AppointmentController implements Initializable {
         EndTime.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Day"));
         Email.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Avalibility"));
         RoomNumber.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Room_number"));
+        Options.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Button"));
         tableView.setItems(this.getAppointmentSlots());
         tableView.setOnMouseClicked(event -> {
             clickItem(event);
@@ -180,6 +185,8 @@ public class AppointmentController implements Initializable {
                 if (key.equals("Room")) {
                     t.setRoom_number(value);
                 }
+                Button b = new Button("Remove");
+                t.setButton(b);
             }
             list.add(t);
         }

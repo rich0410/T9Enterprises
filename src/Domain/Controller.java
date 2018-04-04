@@ -135,6 +135,11 @@ public class Controller {
         return dB.getTeacherOffice(id);
     }
 
+    public ArrayList<HashMap<String, String>> getTeacherOfficeTimesOpen() {
+
+        return dB.getTeacherOffice(teacher.getUserID());
+    }
+
 
     /**
      * Updates the database with the new meeting information and sends and email to the teacher. A resource bundle representing the office time
@@ -151,7 +156,7 @@ public class Controller {
     public void ResetMeeting(HashMap<String, String> office) {
 
         dB.resetMeetings(office);
-        sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
+//        sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
     }
 
 

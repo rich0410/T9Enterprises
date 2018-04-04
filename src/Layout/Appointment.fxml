@@ -18,7 +18,7 @@
                 <Label styleClass="heading" text="Your TimeTable"/>
 
                 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                            minWidth="-Infinity" prefHeight="150" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
+                            minWidth="-Infinity" prefHeight="250" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
                     <children>
                         <TableView fx:id="tableView1" layoutX="-4.0" prefHeight="150.0" prefWidth="641.0">
                             <columns>
@@ -36,13 +36,14 @@
                 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                             minWidth="-Infinity" prefHeight="150" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
                     <children>
-                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="150.0" prefWidth="641.0">
+                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="250.0" prefWidth="800.0">
                             <columns>
                                 <TableColumn fx:id="Teacher" prefWidth="117.0" text="Professor"/>
                                 <TableColumn fx:id="StartTime" prefWidth="117.0" text="Start Time"/>
                                 <TableColumn fx:id="EndTime" prefWidth="134.0" text="End Time"/>
                                 <TableColumn fx:id="Email" prefWidth="135.0" text="Email"/>
                                 <TableColumn fx:id="RoomNumber" prefWidth="135.0" text="Room Number"/>
+                                <TableColumn fx:id="Options" prefWidth="135.0" text="Options"/>
                             </columns>
                         </TableView>
                     </children>
