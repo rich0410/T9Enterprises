@@ -1,5 +1,7 @@
 package Domain;
 
+import javafx.scene.control.Button;
+
 import java.sql.Time;
 import java.time.LocalTime;
 
@@ -9,45 +11,87 @@ public class TimeSlot {
     private int duration;
     private boolean cancelled = false;
     private String course;
+    private String day;
+    private String Time;
+    private String avalib;
+    private String id;
+    private Button button;
 
     public TimeSlot(){}
 
-    protected LocalTime getStartTime(){
+    public LocalTime getStartTime(){
         return startTime;
     }
-    protected int getDuration(){
+    public int getDuration(){
         return duration;
     }
 
-    protected String getRoom_number(){
+    public String getRoom_number(){
         return room_number;
     }
 
-    protected  String getCourse(){
+    public  String getCourse(){
         return  course;
     }
 
-    protected boolean isCancelled(){
+    public String getDay(){
+        return day;
+    }
+    public boolean isCancelled(){
         return cancelled;
     }
 
-    protected void setStartTime(String startTime){
+    public String getTime(){
+        return Time;
+    }
+
+    public void setStartTime(String startTime){
         this.startTime = LocalTime.parse(startTime);
     }
 
-    protected  void setRoom_number(String room_number){
+    public void setTime(String startTime){
+        this.Time = startTime;
+    }
+
+
+    public void setDay(String day){
+        this.day = day;
+    }
+
+    public  void setRoom_number(String room_number){
         this.room_number = room_number;
     }
 
-    protected void setDuration(int duration){
+    public void setDuration(int duration){
         this.duration = duration;
     }
     
-    protected void cancel(){
+    public void cancel(){
     	cancelled = true;
     }
 
-    protected  void setCourse(String course){
+    public  void setCourse(String course){
         this.course = course;
+    }
+
+    public void setAvalibility(String ava){
+        this.avalib = ava;
+    }
+    public String getAvalibility(){
+        return avalib;
+    }
+
+    public String getid(){
+        return id;
+    }
+    public void setId(String id){
+        this.id = id;
+    }
+
+    public Button getButton(){
+        return button;
+    }
+    public void setButton(Button button){
+        this.button = button;
     }
 }

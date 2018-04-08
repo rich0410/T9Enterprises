@@ -9,37 +9,45 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ProfessorController">
-	<center>
-		<VBox prefHeight="591.0" prefWidth="693.0" styleClass="content">
-			<children>
-				<Label styleClass="heading" text="Professor Page" />
+<?import javafx.scene.control.Button?>
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UI.ProfessorController">
+    <center>
+        <VBox prefHeight="591.0" prefWidth="693.0" styleClass="content">
+            <children>
+                <Label styleClass="heading" text="Professor Page"/>
 
-				<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml">
-					<children>
-						<TableView fx:id="tableView" layoutX="-4.0" prefHeight="228.0" prefWidth="641.0" >
-							<columns>
-								<TableColumn fx:id="TeacherID" prefWidth="117.0" text="Teacher ID" />
-								<TableColumn fx:id="FirstName" prefWidth="134.0" text="First Name" />
-								<TableColumn fx:id="LastName" prefWidth="165.0" text="Last Name" />
-								<TableColumn fx:id="Email" prefWidth="223.0" text="AC Email" />
-							</columns>
-						</TableView>
-					</children>
-				</AnchorPane>
+                <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" prefHeight="281.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml">
+                    <children>
+                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="228.0" prefWidth="641.0">
+                            <columns>
+                                <TableColumn fx:id="FirstName" prefWidth="200.0" text="First Name"/>
+                                <TableColumn fx:id="LastName" prefWidth="200.0" text="Last Name"/>
+                                <TableColumn fx:id="Email" prefWidth="240.0" text="AC Email"/>
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
 
-			</children>
+            </children>
+
+            <Button contentDisplay="LEFT" defaultButton="true" mnemonicParsing="false" onAction="#handleUpdateAction" prefHeight="43.0" prefWidth="101.0" text="Update" />
+
         </VBox>
+
     </center>
+
     <bottom>
         <HBox styleClass="footer">
-           <children>
-               <Label text="Copyright T9-Enterprises" />
-           </children>
+            <children>
+                <Label text="Copyright T9-Enterprises"/>
+            </children>
         </HBox>
     </bottom>
 
     <stylesheets>
-        <URL value="@toolbar-demo.css" />
+        <URL value="@toolbar-demo.css"/>
     </stylesheets>
+
 </BorderPane>

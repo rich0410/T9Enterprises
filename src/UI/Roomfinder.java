@@ -8,14 +8,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class Roomfinder implements Initializable {
 
-    @FXML
-    private AnchorPane root;
 
     @FXML
     private BorderPane border;
@@ -51,24 +50,18 @@ public class Roomfinder implements Initializable {
 
     static class WebPage {
         private WebView webview = new WebView();
-        private static WebEngine engine;
+        private static WebEngine e;
 
         public WebEngine createWebEngine() {
-
-
             WebView wv = getWebView();
-            engine = wv.getEngine();
-
-            return engine;
+            e = wv.getEngine();
+            return e;
         }
 
         public WebView getWebView() {
             return webview;
         }
 
-        public static WebEngine getWebEngine() {
-            return engine;
-        }
     }
 
 }

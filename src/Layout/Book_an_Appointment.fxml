@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -11,71 +9,85 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="root" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.BookAnAppointment">
-    <Label id="header-text" text="Book an Appointment" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1">
+<GridPane fx:id="root" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.BookAnAppointment">
+    <padding>
+        <Insets bottom="40" left="40" right="40" top="40"/>
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="150.0" prefWidth="150.0">
+        </ColumnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="200.0" prefWidth="252.0">
+        </ColumnConstraints>
+        <ColumnConstraints maxWidth="63.0" minWidth="0.0" prefWidth="0.0"/>
+        <ColumnConstraints maxWidth="135.0" minWidth="69.0" prefWidth="135.0"/>
+        <ColumnConstraints maxWidth="132.0" minWidth="65.0" prefWidth="96.0"/>
+        <ColumnConstraints maxWidth="96.0" minWidth="41.0" prefWidth="41.0"/>
+    </columnConstraints>
+
+
+    <Label id="header-text" text="Book an Appointment" GridPane.columnIndex="1" GridPane.columnSpan="2"
+           GridPane.halignment="CENTER" GridPane.rowSpan="1">
         <font>
-            <Font name="Arial" size="24" />
+            <Font name="Arial" size="24"/>
         </font>
         <GridPane.margin>
-            <Insets bottom="20" left="0" right="0" top="20" />
+            <Insets bottom="20" left="0" right="0" top="20"/>
         </GridPane.margin>
     </Label>
     <!-- Add Email Label -->
     <Label text="Professor : " GridPane.columnIndex="0" GridPane.rowIndex="2">
     </Label>
     <!-- Add Email Text Field -->
-    <TextField fx:id="professor" prefHeight="35.0" prefWidth="504.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlesearchAction" prefHeight="43.0" prefWidth="101.0" text="Search" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handleUpdateAction" prefHeight="43.0" prefWidth="101.0" text="Update" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+    <TextField fx:id="professor" prefHeight="35.0" prefWidth="504.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlesearchAction"
+            prefHeight="43.0" prefWidth="101.0" text="Search" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
 
-    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlecheckAction" prefHeight="43.0" prefWidth="138.0" text="Check Availability" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlecheckAction"
+            prefHeight="43.0" prefWidth="138.0" text="Check Availability" GridPane.columnIndex="3"
+            GridPane.rowIndex="4"/>
 
     <Label text="Room Number : " GridPane.columnIndex="0" GridPane.rowIndex="3">
     </Label>
     <!-- Add Email Text Field -->
-    <TextField fx:id="room" prefHeight="35.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="room" prefHeight="35.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlebackroomAction" prefHeight="43.0" prefWidth="101.0" text="RoomFinder" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+    <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#handlebackroomAction"
+            prefHeight="43.0" prefWidth="101.0" text="RoomFinder" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
 
 
-    <Label text=" Date :" GridPane.columnIndex="0" GridPane.rowIndex="4">
+
+    <Label text=" Day :" GridPane.columnIndex="0" GridPane.rowIndex="4">
     </Label>
-    <!-- Add Password Field -->
-    <JFXDatePicker fx:id="date" prefHeight="32.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+    <TextField fx:id="date" prefHeight="32.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
     <Label text=" Start Time :" GridPane.columnIndex="0" GridPane.rowIndex="5">
     </Label>
-    <JFXTimePicker fx:id="starttime" prefHeight="34.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <JFXTimePicker fx:id="starttime" prefHeight="34.0" prefWidth="533.0" GridPane.columnIndex="1"
+                   GridPane.rowIndex="5"/>
 
     <Label prefHeight="47.0" prefWidth="59.0" text=" End Time :" GridPane.columnIndex="0" GridPane.rowIndex="6">
     </Label>
-    <JFXTimePicker fx:id="endtime" prefHeight="32.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-
-
+    <JFXTimePicker fx:id="endtime" prefHeight="32.0" prefWidth="533.0" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
 
     <!-- Add Submit Button -->
-    <Button fx:id="add_appointment" defaultButton="true" onAction="#handleappointmentButtonAction" prefHeight="41.0" prefWidth="100" text="Add" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="1">
+    <Button fx:id="add_appointment" defaultButton="true" onAction="#handleappointmentButtonAction" prefHeight="41.0"
+            prefWidth="100" text="Add" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7"
+            GridPane.rowSpan="1">
 
     </Button>
-       <columnConstraints>
-         <ColumnConstraints maxWidth="157.0" minWidth="70.0" prefWidth="157.0" />
-         <ColumnConstraints maxWidth="527.0" minWidth="307.0" prefWidth="307.0" />
-         <ColumnConstraints maxWidth="93.0" minWidth="0.0" prefWidth="0.0" />
-      <ColumnConstraints maxWidth="234.0" minWidth="93.0" prefWidth="141.0" />
-      <ColumnConstraints maxWidth="242.0" minWidth="108.0" prefWidth="194.0" />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints maxHeight="57.0" minHeight="30.0" prefHeight="48.0" />
-         <RowConstraints maxHeight="46.0" minHeight="25.0" prefHeight="46.0" />
-         <RowConstraints maxHeight="55.0" minHeight="23.0" prefHeight="48.0" />
-         <RowConstraints maxHeight="54.0" minHeight="8.0" prefHeight="48.0" />
-         <RowConstraints maxHeight="54.0" minHeight="8.0" prefHeight="48.0" />
-      <RowConstraints maxHeight="73.0" minHeight="34.0" prefHeight="35.0" />
-      </rowConstraints>
-
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+    </rowConstraints>
 
 
 </GridPane>

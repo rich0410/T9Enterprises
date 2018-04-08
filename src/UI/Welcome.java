@@ -1,5 +1,7 @@
 package UI;
 
+import Domain.Controller;
+import Domain.User;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
@@ -8,10 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
-import java.awt.*;
+import javafx.scene.control.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,48 +30,65 @@ public class Welcome implements Initializable {
     @FXML
     private AnchorPane root;
 
-    @FXML
-    private Label lebel;
+
 
     public  static AnchorPane rootP;
 
     @FXML
     private AnchorPane fragment;
 
-    @FXML
+
     public static AnchorPane fragementP;
 
 
+    @FXML
+    private Label lebel;
+
+    public static Label lebelP;
+
+    public static JFXDrawer drawerP;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        lebelP = lebel;
         rootP = root;
         fragementP = fragment;
+        drawerP = drawer;
+        Controller conn = Controller.getController();
+        User u = conn.getUser();
+            try {
+                if (u.getRole() == 1) {
+                    VBox box = FXMLLoader.load(getClass().getResource("../Layout/SlidePanelAdmin.fxml"));
+                    drawer.setSidePane(box);
+                } else if (u.getRole() == 2) {
+                    VBox box = FXMLLoader.load(getClass().getResource("../Layout/Slide_panel_for_teacher.fxml"));
+                    drawer.setSidePane(box);
 
-        try {
-            VBox box = FXMLLoader.load(getClass().getResource("../Layout/SidePanelContent.fxml"));
-            drawer.setSidePane(box);
-        } catch (IOException ex) {
-            Logger.getLogger(mainControler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
-        transition.setRate(-1);
+                } else if (u.getRole() == 3) {
+                    VBox box = FXMLLoader.load(getClass().getResource("../Layout/SidePanelContent.fxml"));
+                    drawer.setSidePane(box);
+                }
 
 
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            transition.setRate(transition.getRate() * -1);
-            transition.play();
-
-            if (drawer.isShown()) {
-                drawer.close();
-            } else {
-                drawer.open();
+            } catch (IOException ex) {
+                Logger.getLogger(mainControler.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-    }
+
+            HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+            transition.setRate(-1);
+
+
+            hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+                transition.setRate(transition.getRate() * -1);
+                transition.play();
+
+                if (drawer.isShown()) {
+                    drawer.close();
+                } else {
+                    drawer.open();
+                }
+            });
+        }
 
 
 

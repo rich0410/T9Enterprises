@@ -5,32 +5,34 @@ CREATE DATABASE Algonquin_Kiosk;
 USE Algonquin_Kiosk;
 
 CREATE TABLE Teacher(
-	TeacherID	VARCHAR(9) NOT NULL,
-	FirstName	VARCHAR(12) NOT NULL,
-	LastName	VARCHAR(24) NOT NULL,
-	EmailAddress	VARCHAR(30) NOT NULL,
+	TeacherID		VARCHAR(9) NOT NULL,
+	FirstName		VARCHAR(12) NOT NULL,
+	LastName		VARCHAR(24) NOT NULL,
+	EmailAddress	VARCHAR(30) NOT NULL UNIQUE,
 	PRIMARY KEY(TeacherID)
 );
 
-
-CREATE TABLE CourseSections(
-	CourseCodeID	VARCHAR(11)	NOT NULL,
-	LabLecture	INTEGER(1)	NOT NULL,
-	Title	VARCHAR(20)	NOT NULL,
-	RoomNumber	VARCHAR(5) NOT NULL,
-	PRIMARY KEY(CourseCodeID)
+CREATE TABLE Student(
+	StudentID		VARCHAR(9)	NOT NULL,
+	FirstName		VARCHAR(12)	NOT NULL,
+	LastName		VARCHAR(24)	NOT NULL,
+	EmailAddress	VARCHAR(30)	NOT NULL UNIQUE,
+	PRIMARY KEY(StudentID)	
 );
 
-CREATE TABLE TeacherClasses(
-	TeacherID	VARCHAR(9) NOT NULL,
-	CourseCodeID VARCHAR(11) NOT NULL,
-	Duration	INTEGER(1),
-	DayOfTheWeek	VARCHAR(3),
-	StartTime	TIME,
-	PRIMARY KEY(TeacherID, CourseCodeID),
-	CONSTRAINT	tid_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID),
-	CONSTRAINT	cid_fk 	FOREIGN KEY(CourseCodeID) REFERENCES CourseSections(CourseCodeID)
+CREATE TABLE Admin(
+	AdminID			VARCHAR(9)	NOT NULL,
+	FirstName		VARCHAR(12)	NOT NULL,
+	LastName		VARCHAR(24)	NOT NULL,
+	EmailAddress	VARCHAR(30)	NOT NULL UNIQUE,
+	PRIMARY KEY(AdminID)	
 );
+
+CREATE TABLE Courses(
+	CourseCode		VARCHAR(11)	NOT NULL,
+	LabLecture		INTEGER(1)	NOT NULL,
+	Title			VARCHAR(20)	NOT NULL,
+	PRIMARY KEY(CourseCode)
 
 CREATE TABLE TeacherOfficeTime(
 	OfficeTimeID	INTEGER(6)	NOT NULL AUTO_INCREMENT,
@@ -41,21 +43,31 @@ CREATE TABLE TeacherOfficeTime(
 	RoomNumber	VARCHAR(5),
 	PRIMARY KEY(OfficeTimeID),
 	CONSTRAINT	tot_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID)
+
 );
 
-CREATE TABLE Student(
-	StudentID	VARCHAR(9)	NOT NULL PRIMARY KEY,
-	FirstName	VARCHAR(12)	NOT NULL,
-	LastName	VARCHAR(24)	NOT NULL,
-	EmailAddress	VARCHAR(30)	NOT NULL
+CREATE TABLE Schedule(
+	ScheduleID		VARCHAR(9) NOT NULL,
+	TeacherID		VARCHAR(9) NOT NULL,
+	CourseCode	 	VARCHAR(11) NOT NULL,
+	Duration		INTEGER(1) NOT NULL,
+	DayOfTheWeek	VARCHAR(3) NOT NULL,
+	StartTime		TIME NOT NULL,
+	RoomNumber		VARCHAR(5) NOT NULL,
+	PRIMARY KEY(ScheduleID),
+	CONSTRAINT	teacher_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID),
+	CONSTRAINT	course_fk 	FOREIGN KEY(CourseCode) REFERENCES Courses(CourseCode)
 );
 
-CREATE TABLE StudentClasses(
-	StudentID	VARCHAR(9)	NOT NULL,
-	CourseCodeID	VARCHAR(11)	NOT NULL,
-	CONSTRAINT sc_PK	PRIMARY KEY(StudentID, CourseCodeID),
-	CONSTRAINT	sid_fk	FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
-	CONSTRAINT	csi_fk 	FOREIGN KEY(CourseCodeID) REFERENCES CourseSections(CourseCodeID)
+CREATE TABLE OfficeHours(
+	OfficeID		VARCHAR(9) NOT NULL,
+	TeacherID		VARCHAR(9) NOT NULL,
+	DayOfTheWeek	VARCHAR(9) NOT NULL,
+	Time			TIME NOT NULL,
+	RoomNumber		VARCHAR(5),
+	Available		INTEGER(1),
+	PRIMARY KEY(OfficeID),
+	CONSTRAINT	teacheroffice_fk FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID)
 );
 
 CREATE TABLE BookedAppointments(
@@ -67,13 +79,20 @@ CREATE TABLE BookedAppointments(
 	CONSTRAINT 	sa_fk 	FOREIGN KEY(StudentID) REFERENCES Student(StudentID)	
 );
 
-CREATE USER 'administrator'@'%' IDENTIFIED BY 't9-enterprise';
-CREATE USER 'teacherUser'@'%' IDENTIFIED BY 'teacherPassword';
-CREATE USER 'studentUser'@'%' IDENTIFIED BY 'studentPassword';
+CREATE TABLE StudentCourses(
+	StudentID		VARCHAR(9)	NOT NULL,
+	CourseCode		VARCHAR(11)	NOT NULL,
+	PRIMARY KEY(StudentID, CourseCode),
+	CONSTRAINT	student_fk FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT	studentcourse_fk FOREIGN KEY(CourseCode) REFERENCES Courses(CourseCode)
+);
+
+CREATE TABLE BookedMeetings(
+	OfficeID		VARCHAR(9) NOT NULL,
+	StudentID		VARCHAR(9)	NOT NULL,
+	PRIMARY KEY(OfficeID, StudentID),
+	CONSTRAINT	studentmeeting_fk FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT	officemeeting_fk FOREIGN KEY(OfficeID) REFERENCES OfficeHours(OfficeID)
+);
 
 
-GRANT ALL ON *.* TO 'administrator'@'localhost';
-GRANT SELECT ON Algonquin_Kiosk.* TO 'studentUser';
-GRANT SELECT ON Algonquin_Kiosk.* TO 'teacherUser';
-GRANT UPDATE ON Algonquin_Kiosk.Teacher TO 'teacherUser';
-GRANT INSERT, SELECT, DELETE ON Algonquin_Kiosk.TeacherOfficeTime TO 'teacherUser';

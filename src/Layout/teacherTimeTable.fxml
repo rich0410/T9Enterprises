@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import java.net.URL?>
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UI.TeacherTimeTable">
+        <center>
+            <VBox prefHeight="500.0" prefWidth="800.0" styleClass="content">
+                <children>
+                    <Label styleClass="heading" text="Time Table"/>
+
+                    <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml">
+                        <children>
+                            <TableView fx:id="tableView" layoutX="-4.0" prefHeight="500.0" prefWidth="800.0">
+                                <columns>
+                                    <TableColumn fx:id="CourseCodeID" prefWidth="300.0" text="CourseCodeID"/>
+                                    <TableColumn fx:id="DayOfTheWeek" prefWidth="125.0" text="DayOfTheWeek"/>
+                                    <TableColumn fx:id="StartTime" prefWidth="125.0" text="StartTime"/>
+                                    <TableColumn fx:id="Duration" prefWidth="125.0" text="Duration"/>
+                                    <TableColumn fx:id="RoomNumber" prefWidth="125.0" text="RoomNumber"/>
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+
+                </children>
+
+
+            </VBox>
+
+        </center>
+
+        <bottom>
+            <HBox styleClass="footer">
+                <children>
+                    <Label text="Copyright T9-Enterprises"/>
+                </children>
+            </HBox>
+        </bottom>
+
+        <stylesheets>
+            <URL value="@toolbar-demo.css"/>
+        </stylesheets>
+
+    </BorderPane>
+
+
