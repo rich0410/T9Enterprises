@@ -19,7 +19,7 @@ INSERT INTO Student(StudentID, FirstName, LastName, EmailAddress)VALUES
 ;
 
 INSERT INTO Admin(AdminID, FirstName, LastName, EmailAddress)VALUES
-('dens1234', 'Dave', 'Denison, 'dens1234@algonquincollege.com'),
+('dens1234', 'Dave', 'Denison', 'dens1234@algonquincollege.com')
 ;
 
 INSERT INTO Courses(CourseCode, LabLecture, Title) VALUES
