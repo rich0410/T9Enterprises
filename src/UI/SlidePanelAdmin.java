@@ -5,7 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +28,7 @@ public class SlidePanelAdmin implements Initializable {
     @FXML
     private JFXButton b4;
 
+
     @FXML
     private JFXButton exit;
 
@@ -44,24 +47,26 @@ public class SlidePanelAdmin implements Initializable {
         System.out.println(btn.getText());
         switch(btn.getText())
         {
-            case "View All Users":
+            case "Edit Teachers":
                 Welcome.drawerP.close();
-//                BorderPane Content2 = FXMLLoader.load(getClass().getResource(("../Layout/teacherTimeTable.fxml")));
-//                Welcome.fragementP.getChildren().setAll(Content2);
+                BorderPane Content2 = FXMLLoader.load(getClass().getResource(("../Layout/Get_all_teachers.fxml")));
+                Welcome.fragementP.getChildren().setAll(Content2);
 
                 break;
-            case "Add new Users":
+            case "Edit Students":
                 Welcome.drawerP.close();
-//                BorderPane Content3 = FXMLLoader.load(getClass().getResource(("../Layout/Appointment.fxml")));
-//                Welcome.fragementP.getChildren().setAll(Content3);
+                BorderPane Content3 = FXMLLoader.load(getClass().getResource(("../Layout/Get_all_Students.fxml")));
+                Welcome.fragementP.getChildren().setAll(Content3);
 
                 break;
-            case "Remove Users":
+
+            case "Edit Schedule":
                 Welcome.drawerP.close();
-//                BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
-//                Welcome.fragementP.getChildren().setAll(Content4);
+                AnchorPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/Upload_Student_Schedule.fxml")));
+                Welcome.fragementP.getChildren().setAll(Content4);
 
                 break;
+
             case "Log Out":
                 mainControler m = new mainControler();
                 m.LogOut(event);

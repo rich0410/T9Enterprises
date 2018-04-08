@@ -15,22 +15,6 @@
     <center>
         <VBox prefHeight="500.0" prefWidth="800.0" styleClass="content">
             <children>
-                <Label styleClass="heading" text="Your TimeTable"/>
-
-                <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                            minWidth="-Infinity" prefHeight="250" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
-                    <children>
-                        <TableView fx:id="tableView1" layoutX="-4.0" prefHeight="150.0" prefWidth="641.0">
-                            <columns>
-                                <TableColumn fx:id="CourseCodeID" prefWidth="220.0" text="CourseCodeID"/>
-                                <TableColumn fx:id="Day" prefWidth="100.0" text="Day"/>
-                                <TableColumn fx:id="Time" prefWidth="100.0" text="Time"/>
-                                <TableColumn fx:id="Professor" prefWidth="100.0" text="Professor"/>
-                                <TableColumn fx:id="Room" prefWidth="120.0" text="Room Number"/>
-                            </columns>
-                        </TableView>
-                    </children>
-                </AnchorPane>
 
                 <Label styleClass="heading" text="Your TimeSlots"/>
                 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"

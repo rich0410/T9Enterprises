@@ -64,10 +64,10 @@ public class SlidePanelForTeacher implements Initializable{
                 Welcome.fragementP.getChildren().setAll(Content3);
 
                 break;
-            case "Remove TimeTable":
-                Welcome.drawerP.close();
-//                BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
-//                Welcome.fragementP.getChildren().setAll(Content4);
+//            case "Remove TimeTable":
+//                Welcome.drawerP.close();
+////                BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
+////                Welcome.fragementP.getChildren().setAll(Content4);
 
             case "View Appointments":
                 Welcome.drawerP.close();

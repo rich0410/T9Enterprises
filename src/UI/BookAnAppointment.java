@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.TextField;
@@ -68,25 +69,27 @@ public class BookAnAppointment implements Initializable {
         endtimeP = endtime;
         roomP = room;
 
-
     }
 
     @FXML
     protected void handleappointmentButtonAction(ActionEvent event) {
+        if(isEmpty()){
         Controller c = Controller.getController();
-        Email e = new Email();
-        e.email_Thread(ProfessorController.getUser().getEmailAddress());
         HashMap<String, String> meeting = new HashMap<String, String>();
         meeting.put("ID", Availability.getT_slot().getid());
         meeting.put("Email",ProfessorController.getUser().getEmailAddress());
         c.bookMeeting(meeting);
-//        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
-//                "Your Appointment request is accepted");
+        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
+                "Your Appointment request is accepted");
         try {
             BorderPane Content = FXMLLoader.load(getClass().getResource(("../Layout/Appointment.fxml")));
             Welcome.fragementP.getChildren().setAll(Content);
         } catch (IOException e1) {
             e1.printStackTrace();
+        }}
+        else {
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
+                    "Some of required fields are empty!");
         }
 
     }
@@ -133,9 +136,27 @@ public class BookAnAppointment implements Initializable {
         } catch (IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        } catch(Exception e){
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+                    "No data is available or teacher is not selected");
         }
 
     }
+
+     private boolean isEmpty(){
+         return !professorP.getText().isEmpty() && !dateP.getText().isEmpty();
+     }
+
+
+//    public void showEditTextsAsMandatory ( Label... ets )
+//    {
+//        for ( Label et : ets )
+//        {
+//
+//            Label. ( Html.fromHtml ( "<font color=\"#ff0000\">" + "*" + "</font>" + hint ) );
+//        }
+//    }
+
 
 
 }

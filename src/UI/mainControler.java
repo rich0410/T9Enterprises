@@ -7,10 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +29,9 @@ public class mainControler implements Initializable {
 
     public static StackPane rootp;
 
+    public  File file;
 
+    public  String name;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,4 +97,38 @@ public class mainControler implements Initializable {
         }
     }
 
+
+    public void FileChooser(){
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("File Chooser");
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Open CSV File");
+            fc.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Quiz Files", "*.csv"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            File file = fc.showOpenDialog(stage);
+            set_name(file.getName());
+            set_file(file);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+                    "No data Available!");
+        }
+    }
+
+    private void set_file(File file) {
+      this.file = file;
+    }
+
+    public File get_file() {
+        return file;
+    }
+
+    private void set_name(String name) {
+        this.name = name;
+    }
+
+    public  String get_name() {
+        return name;
+    }
 }

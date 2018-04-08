@@ -125,17 +125,25 @@ public class Availability implements Initializable {
 
     @FXML
     protected void handleUpdateAction(ActionEvent event) {
+
+        if(!getT_slot().getAvalibility().equals("Booked")){
         try {
             BookAnAppointment.dateP.setText(getT_slot().getDay());
             BookAnAppointment.starttimeP.setValue(getT_slot().getStartTime());
             BookAnAppointment.endtimeP.setValue(getT_slot().getStartTime().plusMinutes(15));
             BookAnAppointment.roomP.setText(getT_slot().getRoom_number());
+
+
         } catch (Exception e) {
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
                     "No data Available!");
         }
         Stage stage = (Stage) tableView.getScene().getWindow();
-        stage.close();
+        stage.close();}
+        else{
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+                    "TimeSlot is already booked!");
+        }
 
     }
 

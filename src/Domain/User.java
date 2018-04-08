@@ -1,11 +1,15 @@
 package Domain;
 
+import javafx.scene.control.Button;
+
 import java.util.ArrayList;
 
 public class User {
 	
 	private String firstName, lastName, email, userID;
 	private int role;
+	private Button button;
+
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -59,4 +63,12 @@ public class User {
     public int getRole() {
         return role;
     }
+
+	public Button getButton(){
+		return button;
+	}
+	public void setButton(Button button){
+		this.button = button;
+	}
+
 }

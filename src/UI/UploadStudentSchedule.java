@@ -7,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
@@ -16,8 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class UploadTimetable implements Initializable {
-
+public class UploadStudentSchedule implements Initializable {
 
     @FXML
     private TextField fileinput;
@@ -36,8 +33,8 @@ public class UploadTimetable implements Initializable {
 
     @FXML
     protected void handlecheckAction(ActionEvent event) {
-      m.FileChooser();
-      this.fileinput.setText(m.get_name());
+        m.FileChooser();
+        this.fileinput.setText(m.get_name());
     }
 
 
@@ -48,10 +45,11 @@ public class UploadTimetable implements Initializable {
         try {
             Controller c = Controller.getController();
             dG = new ScheduleReader();
-            ArrayList<HashMap<String, String>> data =dG.readFile_TimeTable(m.get_file());
+            ArrayList<HashMap<String, String>> data =dG.readFile_StudentSchadule(m.get_file());
 
-            c.setUpdatedData(data);
-
+            c.UpdateStudents_Schedule(data);
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "SuccessFull",
+                    "Data added Successfully!");
 
         } catch (Exception e) {
             e.printStackTrace();

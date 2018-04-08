@@ -312,7 +312,7 @@ public class Database {
                 String day = rS.getString("DAYOFTHEWEEK");
                 String time = rS.getString("TIME").toString();
                 String room = rS.getString("ROOMNUMBER");
-                String booked = (rS.getInt("AVAILABLE") == 1) ? "Open" : "Booked";
+                String booked = (rS.getInt("AVAILABLE") == 0) ? "Open" : "Booked";
 
                 hours.put("ID", id);
                 hours.put("Day", day);
@@ -344,7 +344,7 @@ public class Database {
         try {
             pSt = conn.prepareStatement("SELECT A.OFFICEID ,A.DAYOFTHEWEEK, A.TIME, A.ROOMNUMBER, C.FIRSTNAME, C.LASTNAME, C.EMAILADDRESS FROM OFFICEHOURS A "
                     + "INNER JOIN BOOKEDMEETINGS B ON A.OFFICEID = B.OFFICEID INNER JOIN STUDENT C ON B.STUDENTID = C.STUDENTID WHERE "
-                    + "A.AVAILABLE = 0");
+                    + "A.AVAILABLE = 1");
 
             rS = pSt.executeQuery();
 
@@ -358,7 +358,7 @@ public class Database {
                 String student = rS.getString("FIRSTNAME") + " " + rS.getString("LASTNAME");
                 String email = rS.getString("EMAILADDRESS");
 
-                appts.put("ID",Officeid);
+                appts.put("ID", Officeid);
                 appts.put("Day", day);
                 appts.put("Time", time);
                 appts.put("Room", room);
@@ -399,11 +399,13 @@ public class Database {
                 HashMap<String, String> classes = new HashMap<String, String>();            //There will be one HashMap for each meeting
 
                 String teacher = rS.getString("FIRSTNAME") + " " + rS.getString("LASTNAME");
+                String Officeid = rS.getString("OFFICEID");
                 String email = rS.getString("EMAILADDRESS");
                 String day = rS.getString("DAYOFTHEWEEK");                                //These are the details for each meeting.
                 String time = rS.getTime("TIME").toString();
                 String room = rS.getString("ROOMNUMBER");
 
+                classes.put("ID", Officeid);
                 classes.put("Teacher", teacher);
                 classes.put("Day", day);
                 classes.put("Time", time);
@@ -513,7 +515,7 @@ public class Database {
      */
     public void bookMeeting(String userID, HashMap<String, String> office) {
         try {
-            pSt = conn.prepareStatement("UPDATE OFFICEHOURS SET AVAILABLE = 0 WHERE OFFICEID = ?");
+            pSt = conn.prepareStatement("UPDATE OFFICEHOURS SET AVAILABLE = 1 WHERE OFFICEID = ?");
             pSt.setString(1, office.get("ID"));
             pSt.executeUpdate();
 
@@ -534,12 +536,86 @@ public class Database {
      */
     public void resetMeetings(HashMap<String, String> office) {
         try {
-            pSt = conn.prepareStatement("TRUNCATE BOOKEDMEETINGS");
-            pSt.executeUpdate();
-
-            pSt = conn.prepareStatement("UPDATE OFFICEHOURS SET AVAILABLE = 1 WHERE OFFICEID = ?");
+            pSt = conn.prepareStatement("DELETE FROM BOOKEDMEETINGS WHERE OFFICEID = ? ");
             pSt.setString(1, office.get("ID"));
             pSt.executeUpdate();
+
+            pSt = conn.prepareStatement("UPDATE OFFICEHOURS SET AVAILABLE = 0 WHERE OFFICEID = ?");
+            pSt.setString(1, office.get("ID"));
+            pSt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) {
+
+        try {
+            for (HashMap<String, String> teachers : TeacherInfo) {
+
+                pSt = conn.prepareStatement("INSERT INTO TEACHER(TeacherID, FirstName, LastName, EmailAddress) "
+                        + "VALUES (?, ?, ?, ? )");
+
+
+                pSt.setString(1, teachers.get("UserID"));
+                pSt.setString(2, teachers.get("FirstName"));
+                pSt.setString(3, teachers.get("LastName"));
+                pSt.setString(4, teachers.get("EmailAddress"));
+
+                pSt.executeUpdate();
+
+            }
+
+//            conn.commit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void updateStudents(ArrayList<HashMap<String, String>> StudentInfo) {
+
+        try {
+            for (HashMap<String, String> Students : StudentInfo) {
+
+                pSt = conn.prepareStatement("INSERT INTO STUDENT(StudentID, FirstName, LastName, EmailAddress) "
+                        + "VALUES (?, ?, ?, ?)");
+
+
+                pSt.setString(1, Students.get("UserID"));
+                pSt.setString(2, Students.get("FirstName"));
+                pSt.setString(3, Students.get("LastName"));
+                pSt.setString(4, Students.get("EmailAddress"));
+
+                pSt.executeUpdate();
+
+            }
+
+//            conn.commit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void updateStudentschedule(ArrayList<HashMap<String, String>> StudentInfo) {
+
+        try {
+            for (HashMap<String, String> Students : StudentInfo) {
+
+                pSt = conn.prepareStatement("INSERT INTO StudentCourses(StudentID, CourseCode) "
+                        + "VALUES (?, ?)");
+
+                pSt.setString(1, Students.get("StudentID"));
+                pSt.setString(2, Students.get("CourseCode"));
+                pSt.executeUpdate();
+
+            }
+
+//            conn.commit();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -553,6 +629,8 @@ public class Database {
      * @param userID
      * @return
      */
+
+
     public void updateTeacherClasses(String userID, ArrayList<HashMap<String, String>> classInfo) {
 
         try {
@@ -565,9 +643,9 @@ public class Database {
             pSt.setString(1, userID);
             pSt.executeUpdate();
 
-            for(HashMap<String,String> classes: classInfo){
+            for (HashMap<String, String> classes : classInfo) {
 
-                if(classes.get("Course").equals("Office")){
+                if (classes.get("Course").equals("Office")) {
                     pSt = conn.prepareStatement("INSERT INTO OFFICEHOURS (TeacherID, DayOfTheWeek, Time, RoomNumber, Available) "
                             + "VALUES (?, ?, ?, ?, ?)");
 
@@ -579,7 +657,7 @@ public class Database {
 
                     pSt.executeUpdate();
 
-                }else{
+                } else {
 
                     pSt = conn.prepareStatement("INSERT INTO SCHEDULE (TeacherID, CourseCode, Duration, DayOfTheWeek, StartTime, RoomNumber) "
                             + "VALUES (?, ?, ?, ?, ?, ?)");
@@ -604,32 +682,133 @@ public class Database {
     }
 
 
-    public ObservableList<User> parseUserList() {
-        this.connectDatabase();
-
-        ObservableList<User> list = FXCollections.observableArrayList();
-
+    public void removeTeacher(String userID) {
         try {
+            pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS WHERE TEACHERID = ? ");
+            pSt.setString(1, userID);
+            pSt.executeUpdate();
 
-            pSt = conn.prepareStatement("SELECT * FROM teacher;");
-            ResultSet rS = pSt.executeQuery();
+            pSt = conn.prepareStatement("DELETE FROM SCHEDULE WHERE TEACHERID = ? ");
+            pSt.setString(1, userID);
+            pSt.executeUpdate();
 
-            while (rS.next()) {
-                User u = new User();
-                u.setID(rS.getString("TeacherID"));
-                u.setFirstName(rS.getString("FirstName"));
-                u.setLastName(rS.getString("LastName"));
-                u.setEmailAddress(rS.getString("EmailAddress"));
-
-                list.add(u);
-            }
+            pSt = conn.prepareStatement("DELETE FROM Teacher WHERE TEACHERID = ? ");
+            pSt.setString(1, userID);
+            pSt.executeUpdate();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        return list;
     }
 
+    public void removeStudent(String userID) {
+        try {
+
+            pSt = conn.prepareStatement("DELETE FROM  StudentCourses WHERE StudentID = ? ");
+            pSt.setString(1, userID);
+            pSt.executeUpdate();
+
+            pSt = conn.prepareStatement("DELETE FROM Student WHERE StudentID = ? ");
+            pSt.setString(1, userID);
+            pSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void removeAllstudents() {
+        try {
+            pSt = conn.prepareStatement("DELETE FROM  StudentCourses");
+            pSt.executeUpdate();
+            pSt = conn.prepareStatement("DELETE FROM Student");
+            pSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeAllTeachers() {
+        try {
+            pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS ");
+            pSt.executeUpdate();
+
+            pSt = conn.prepareStatement("DELETE FROM SCHEDULE  ");
+            pSt.executeUpdate();
+
+            pSt = conn.prepareStatement("DELETE FROM Teacher");
+            pSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public ArrayList<HashMap<String, String>> get_all_teachers() {
+        schedInfo = new ArrayList<HashMap<String, String>>();
+        try {
+
+            pSt = conn.prepareStatement("SELECT * FROM TEACHER");
+            pSt.executeQuery();
+            rS = pSt.executeQuery();
+
+            while (rS.next()) {
+
+                HashMap<String, String> teachers = new HashMap<String, String>();            //There will be one HashMap for each meeting
+
+                String teacherid = rS.getString("TEACHERID");
+                String FirstName = rS.getString("FIRSTNAME");
+                String LastName = rS.getString("LASTNAME");
+                String Email = rS.getString("EMAILADDRESS");
+
+                teachers.put("ID", teacherid);
+                teachers.put("FIRSTNAME", FirstName);
+                teachers.put("LASTNAME", LastName);
+                teachers.put("EMAILADDRESS", Email);
+
+
+                schedInfo.add(teachers);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return schedInfo;
+    }
+
+
+    public ArrayList<HashMap<String, String>> get_all_Students() {
+        schedInfo = new ArrayList<HashMap<String, String>>();
+        try {
+
+            pSt = conn.prepareStatement("SELECT * FROM STUDENT");
+            pSt.executeQuery();
+            rS = pSt.executeQuery();
+
+            while (rS.next()) {
+
+                HashMap<String, String> Students = new HashMap<String, String>();            //There will be one HashMap for each meeting
+
+                String Studentid = rS.getString("STUDENTID");
+                String FirstName = rS.getString("FIRSTNAME");
+                String LastName = rS.getString("LASTNAME");
+                String Email = rS.getString("EMAILADDRESS");
+
+                Students.put("ID", Studentid);
+                Students.put("FIRSTNAME", FirstName);
+                Students.put("LASTNAME", LastName);
+                Students.put("EMAILADDRESS", Email);
+
+
+                schedInfo.add(Students);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return schedInfo;
+    }
 
 }

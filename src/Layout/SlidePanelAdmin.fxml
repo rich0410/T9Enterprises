@@ -19,13 +19,14 @@
         </ImageView>
         <JFXButton fx:id="b2" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="123.0" prefHeight="74.0"
                    prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
-                   text="View All Users"/>
+                   text="Edit Teachers"/>
         <JFXButton fx:id="b3" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="197.0" prefHeight="74.0"
                    prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
-                   text="Add new Users"/>
+                   text="Edit Students"/>
         <JFXButton fx:id="b4" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="197.0" prefHeight="74.0"
                    prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
-                   text="Remove Users"/>
+                   text="Edit Schedule"/>
+
         <JFXButton fx:id="exit" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="271.0"
                    prefHeight="74.0" prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
                    text="Log Out"/>

@@ -16,6 +16,9 @@
         <JFXButton fx:id="b2" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="123.0" prefHeight="74.0"
                    prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
                    text="Book an Appointment"/>
+        <JFXButton fx:id="b5" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="197.0" prefHeight="74.0"
+                   prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
+                   text="Time Table"/>
         <JFXButton fx:id="b3" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="197.0" prefHeight="74.0"
                    prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
                    text="View Appointments"/>

@@ -1,10 +1,10 @@
-CourseCode,StartTime,Duration,Day,Room,,,,,,,,,,,,,,,
-CST9245-010,14:00:00,2,Wed,T114,,,,,,,,,,,,,,,
-CST1134-010,9:00:00,1,Thu,P219,,,,,,,,,,,,,,,
-CST9245-014,12:00:00,2,Mon,T218,,,,,,,,,,,,,,,
-Office,13:00:00,,Tue,T309,,,,,,,,,,,,,,,
-Office,14:00:00,,Tue,T309,,,,,,,,,,,,,,,
-Office,15:00:00,,Tue,T309,,,,,,,,,,,,,,,
-Office,16:00:00,,Tue,T309,,,,,,,,,,,,,,,
-Office,13:00:00,,Wed,T309,,,,,,,,,,,,,,,
-Office,14:00:00,,Wed,T309,,,,,,,,,,,,,,,
+CourseCode,	StartTime,	Duration,	Day,	Room
+CST9245-010,	14:00:00,	2,	Wed,	T114
+CST1134-010,	09:00:00,	1,	Thu,	P219
+CST9245-014,	12:00:00,	2,	Mon,	T218
+Office,	13:00:00,	*,	Tue,	T309
+Office,	14:00:00,	*,	Tue,	T309
+Office,	15:00:00,	*,	Tue,	T309
+Office,	16:00:00,	*,	Tue,	T309
+Office,	13:00:00,	*,	Wed,	T309
+Office,	14:00:00,	*,	Wed,	T309

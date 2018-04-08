@@ -2,12 +2,20 @@ package Domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import DataAccess.Database;
 import UI.GUI;
 import User.UserLogin;
 import javafx.application.Application;
 import User.Email;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 
 public class Controller {
 
@@ -21,7 +29,6 @@ public class Controller {
 
     private HashMap<String, String> userData;
     private User user;
-
 
 
     private Controller() {
@@ -55,14 +62,16 @@ public class Controller {
     public boolean authenticateUser(String userID, String password) {
         boolean verify = false;
         UserLogin uL = new UserLogin();
-        if (uL.authenticate(userID, password)) {
-
-            set_user(loadUser(userID));
-
-            verify = true;
-
-            this.userID = userID;        //Store the userID for future operations.
-        }
+       // if (uL.authenticate(userID, password)) {     // Currently user Url Verification functionality is not working
+            if (loadUser(userID) != null && password.equals("Password123")) {
+                set_user(loadUser(userID));
+                verify = true;
+                this.userID = userID;
+            }//Store the userID for future operations.
+            else {
+                verify = false;
+            }
+       // }
         return verify;
     }
 
@@ -77,6 +86,10 @@ public class Controller {
         if (dB.userIsAdmin(userID)) {
             admin = new Admin(userID);
             userData = dB.getAdminInfo(userID);
+            admin.setID(userData.get("ID"));
+            admin.setFirstName(userData.get("First Name"));
+            admin.setLastName(userData.get("Last Name"));
+            admin.setEmailAddress(userData.get("Email"));
             admin.setRole(1);
             user = admin;
         } else if (dB.userIsTeacher(userID)) {
@@ -150,15 +163,14 @@ public class Controller {
     public void bookMeeting(HashMap<String, String> office) {
 
         dB.bookMeeting(userID, office);
-        sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
+        sendEmail(student.getEmailAddress(), office);        //This method call will need revision.
     }
 
     public void ResetMeeting(HashMap<String, String> office) {
 
         dB.resetMeetings(office);
-//        sendEmail(student.getEmailAddress(), office);		//This method call will need revision.
+        sendEmail_Cancel(student.getEmailAddress(), office);		//This method call will need revision.
     }
-
 
 
     /**
@@ -187,9 +199,20 @@ public class Controller {
         return dB.getStudentClasses(student.getUserID());
     }
 
-    public void  setUpdatedData(ArrayList<HashMap<String,String>> classInfo){
+    public void setUpdatedData(ArrayList<HashMap<String, String>> classInfo) {
         dB.updateTeacherClasses(teacher.getUserID(), classInfo);
     }
+
+    public ArrayList<HashMap<String, String>> getAllTeachers() {
+        return dB.get_all_teachers();
+
+    }
+
+
+    public ArrayList<HashMap<String, String>> getAllStudents() {
+        return dB.get_all_Students();
+    }
+
 
     public String getStudentEmail(String sID) {
         return dB.getStudetEmail(sID);
@@ -203,11 +226,48 @@ public class Controller {
         return dB.getClassStudentsEmail(courseCode);
     }
 
+
+    public void removeTeacher(String userID) {
+        dB.removeTeacher(userID);
+    }
+
+    public void removeStudent(String userID) {
+        dB.removeStudent(userID);
+    }
+
+    public void removeallstudents() {
+        dB.removeAllstudents();
+    }
+
+    public void removeallTeachers() {
+        dB.removeAllTeachers();
+    }
+
+    public void UpdateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) {
+        dB.updateTeachers(TeacherInfo);
+    }
+
+    public void UpdateStudents(ArrayList<HashMap<String, String>> StudentInfo) {
+        dB.updateStudents(StudentInfo);
+    }
+
+    public void UpdateStudents_Schedule(ArrayList<HashMap<String, String>> StudentInfo) {
+        dB.updateStudentschedule(StudentInfo);
+    }
+
     private void sendEmail(String emailAddress, HashMap<String, String> office) {
         Email e = new Email();
         e.email_Thread(emailAddress);
         e.email_Thread(office.get("Email"));
-        e.email_Thread(office.get("prabpannu0786@gmail.com"));
+        System.out.println(" An Email has been sent to"+office.get("Email"));
+
+    }
+
+    private void sendEmail_Cancel(String emailAddress, HashMap<String, String> office) {
+        Email e = new Email();
+        e.email_Thread(emailAddress);
+        e.email_Thread_Cancel(office.get("Email"));
+        System.out.println("An Email has been sent to"+office.get("Email"));
 
     }
 
@@ -226,7 +286,7 @@ public class Controller {
      * Reads the teacher timetable data to be passed to the presentation layer.
      */
     /*protected void loadData(){
-		dG = new DataGenerator();
+        dG = new DataGenerator();
 		dG.readFile();
 		names = dG.getNames();
 		schedule =dG.getSched();

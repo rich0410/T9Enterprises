@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UploadTimetable">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UploadStudentSchedule">
 
 
     <GridPane fx:id="root" alignment="center" hgap="10" prefWidth="550.0" vgap="10"
@@ -28,7 +28,7 @@
 
         </columnConstraints>
 
-        <Label id="header-text" text="Upload your Time table " GridPane.columnIndex="1" GridPane.columnSpan="2"
+        <Label id="header-text" text="Upload CSV for Student Schedule" GridPane.columnIndex="1" GridPane.columnSpan="2"
                GridPane.halignment="CENTER" GridPane.rowSpan="1">
             <font>
                 <Font name="Arial" size="16"/>

@@ -5,20 +5,26 @@ import Domain.TimeSlot;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import Domain.User;
 
 public class teacher_Appointments implements Initializable {
 
@@ -45,8 +51,6 @@ public class teacher_Appointments implements Initializable {
     @FXML
     private TableColumn<TimeSlot, String> RoomNumber;
 
-    @FXML
-    private TableColumn<TimeSlot, String> Options;
 
     @FXML
     private TimeSlot t;
@@ -54,31 +58,29 @@ public class teacher_Appointments implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Student.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Course"));
-        StartTime.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Time"));
-        EndTime.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Day"));
-        Email.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Avalibility"));
-        RoomNumber.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Room_number"));
-        Options.setCellValueFactory(new PropertyValueFactory<TimeSlot, String>("Button"));
+        Student.setCellValueFactory(new PropertyValueFactory<>("Course"));
+        StartTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        EndTime.setCellValueFactory(new PropertyValueFactory<>("Day"));
+        Email.setCellValueFactory(new PropertyValueFactory<>("Avalibility"));
+        RoomNumber.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
+        TableColumn<TimeSlot, Boolean> options = new TableColumn<>("Options");
+        options.setCellValueFactory(new PropertyValueFactory<>("Button"));
+
+        tableView.getColumns().add(options);
         tableView.setItems(this.getAppointmentSlots());
 
     }
 
 
-//    public void clickItem(MouseEvent event) {
-//        if (event.getClickCount() == 1) //Checking double click
-//        {
-//            setTimeSlot(tableView.getSelectionModel().getSelectedItem());
-//
-//        }
-//    }
-
-
-    protected void handleDeleteAction(ActionEvent event, String id) {
+    protected void handleDeleteAction( String id,String email) throws IOException {
         Controller c = Controller.getController();
         HashMap<String, String> office = new HashMap<String, String>();
         office.put("ID", id);
+        office.put("Email",email);
         c.ResetMeeting(office);
+        BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/teacher_Appointments.fxml")));
+        Welcome.fragementP.getChildren().setAll(Content4);
+
     }
 
 
@@ -95,11 +97,15 @@ public class teacher_Appointments implements Initializable {
 
             Iterator<String> myVeryOwnIterator = appintment.get(i).keySet().iterator();
             TimeSlot t = new TimeSlot();
+            User u = new User();
             while (myVeryOwnIterator.hasNext()) {
                 String key = (String) myVeryOwnIterator.next();
                 String value = appintment.get(i).get(key);
                 if (key.equals("ID")) {
                     t.setId(value);
+                }
+                if (key.equals("Email")) {
+                    u.setEmailAddress(value);
                 }
                 if (key.equals("Student")) {
                     t.setCourse(value);
@@ -121,8 +127,13 @@ public class teacher_Appointments implements Initializable {
 
                 Button b = new Button("Remove");
                 b.setOnAction(event -> {
-                    handleDeleteAction(event, t.getid());
+                    try {
+                        handleDeleteAction(t.getid(),u.getEmailAddress());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 });
+
                 t.setButton(b);
             }
 
@@ -133,12 +144,6 @@ public class teacher_Appointments implements Initializable {
         return list;
     }
 
-//    private void setTimeSlot(TimeSlot t) {
-//        this.t = t;
-//    }
-//
-//    private TimeSlot getTimeSlot() {
-//        return t;
-//    }
+
 
 }
