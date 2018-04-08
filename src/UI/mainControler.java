@@ -1,11 +1,13 @@
 package UI;
 
+import com.jfoenix.controls.JFXDecorator;
 import javafx.animation.FadeTransition;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
@@ -83,10 +85,13 @@ public class mainControler implements Initializable {
 
     public void LogOut(Event event){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Scene scene = new Scene(fxmlLoader.load(getClass().getResource("../Layout/main.fxml")), 800, 600);
-            scene.getStylesheets().add(getClass().getResource("../Layout/demo.css").toExternalForm());
+
+            Parent root= FXMLLoader.load(getClass().getResource("../Layout/main.fxml"));
             Stage stage = new Stage();
+            JFXDecorator decorator = new JFXDecorator(stage, root);
+            decorator.setCustomMaximize(true);
+            Scene scene = new Scene(decorator, 800, 600);
+            scene.getStylesheets().add(getClass().getResource("../Layout/demo.css").toExternalForm());
             stage.setTitle("by T9-Enterprises");
             stage.setScene(scene);
             stage.show();

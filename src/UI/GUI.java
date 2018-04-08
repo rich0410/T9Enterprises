@@ -1,5 +1,6 @@
 package UI;
 
+import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,7 +37,9 @@ public class GUI extends Application {
 
         Parent root= FXMLLoader.load(getClass().getResource("../Layout/main.fxml"));
         primaryStage.setTitle("by T9-Enterprises");
-        Scene scene = new Scene(root, 800, 600);
+        JFXDecorator decorator = new JFXDecorator(primaryStage, root);
+        decorator.setCustomMaximize(true);
+        Scene scene = new Scene(decorator, 800, 600);
         scene.getStylesheets().add(getClass().getResource("../Layout/demo.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
