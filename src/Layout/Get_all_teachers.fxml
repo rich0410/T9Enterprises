@@ -33,7 +33,6 @@
                 </children>
 
             </AnchorPane>
-            <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" prefHeight="43.0"  onAction="#handleRemoveAction" prefWidth="138.0" text="Remove All Teachers" />
 
             <HBox>
 
@@ -42,6 +41,8 @@
                         prefWidth="138.0" text="Choose"/>
                 <Button defaultButton="true" mnemonicParsing="false" prefHeight="43.0"   onAction="#handleUpdateFile"
                         prefWidth="138.0" text="Upload"/>
+                <Button defaultButton="true" mnemonicParsing="false" prefHeight="43.0"  onAction="#handleRemoveAction" prefWidth="200.0" text="Remove All Teachers" />
+
             </HBox>
         </VBox>
     </center>

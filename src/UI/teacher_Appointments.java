@@ -9,10 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -20,10 +17,8 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import Domain.User;
 
 public class teacher_Appointments implements Initializable {
@@ -72,16 +67,26 @@ public class teacher_Appointments implements Initializable {
     }
 
 
-    protected void handleDeleteAction( String id,String email) throws IOException {
-        Controller c = Controller.getController();
-        HashMap<String, String> office = new HashMap<String, String>();
-        office.put("ID", id);
-        office.put("Email",email);
-        c.ResetMeeting(office);
-        BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/teacher_Appointments.fxml")));
-        Welcome.fragementP.getChildren().setAll(Content4);
+    protected void handleDeleteAction( String id,String email, String name) throws IOException {
+
+        Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING,null, "Warning","Do you want to remove appointment with "+name +" professor");
+        Optional<ButtonType> result = alert.showAndWait();
+        alert.show();
+        if (result.get() == ButtonType.YES){
+            Controller c = Controller.getController();
+            HashMap<String, String> office = new HashMap<String, String>();
+            office.put("ID", id);
+            office.put("Email",email);
+            c.ResetMeeting(office);
+            BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/teacher_Appointments.fxml")));
+            Welcome.fragementP.getChildren().setAll(Content4);
+        } else {
+            alert.close();
+        }
 
     }
+
+
 
 
     public ObservableList<TimeSlot> getAppointmentSlots() {
@@ -128,7 +133,7 @@ public class teacher_Appointments implements Initializable {
                 Button b = new Button("Remove");
                 b.setOnAction(event -> {
                     try {
-                        handleDeleteAction(t.getid(),u.getEmailAddress());
+                        handleDeleteAction(t.getid(),u.getEmailAddress(),t.getCourse());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

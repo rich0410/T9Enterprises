@@ -53,7 +53,7 @@ public class RegistrationFormController {
 
 
         } else {
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Error",
+            AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, owner, "Error",
                     "Wrong login and password!");
         }}
 

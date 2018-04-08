@@ -17,10 +17,8 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.util.*;
 
 public class Upload_teachers implements Initializable {
 
@@ -63,11 +61,19 @@ public class Upload_teachers implements Initializable {
 
     @FXML
     protected void handleRemoveAction(ActionEvent event) {
-        Controller c = Controller.getController();
-        c.removeallTeachers();
-        refresh();
-    }
 
+        Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING, null, "Warning", "Do you want to remove all teachers!");
+        Optional<ButtonType> result = alert.showAndWait();
+        alert.show();
+        if (result.get() == ButtonType.YES) {
+            Controller c = Controller.getController();
+            c.removeallTeachers();
+            refresh();
+        } else {
+            alert.close();
+        }
+
+    }
 
 
     @FXML
@@ -81,15 +87,21 @@ public class Upload_teachers implements Initializable {
         try {
             Controller c = Controller.getController();
             dG = new ScheduleReader();
-            ArrayList<HashMap<String, String>> data =dG.readFile_Users(m.get_file());
+            ArrayList<HashMap<String, String>> data = dG.readFile_Users(m.get_file());
 
             c.UpdateTeachers(data);
             refresh();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
+                    "No duplicate data can be inserted!");
+
         } catch (Exception e) {
             e.printStackTrace();
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+            AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
                     "No data Available!");
+
         }
 
     }
@@ -125,13 +137,20 @@ public class Upload_teachers implements Initializable {
                 b.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent ae) {
-                        Controller c = Controller.getController();
-                        c.removeTeacher(user.getID());
-                        refresh();
+                        Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING, null, "Warning", "Do you want to remove " + user.getID() + " user");
+                        Optional<ButtonType> result = alert.showAndWait();
+                        alert.show();
+                        if (result.get() == ButtonType.YES) {
+                            Controller c = Controller.getController();
+                            c.removeTeacher(user.getID());
+                            refresh();
+                        } else {
+                            alert.close();
+                        }
+
                     }
                 });
                 user.setButton(b);
-
 
 
             }

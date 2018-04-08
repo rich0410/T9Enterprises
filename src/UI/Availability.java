@@ -135,14 +135,16 @@ public class Availability implements Initializable {
 
 
         } catch (Exception e) {
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+            AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
                     "No data Available!");
+
         }
         Stage stage = (Stage) tableView.getScene().getWindow();
         stage.close();}
         else{
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+           AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
                     "TimeSlot is already booked!");
+
         }
 
     }

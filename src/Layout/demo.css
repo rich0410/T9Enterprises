@@ -1,3 +1,30 @@
+
+.jfx-decorator {
+    -fx-decorator-color: #4CAF50;
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0 2 2 2;
+}
+
+
+.label {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #1B5E20;
+    -fx-opacity: 1;
+}
+
+.table-view {
+    -fx-base: #81C784;
+    -fx-padding: 5;
+}
+
+
 .root {
     -fx-font-size: 14px;
     -fx-font-family: sans-serif;

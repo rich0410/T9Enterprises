@@ -79,8 +79,9 @@ public class BookAnAppointment implements Initializable {
         meeting.put("ID", Availability.getT_slot().getid());
         meeting.put("Email",ProfessorController.getUser().getEmailAddress());
         c.bookMeeting(meeting);
-        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
+       AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Confirmed",
                 "Your Appointment request is accepted");
+
         try {
             BorderPane Content = FXMLLoader.load(getClass().getResource(("../Layout/Appointment.fxml")));
             Welcome.fragementP.getChildren().setAll(Content);
@@ -88,7 +89,7 @@ public class BookAnAppointment implements Initializable {
             e1.printStackTrace();
         }}
         else {
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Confirmed",
+            AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Confirmed",
                     "Some of required fields are empty!");
         }
 
@@ -137,7 +138,7 @@ public class BookAnAppointment implements Initializable {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         } catch(Exception e){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+            AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
                     "No data is available or teacher is not selected");
         }
 

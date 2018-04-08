@@ -1,5 +1,6 @@
 package Domain;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -199,7 +200,7 @@ public class Controller {
         return dB.getStudentClasses(student.getUserID());
     }
 
-    public void setUpdatedData(ArrayList<HashMap<String, String>> classInfo) {
+    public void setUpdatedData(ArrayList<HashMap<String, String>> classInfo) throws SQLException{
         dB.updateTeacherClasses(teacher.getUserID(), classInfo);
     }
 
@@ -243,11 +244,11 @@ public class Controller {
         dB.removeAllTeachers();
     }
 
-    public void UpdateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) {
+    public void UpdateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) throws SQLException{
         dB.updateTeachers(TeacherInfo);
     }
 
-    public void UpdateStudents(ArrayList<HashMap<String, String>> StudentInfo) {
+    public void UpdateStudents(ArrayList<HashMap<String, String>> StudentInfo) throws SQLException{
         dB.updateStudents(StudentInfo);
     }
 

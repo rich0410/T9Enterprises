@@ -549,55 +549,49 @@ public class Database {
         }
     }
 
-    public void updateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) {
+    public void updateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) throws SQLException {
 
-        try {
-            for (HashMap<String, String> teachers : TeacherInfo) {
+        for (HashMap<String, String> teachers : TeacherInfo) {
 
-                pSt = conn.prepareStatement("INSERT INTO TEACHER(TeacherID, FirstName, LastName, EmailAddress) "
-                        + "VALUES (?, ?, ?, ? )");
+            pSt = conn.prepareStatement("INSERT INTO TEACHER(TeacherID, FirstName, LastName, EmailAddress) "
+                    + "VALUES (?, ?, ?, ? )");
 
 
-                pSt.setString(1, teachers.get("UserID"));
-                pSt.setString(2, teachers.get("FirstName"));
-                pSt.setString(3, teachers.get("LastName"));
-                pSt.setString(4, teachers.get("EmailAddress"));
+            pSt.setString(1, teachers.get("UserID"));
+            pSt.setString(2, teachers.get("FirstName"));
+            pSt.setString(3, teachers.get("LastName"));
+            pSt.setString(4, teachers.get("EmailAddress"));
 
-                pSt.executeUpdate();
+            pSt.executeUpdate();
 
-            }
+        }
 
 //            conn.commit();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
 
-    public void updateStudents(ArrayList<HashMap<String, String>> StudentInfo) {
+    public void updateStudents(ArrayList<HashMap<String, String>> StudentInfo) throws SQLException {
 
-        try {
-            for (HashMap<String, String> Students : StudentInfo) {
+        for (HashMap<String, String> Students : StudentInfo) {
 
-                pSt = conn.prepareStatement("INSERT INTO STUDENT(StudentID, FirstName, LastName, EmailAddress) "
-                        + "VALUES (?, ?, ?, ?)");
+            pSt = conn.prepareStatement("INSERT INTO STUDENT(StudentID, FirstName, LastName, EmailAddress) "
+                    + "VALUES (?, ?, ?, ?)");
 
 
-                pSt.setString(1, Students.get("UserID"));
-                pSt.setString(2, Students.get("FirstName"));
-                pSt.setString(3, Students.get("LastName"));
-                pSt.setString(4, Students.get("EmailAddress"));
+            pSt.setString(1, Students.get("UserID"));
+            pSt.setString(2, Students.get("FirstName"));
+            pSt.setString(3, Students.get("LastName"));
+            pSt.setString(4, Students.get("EmailAddress"));
 
-                pSt.executeUpdate();
+            pSt.executeUpdate();
 
-            }
+        }
 
 //            conn.commit();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
 
@@ -631,54 +625,50 @@ public class Database {
      */
 
 
-    public void updateTeacherClasses(String userID, ArrayList<HashMap<String, String>> classInfo) {
+    public void updateTeacherClasses(String userID, ArrayList<HashMap<String, String>> classInfo) throws SQLException {
 
-        try {
+        pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS WHERE TEACHERID = ? ");
+        pSt.setString(1, userID);
+        pSt.executeUpdate();
 
-            pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS WHERE TEACHERID = ? ");
-            pSt.setString(1, userID);
-            pSt.executeUpdate();
+        pSt = conn.prepareStatement("DELETE FROM SCHEDULE WHERE TEACHERID = ? ");
+        pSt.setString(1, userID);
+        pSt.executeUpdate();
 
-            pSt = conn.prepareStatement("DELETE FROM SCHEDULE WHERE TEACHERID = ? ");
-            pSt.setString(1, userID);
-            pSt.executeUpdate();
+        for (HashMap<String, String> classes : classInfo) {
 
-            for (HashMap<String, String> classes : classInfo) {
+            if (classes.get("Course").equals("Office")) {
+                pSt = conn.prepareStatement("INSERT INTO OFFICEHOURS (TeacherID, DayOfTheWeek, Time, RoomNumber, Available) "
+                        + "VALUES (?, ?, ?, ?, ?)");
 
-                if (classes.get("Course").equals("Office")) {
-                    pSt = conn.prepareStatement("INSERT INTO OFFICEHOURS (TeacherID, DayOfTheWeek, Time, RoomNumber, Available) "
-                            + "VALUES (?, ?, ?, ?, ?)");
+                pSt.setString(1, userID);
+                pSt.setString(2, classes.get("Day"));
+                pSt.setString(3, classes.get("Time"));
+                pSt.setString(4, classes.get("Room"));
+                pSt.setInt(5, 0);
 
-                    pSt.setString(1, userID);
-                    pSt.setString(2, classes.get("Day"));
-                    pSt.setString(3, classes.get("Time"));
-                    pSt.setString(4, classes.get("Room"));
-                    pSt.setInt(5, 0);
+                pSt.executeUpdate();
 
-                    pSt.executeUpdate();
+            } else {
 
-                } else {
+                pSt = conn.prepareStatement("INSERT INTO SCHEDULE (TeacherID, CourseCode, Duration, DayOfTheWeek, StartTime, RoomNumber) "
+                        + "VALUES (?, ?, ?, ?, ?, ?)");
 
-                    pSt = conn.prepareStatement("INSERT INTO SCHEDULE (TeacherID, CourseCode, Duration, DayOfTheWeek, StartTime, RoomNumber) "
-                            + "VALUES (?, ?, ?, ?, ?, ?)");
+                pSt.setString(1, userID);
+                pSt.setString(2, classes.get("Course"));
+                pSt.setInt(3, Integer.parseInt(classes.get("Duration")));
+                pSt.setString(4, classes.get("Day"));
+                pSt.setString(5, classes.get("Time"));
+                pSt.setString(6, classes.get("Room"));
 
-                    pSt.setString(1, userID);
-                    pSt.setString(2, classes.get("Course"));
-                    pSt.setInt(3, Integer.parseInt(classes.get("Duration")));
-                    pSt.setString(4, classes.get("Day"));
-                    pSt.setString(5, classes.get("Time"));
-                    pSt.setString(6, classes.get("Room"));
+                pSt.executeUpdate();
 
-                    pSt.executeUpdate();
-
-                }
             }
+        }
 
 //            conn.commit();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
 

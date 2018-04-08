@@ -48,12 +48,12 @@ public class UploadStudentSchedule implements Initializable {
             ArrayList<HashMap<String, String>> data =dG.readFile_StudentSchadule(m.get_file());
 
             c.UpdateStudents_Schedule(data);
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "SuccessFull",
+            AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "SuccessFull",
                     "Data added Successfully!");
 
         } catch (Exception e) {
             e.printStackTrace();
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
+            AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
                     "No data Available!");
         }
 

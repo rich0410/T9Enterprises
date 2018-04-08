@@ -31,12 +31,13 @@
                     </children>
 
                 </AnchorPane>
-            <Button contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" prefHeight="43.0"  onAction="#handleRemoveAction" prefWidth="138.0" text="Remove All Students" />
 
             <HBox >
                   <TextField fx:id="fileinput" prefHeight="40.0" prefWidth="250.0" />
                   <Button defaultButton="true" mnemonicParsing="false" prefHeight="43.0" prefWidth="138.0"  onAction="#handleChooseFile" text="Choose" />
                   <Button defaultButton="true" mnemonicParsing="false" prefHeight="43.0" prefWidth="138.0" onAction="#handleUpdateFile" text="Upload" />
+                  <Button defaultButton="true" mnemonicParsing="false" prefHeight="43.0"  onAction="#handleRemoveAction" prefWidth="200.0" text="Remove All Students" />
+
             </HBox>
         </VBox>
     </center>

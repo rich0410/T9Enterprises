@@ -16,14 +16,15 @@ import Domain.User;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.util.*;
+
+import static java.util.logging.Level.WARNING;
 
 
 public class Upload_Students implements Initializable {
@@ -68,82 +69,108 @@ public class Upload_Students implements Initializable {
 
     @FXML
     protected void handleRemoveAction(ActionEvent event) {
-        Controller c = Controller.getController();
-        c.removeallstudents();
-        refresh();
 
-    }
 
-    @FXML
-    protected void handleChooseFile(ActionEvent event) {
-        m.FileChooser();
-        this.fileinput.setText(m.get_name());
-    }
+            Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING, null, "Warning", "Do you want to remove all students!");
+            Optional<ButtonType> result = alert.showAndWait();
+            alert.show();
+            if (result.get() == ButtonType.YES) {
+                Controller c = Controller.getController();
+                c.removeallstudents();
+                refresh();
+            } else {
+                alert.close();
+            }
 
-    @FXML
-    protected void handleUpdateFile(ActionEvent event) {
-        try {
-            Controller c = Controller.getController();
-            dG = new ScheduleReader();
-            ArrayList<HashMap<String, String>> data =dG.readFile_Users(m.get_file());
-            c.UpdateStudents(data);
-            refresh();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, null, "Error",
-                    "No data Available!");
+
         }
 
-        refresh();
-    }
+        @FXML
+        protected void handleChooseFile(ActionEvent event){
+            m.FileChooser();
+            this.fileinput.setText(m.get_name());
+        }
+
+        @FXML
+        protected void handleUpdateFile (ActionEvent event){
+            try {
+                Controller c = Controller.getController();
+                dG = new ScheduleReader();
+                ArrayList<HashMap<String, String>> data = dG.readFile_Users(m.get_file());
+                c.UpdateStudents(data);
+                refresh();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
+                        "No duplicate data can be inserted!");
 
 
-
-    private ObservableList<User> getAllStudentsItt(ArrayList<HashMap<String, String>> data) {
-
-        ObservableList<User> list = FXCollections.observableArrayList();
-
-        ArrayList<HashMap<String, String>> teachers = data;
-
-
-        for (int i = 0; i < teachers.size(); i++) {
-
-            Iterator<String> myVeryOwnIterator = teachers.get(i).keySet().iterator();
-            User user = new User();
-            while (myVeryOwnIterator.hasNext()) {
-                String key = (String) myVeryOwnIterator.next();
-                String value = teachers.get(i).get(key);
-                if (key.equals("ID")) {
-                    user.setID(value);
-                }
-                if (key.equals("FIRSTNAME")) {
-                    user.setFirstName(value);
-                }
-                if (key.equals("LASTNAME")) {
-                    user.setLastName(value);
-                }
-                if (key.equals("EMAILADDRESS")) {
-                    user.setEmailAddress(value);
-
-                }
-                Button b = new Button("Remove");
-                b.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent ae) {
-                        Controller c = Controller.getController();
-                        c.removeStudent(user.getID());
-                        refresh();
-                    }
-                });
-                user.setButton(b);
+            } catch (Exception e) {
+                e.printStackTrace();
+              AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
+                        "No data Available!");
 
             }
-            list.add(user);
+
 
         }
-        return list;
-    }
+
+
+        private ObservableList<User> getAllStudentsItt (ArrayList < HashMap < String, String >> data){
+
+            ObservableList<User> list = FXCollections.observableArrayList();
+
+            ArrayList<HashMap<String, String>> teachers = data;
+
+
+            for (int i = 0; i < teachers.size(); i++) {
+
+                Iterator<String> myVeryOwnIterator = teachers.get(i).keySet().iterator();
+                User user = new User();
+                while (myVeryOwnIterator.hasNext()) {
+                    String key = (String) myVeryOwnIterator.next();
+                    String value = teachers.get(i).get(key);
+                    if (key.equals("ID")) {
+                        user.setID(value);
+                    }
+                    if (key.equals("FIRSTNAME")) {
+                        user.setFirstName(value);
+                    }
+                    if (key.equals("LASTNAME")) {
+                        user.setLastName(value);
+                    }
+                    if (key.equals("EMAILADDRESS")) {
+                        user.setEmailAddress(value);
+
+                    }
+                    Button b = new Button("Remove");
+                    b.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent ae) {
+                            Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING, null, "Warning", "Do you want to remove " + user.getID() + " user");
+                            Optional<ButtonType> result = alert.showAndWait();
+                            alert.show();
+                            if (result.get() == ButtonType.YES) {
+                                Controller c = Controller.getController();
+                                c.removeStudent(user.getID());
+                                refresh();
+                            } else {
+                                alert.close();
+                            }
+
+
+                        }
+                    });
+                    user.setButton(b);
+
+                }
+                list.add(user);
+
+            }
+            return list;
+        }
 
 
     private void refresh() {
