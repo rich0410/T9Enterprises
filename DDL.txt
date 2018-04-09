@@ -1,0 +1,98 @@
+DROP DATABASE IF EXISTS Algonquin_Kiosk;
+
+CREATE DATABASE Algonquin_Kiosk;
+
+USE Algonquin_Kiosk;
+
+CREATE TABLE Teacher(
+	TeacherID		VARCHAR(9) NOT NULL,
+	FirstName		VARCHAR(12) NOT NULL,
+	LastName		VARCHAR(24) NOT NULL,
+	EmailAddress	VARCHAR(30) NOT NULL UNIQUE,
+	PRIMARY KEY(TeacherID)
+);
+
+CREATE TABLE Student(
+	StudentID		VARCHAR(9)	NOT NULL,
+	FirstName		VARCHAR(12)	NOT NULL,
+	LastName		VARCHAR(24)	NOT NULL,
+	EmailAddress	VARCHAR(30)	NOT NULL UNIQUE,
+	PRIMARY KEY(StudentID)	
+);
+
+CREATE TABLE Admin(
+	AdminID			VARCHAR(9)	NOT NULL,
+	FirstName		VARCHAR(12)	NOT NULL,
+	LastName		VARCHAR(24)	NOT NULL,
+	EmailAddress	VARCHAR(30)	NOT NULL UNIQUE,
+	PRIMARY KEY(AdminID)	
+);
+
+CREATE TABLE Courses(
+	CourseCode		VARCHAR(11)	NOT NULL,
+	LabLecture		INTEGER(1)	NOT NULL,
+	Title			VARCHAR(20)	NOT NULL,
+	PRIMARY KEY(CourseCode)
+
+CREATE TABLE TeacherOfficeTime(
+	OfficeTimeID	INTEGER(6)	NOT NULL AUTO_INCREMENT,
+	TeacherID	VARCHAR(9) NOT NULL,
+	DayOfTheWeek	VARCHAR(9) NOT NULL,
+	StartTime	TIME	NOT NULL,
+	Duration	INTEGER(1),
+	RoomNumber	VARCHAR(5),
+	PRIMARY KEY(OfficeTimeID),
+	CONSTRAINT	tot_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID)
+
+);
+
+CREATE TABLE Schedule(
+	ScheduleID		VARCHAR(9) NOT NULL,
+	TeacherID		VARCHAR(9) NOT NULL,
+	CourseCode	 	VARCHAR(11) NOT NULL,
+	Duration		INTEGER(1) NOT NULL,
+	DayOfTheWeek	VARCHAR(3) NOT NULL,
+	StartTime		TIME NOT NULL,
+	RoomNumber		VARCHAR(5) NOT NULL,
+	PRIMARY KEY(ScheduleID),
+	CONSTRAINT	teacher_fk	FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID),
+	CONSTRAINT	course_fk 	FOREIGN KEY(CourseCode) REFERENCES Courses(CourseCode)
+);
+
+CREATE TABLE OfficeHours(
+	OfficeID		VARCHAR(9) NOT NULL,
+	TeacherID		VARCHAR(9) NOT NULL,
+	DayOfTheWeek	VARCHAR(9) NOT NULL,
+	Time			TIME NOT NULL,
+	RoomNumber		VARCHAR(5),
+	Available		INTEGER(1),
+	PRIMARY KEY(OfficeID),
+	CONSTRAINT	teacheroffice_fk FOREIGN KEY(TeacherID) REFERENCES Teacher(TeacherID)
+);
+
+CREATE TABLE BookedAppointments(
+	AppointmentID	INTEGER(6)	NOT NULL AUTO_INCREMENT,
+	OfficeTimeID	INTEGER(6)	NOT NULL,
+	StudentID	VARCHAR(9)	NOT NULL,
+	PRIMARY KEY(AppointmentID),
+	CONSTRAINT 	bot_fk 	FOREIGN KEY(OfficeTimeID) REFERENCES TeacherOfficeTime(OfficeTimeID),
+	CONSTRAINT 	sa_fk 	FOREIGN KEY(StudentID) REFERENCES Student(StudentID)	
+);
+
+CREATE TABLE StudentCourses(
+	StudentID		VARCHAR(9)	NOT NULL,
+	CourseCode		VARCHAR(11)	NOT NULL,
+	PRIMARY KEY(StudentID, CourseCode),
+	CONSTRAINT	student_fk FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT	studentcourse_fk FOREIGN KEY(CourseCode) REFERENCES Courses(CourseCode)
+);
+
+CREATE TABLE BookedMeetings(
+	OfficeID		VARCHAR(9) NOT NULL,
+	StudentID		VARCHAR(9)	NOT NULL,
+	PRIMARY KEY(OfficeID, StudentID),
+	CONSTRAINT	studentmeeting_fk FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT	officemeeting_fk FOREIGN KEY(OfficeID) REFERENCES OfficeHours(OfficeID)
+);
+
+
