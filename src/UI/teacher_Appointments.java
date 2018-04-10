@@ -71,15 +71,20 @@ public class teacher_Appointments implements Initializable {
 
         Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING,null, "Warning","Do you want to remove appointment with "+name +" professor");
         Optional<ButtonType> result = alert.showAndWait();
-        alert.show();
+
         if (result.get() == ButtonType.YES){
-            Controller c = Controller.getController();
+           try{ Controller c = Controller.getController();
             HashMap<String, String> office = new HashMap<String, String>();
             office.put("ID", id);
             office.put("Email",email);
             c.ResetMeeting(office);
             BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/teacher_Appointments.fxml")));
-            Welcome.fragementP.getChildren().setAll(Content4);
+            Welcome.fragementP.getChildren().setAll(Content4);}
+            catch(Exception e){
+                AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "Error",
+                        "Unable to remove due to recent updates!");
+
+            }
         } else {
             alert.close();
         }

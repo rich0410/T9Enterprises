@@ -64,7 +64,7 @@ public class Upload_teachers implements Initializable {
 
         Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING, null, "Warning", "Do you want to remove all teachers!");
         Optional<ButtonType> result = alert.showAndWait();
-        alert.show();
+
         if (result.get() == ButtonType.YES) {
             Controller c = Controller.getController();
             c.removeallTeachers();
@@ -139,7 +139,7 @@ public class Upload_teachers implements Initializable {
                     public void handle(ActionEvent ae) {
                         Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING, null, "Warning", "Do you want to remove " + user.getID() + " user");
                         Optional<ButtonType> result = alert.showAndWait();
-                        alert.show();
+
                         if (result.get() == ButtonType.YES) {
                             Controller c = Controller.getController();
                             c.removeTeacher(user.getID());

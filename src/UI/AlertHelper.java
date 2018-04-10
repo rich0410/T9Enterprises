@@ -15,6 +15,7 @@ public class AlertHelper {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
+
         return alert;
     }
 

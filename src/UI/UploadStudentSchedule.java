@@ -45,7 +45,7 @@ public class UploadStudentSchedule implements Initializable {
         try {
             Controller c = Controller.getController();
             dG = new ScheduleReader();
-            ArrayList<HashMap<String, String>> data =dG.readFile_StudentSchadule(m.get_file());
+            ArrayList<HashMap<String, String>> data = dG.readFile_StudentSchadule(m.get_file());
 
             c.UpdateStudents_Schedule(data);
             AlertHelper.showAlert_noButton(Alert.AlertType.CONFIRMATION, null, "SuccessFull",

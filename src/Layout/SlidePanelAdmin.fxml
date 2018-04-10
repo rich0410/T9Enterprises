@@ -11,8 +11,10 @@
 <?import com.jfoenix.controls.JFXButton?>
 <VBox prefHeight="800.0" prefWidth="178.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="UI.SlidePanelAdmin">
+
+
     <children>
-        <ImageView fitHeight="600" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="200" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@img/algon.png"/>
             </image>
@@ -26,7 +28,8 @@
         <JFXButton fx:id="b4" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="197.0" prefHeight="74.0"
                    prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
                    text="Edit Schedule"/>
-
+        <JFXButton fx:id="b5" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="197.0" prefHeight="74.0"
+                   prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;" text="Room Finder"/>
         <JFXButton fx:id="exit" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="271.0"
                    prefHeight="74.0" prefWidth="213.0" ripplerFill="#006400" style="-fx-background-color: #f1f1f1;"
                    text="Log Out"/>

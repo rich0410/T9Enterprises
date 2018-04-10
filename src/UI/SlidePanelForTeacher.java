@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -64,10 +65,12 @@ public class SlidePanelForTeacher implements Initializable{
                 Welcome.fragementP.getChildren().setAll(Content3);
 
                 break;
-//            case "Remove TimeTable":
-//                Welcome.drawerP.close();
-////                BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
-////                Welcome.fragementP.getChildren().setAll(Content4);
+
+            case "Room Finder":
+                Welcome.drawerP.close();
+                StackPane Content5 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
+                Welcome.fragementP.getChildren().setAll(Content5);
+                break;
 
             case "View Appointments":
                 Welcome.drawerP.close();

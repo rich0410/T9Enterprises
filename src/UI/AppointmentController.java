@@ -69,7 +69,6 @@ public class AppointmentController implements Initializable {
 
         Alert alert = AlertHelper.showAlert(Alert.AlertType.WARNING,null, "Warning","Do you want to remove appointment with "+ name +" professor!");
         Optional<ButtonType> result = alert.showAndWait();
-        alert.show();
         if (result.get() == ButtonType.YES){
             Controller c = Controller.getController();
             HashMap<String, String> office = new HashMap<String, String>();
