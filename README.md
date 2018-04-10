@@ -20,3 +20,12 @@ That will run the scripts to set up the database. The name of the Database is Al
 Proceeding setting up the database, you can begin to run the executable jar file included with the source code to create the kiosk program,
 as it opens to the login screen and can be put into full screen. The login will use either the Student, Professor, or Administrator 
 profiles to use the software functionality.
+
+#Screen Shots 
+![Alt text]( /ScreenShots/Capture 1.png?raw=true "SreenShot 1")
+![Alt text](/ScreenShots/Capture2.png?raw=true "SreenShot 2")
+![Alt text](/ScreenShots/Capture 3.png?raw=true "SreenShot 3")
+![Alt text](/ScreenShots/Capture 4.png?raw=true "SreenShot 4")
+![Alt text](/ScreenShots/Capture 5.png?raw=true "SreenShot 5")
+![Alt text](/ScreenShots/Capture6.png?raw=true "SreenShot 6")
+![Alt text](/ScreenShots/Capture7.png?raw=true "SreenShot 7")
