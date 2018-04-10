@@ -58,14 +58,12 @@ public class SidePanelContentController implements Initializable {
                 Welcome.drawerP.close();
                 GridPane Content2 = FXMLLoader.load(getClass().getResource(("../Layout/Book_an_Appointment.fxml")));
                 Welcome.fragementP.getChildren().setAll(Content2);
-
                 break;
 
             case "Time Table":
                 Welcome.drawerP.close();
                 BorderPane Content5 = FXMLLoader.load(getClass().getResource(("../Layout/StudentTimetable.fxml")));
                 Welcome.fragementP.getChildren().setAll(Content5);
-
                 break;
 
             case "View Appointments":
@@ -73,11 +71,13 @@ public class SidePanelContentController implements Initializable {
                 BorderPane Content3 = FXMLLoader.load(getClass().getResource(("../Layout/Appointment.fxml")));
                 Welcome.fragementP.getChildren().setAll(Content3);
                 break;
+
             case "Room Finder":
                 Welcome.drawerP.close();
-                BorderPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
+                StackPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
                 Welcome.fragementP.getChildren().setAll(Content4);
                 break;
+
             case "Log Out":
                 mainControler m = new mainControler();
                 m.LogOut(event);

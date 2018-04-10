@@ -255,7 +255,7 @@ public class Database {
         schedInfo = new ArrayList<HashMap<String, String>>();
 
         try {
-            pSt = conn.prepareStatement("SELECT A.COURSECODE, A.LABLECTURE, A.TITLE, B.ROOMNUMBER, B.DURATION, B.DAYOFTHEWEEK, B.STARTTIME"
+            pSt = conn.prepareStatement("SELECT A.COURSECODE, A.LABLECTURE, A.TITLE,B.ScheduleID, B.ROOMNUMBER, B.DURATION, B.DAYOFTHEWEEK, B.STARTTIME"
                     + "  FROM COURSES A INNER JOIN SCHEDULE B ON A.COURSECODE = B.COURSECODE WHERE B.TEACHERID = ? ORDER BY A.COURSECODE DESC");
 
             pSt.setString(1, userID);
@@ -271,7 +271,9 @@ public class Database {
                 LocalTime time = rS.getTime("STARTTIME").toLocalTime();
                 String timeString = time + " - " + time.plusHours(duration);
                 String room = rS.getString("ROOMNUMBER");
+                String ID = rS.getString("ScheduleID");
 
+                classes.put("ID", ID);
                 classes.put("Course", course);
                 classes.put("Day", day);
                 classes.put("Duration", Integer.toString(duration));
@@ -549,6 +551,39 @@ public class Database {
         }
     }
 
+
+    public void  resetOfficeTime(HashMap<String, String> office) {
+        try {
+            pSt = conn.prepareStatement("DELETE FROM BOOKEDMEETINGS WHERE OFFICEID = ? ");
+            pSt.setString(1, office.get("ID"));
+            pSt.executeUpdate();
+
+            pSt = conn.prepareStatement("DELETE  FROM OFFICEHOURS WHERE OFFICEID = ?");
+            pSt.setString(1, office.get("ID"));
+            pSt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void  ResetClassHour(HashMap<String, String> office) {
+        try {
+//            pSt = conn.prepareStatement("DELETE FROM BOOKEDMEETINGS WHERE OFFICEID = ? ");
+//            pSt.setString(1, office.get("ID"));
+//            pSt.executeUpdate();
+
+            pSt = conn.prepareStatement("DELETE  FROM Schedule WHERE ScheduleID = ?");
+            pSt.setString(1, office.get("ID"));
+            pSt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public void updateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) throws SQLException {
 
         for (HashMap<String, String> teachers : TeacherInfo) {
@@ -674,6 +709,16 @@ public class Database {
 
     public void removeTeacher(String userID) {
         try {
+            pSt = conn.prepareStatement("SELECT OfficeID FROM OFFICEHOURS WHERE TEACHERID = ? ");
+            pSt.setString(1, userID);
+            rS = pSt.executeQuery();
+
+            while (rS.next()) {
+                pSt = conn.prepareStatement("DELETE FROM  BookedMeetings WHERE OfficeID = ? ");
+                pSt.setString(1, rS.getString("OfficeID"));
+                pSt.executeUpdate();
+            }
+
             pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS WHERE TEACHERID = ? ");
             pSt.setString(1, userID);
             pSt.executeUpdate();
@@ -693,6 +738,9 @@ public class Database {
 
     public void removeStudent(String userID) {
         try {
+            pSt = conn.prepareStatement("DELETE FROM  BookedMeetings WHERE StudentID = ? ");
+            pSt.setString(1, userID);
+            pSt.executeUpdate();
 
             pSt = conn.prepareStatement("DELETE FROM  StudentCourses WHERE StudentID = ? ");
             pSt.setString(1, userID);
@@ -709,6 +757,9 @@ public class Database {
 
     public void removeAllstudents() {
         try {
+
+            pSt = conn.prepareStatement("DELETE FROM BookedMeetings ");
+            pSt.executeUpdate();
             pSt = conn.prepareStatement("DELETE FROM  StudentCourses");
             pSt.executeUpdate();
             pSt = conn.prepareStatement("DELETE FROM Student");
@@ -720,6 +771,10 @@ public class Database {
 
     public void removeAllTeachers() {
         try {
+
+            pSt = conn.prepareStatement("DELETE FROM BookedMeetings ");
+            pSt.executeUpdate();
+
             pSt = conn.prepareStatement("DELETE FROM OFFICEHOURS ");
             pSt.executeUpdate();
 

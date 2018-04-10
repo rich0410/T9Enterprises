@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,27 +12,25 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<BorderPane prefHeight="600.0" prefWidth="800.0" fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="UI.AppointmentController">
+
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.AppointmentController">
 
     <center>
         <VBox prefHeight="500.0" prefWidth="800.0" styleClass="content">
             <children>
 
-                <Label styleClass="heading" text="Your TimeSlots"/>
-                <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                            minWidth="-Infinity" prefHeight="150" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
+                <Label alignment="CENTER" prefHeight="42.0" prefWidth="794.0" styleClass="heading" text="Your TimeSlots" />
+                <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150" prefWidth="800" xmlns:fx="http://javafx.com/fxml">
                     <children>
-                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="250.0" prefWidth="800.0">
+                        <TableView fx:id="tableView" layoutX="-4.0" prefHeight="487.0" prefWidth="800.0">
                             <columns>
-                                <TableColumn fx:id="Teacher" prefWidth="117.0" text="Professor"/>
-                                <TableColumn fx:id="StartTime" prefWidth="117.0" text="Start Time"/>
-                                <TableColumn fx:id="EndTime" prefWidth="134.0" text="End Time"/>
-                                <TableColumn fx:id="Email" prefWidth="135.0" text="Email"/>
-                                <TableColumn fx:id="RoomNumber" prefWidth="135.0" text="Room Number"/>
-                                <TableColumn fx:id="Options" prefWidth="135.0" text="Options"/>
+                                <TableColumn fx:id="Teacher" prefWidth="170.0" text="Professor" />
+                                <TableColumn fx:id="StartTime" prefWidth="120.0" text="Start Time" />
+                                <TableColumn fx:id="EndTime" prefWidth="120.0" text="End Time" />
+                                <TableColumn fx:id="Email" prefWidth="150.0" text="Email" />
+                                <TableColumn fx:id="RoomNumber" prefWidth="120.0" text="Room Number" />
+                                <TableColumn fx:id="Options" prefWidth="120.0" text="Options" />
                             </columns>
                         </TableView>
                     </children>
@@ -42,12 +45,12 @@
     <bottom>
         <HBox styleClass="footer">
             <children>
-                <Label text="Copyright T9-Enterprises"/>
+                <Label text="Copyright T9-Enterprises" />
             </children>
         </HBox>
     </bottom>
 
     <stylesheets>
-        <URL value="@toolbar-demo.css"/>
+        <URL value="@toolbar-demo.css" />
     </stylesheets>
 </BorderPane>

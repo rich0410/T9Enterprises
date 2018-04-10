@@ -33,7 +33,7 @@
     <Label text="User id: " GridPane.columnIndex="0" GridPane.rowIndex="2">
     </Label>
     <!-- Add Email Text Field -->
-    <TextField fx:id="emailField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="emailField" prefHeight="40"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
 
 

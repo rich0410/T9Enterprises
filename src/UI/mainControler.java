@@ -3,6 +3,7 @@ package UI;
 import com.jfoenix.controls.JFXDecorator;
 import javafx.animation.FadeTransition;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -23,21 +26,23 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static javafx.application.Application.launch;
+
 
 public class mainControler implements Initializable {
 
     @FXML
-    private  StackPane root;
+    private StackPane root;
 
     public static StackPane rootp;
 
-    public  File file;
+    public File file;
 
-    public  String name;
+    public String name;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        rootp =root;
+        rootp = root;
         RegistrationFormController.isSplashLoaded = false;
         if (!RegistrationFormController.isSplashLoaded) {
             loadSplashScreen();
@@ -83,10 +88,10 @@ public class mainControler implements Initializable {
         }
     }
 
-    public void LogOut(Event event){
+    public void LogOut(Event event) {
         try {
 
-            Parent root= FXMLLoader.load(getClass().getResource("../Layout/main.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../Layout/main.fxml"));
             Stage stage = new Stage();
             JFXDecorator decorator = new JFXDecorator(stage, root);
             decorator.setCustomMaximize(true);
@@ -103,7 +108,7 @@ public class mainControler implements Initializable {
     }
 
 
-    public void FileChooser(){
+    public void FileChooser() {
         try {
             Stage stage = new Stage();
             stage.setTitle("File Chooser");
@@ -122,7 +127,7 @@ public class mainControler implements Initializable {
     }
 
     private void set_file(File file) {
-      this.file = file;
+        this.file = file;
     }
 
     public File get_file() {
@@ -133,7 +138,13 @@ public class mainControler implements Initializable {
         this.name = name;
     }
 
-    public  String get_name() {
+    public String get_name() {
         return name;
     }
+
+
+//    public static void getkeyboard(MouseEvent e) {
+//        e.launch("osk.exe");
+//
+//    }
 }

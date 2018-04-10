@@ -3,7 +3,10 @@ package User;
 import Email_Setup.sender;
 
 /**
- * This class is used to send email to the professor and students about the appointment
+ * This class is using the sender class to send email using threading
+ * Two emails are sent one for confirmation and other is for cancellation
+ * @author Prabdeep Singh Pannu
+ *
  * */
 public class Email {
 
@@ -17,12 +20,12 @@ public class Email {
             public void run() {
                 try {
                     sender sender = new sender(
-                            "homemanagement001@gmail.com",
-                            "8437839094");
+                            "",           // Insert the data email address password
+                            "");
 
                     sender.sendMail("Confirmation email" , "An appointment has been booked"
                                       ,
-                            "homemanagement001@gmail.com", email);
+                            "", email);
 
                 } catch (Exception e) {
                   System.out.print(e.getMessage());
@@ -38,12 +41,12 @@ public class Email {
             public void run() {
                 try {
                     sender sender = new sender(
-                            "homemanagement001@gmail.com",
-                            "8437839094");
+                            "",
+                            "");      // Insert the data email address password
 
                     sender.sendMail("Cancellation email" , "An appointment has been Cancelled"
                             ,
-                            "homemanagement001@gmail.com", email);
+                            "", email);
 
                 } catch (Exception e) {
                     System.out.print(e.getMessage());

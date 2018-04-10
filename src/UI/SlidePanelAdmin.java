@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +28,9 @@ public class SlidePanelAdmin implements Initializable {
 
     @FXML
     private JFXButton b4;
+
+    @FXML
+    private JFXButton b5;
 
 
     @FXML
@@ -65,6 +69,12 @@ public class SlidePanelAdmin implements Initializable {
                 AnchorPane Content4 = FXMLLoader.load(getClass().getResource(("../Layout/Upload_Student_Schedule.fxml")));
                 Welcome.fragementP.getChildren().setAll(Content4);
 
+                break;
+
+            case "Room Finder":
+                Welcome.drawerP.close();
+                BorderPane Content5 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
+                Welcome.fragementP.getChildren().setAll(Content5);
                 break;
 
             case "Log Out":

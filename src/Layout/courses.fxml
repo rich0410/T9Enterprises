@@ -6,8 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-    <BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-                fx:controller="UI.Courses">
+<?import java.net.URL?>
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UI.Courses">
         <center>
             <VBox prefHeight="500.0" prefWidth="800.0" styleClass="content">
                 <children>

@@ -68,6 +68,9 @@ public class BookAnAppointment implements Initializable {
         starttimeP = starttime;
         endtimeP = endtime;
         roomP = room;
+        professorP.setDisable(true);
+        dateP.setDisable(true);
+        roomP.setDisable(true);
 
     }
 

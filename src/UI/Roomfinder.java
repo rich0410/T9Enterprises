@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -17,20 +18,21 @@ public class Roomfinder implements Initializable {
 
 
     @FXML
-    private BorderPane border;
+    private StackPane stackPane;
+
+    private static StackPane  s;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        s = stackPane;
         WebPage currentPage = new WebPage();
         WebView webView = currentPage.getWebView();
         WebEngine webEngine = currentPage.createWebEngine();
-        webEngine.load("https://lyceum.algonquincollege.com/roomfinder/");
-        border.setCenter(webView);
-
-
+        webEngine.load("http://lyceum.algonquincollege.com/roomfinder/");
+        BorderPane b = new BorderPane();
+        b.setCenter(webView);
+        s.getChildren().add(b);
     }
 
 
@@ -38,7 +40,7 @@ public class Roomfinder implements Initializable {
         WebPage currentPage = new WebPage();
         WebView webView = currentPage.getWebView();
         WebEngine webEngine = currentPage.createWebEngine();
-        webEngine.load("https://lyceum.algonquincollege.com/roomfinder/");
+        webEngine.load("http://lyceum.algonquincollege.com/roomfinder/");
         BorderPane b = new BorderPane();
         b.setCenter(webView);
         Stage s = new Stage();

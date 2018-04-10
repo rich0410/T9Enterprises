@@ -173,6 +173,15 @@ public class Controller {
         sendEmail_Cancel(student.getEmailAddress(), office);		//This method call will need revision.
     }
 
+    public void ReveOfficeHour(HashMap<String, String> office){
+        dB.resetOfficeTime(office);
+
+    }
+
+    public void ResetClassHour(HashMap<String, String> office){
+        dB.ResetClassHour(office);
+
+    }
 
     /**
      * Returns an ArrayList of Strings containing the details for each meeting.
