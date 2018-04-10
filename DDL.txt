@@ -1,3 +1,6 @@
+-- Written by John Ferguson
+-- Modified by : Pannu Prabdeep Singh, Justin Richardson, Bin Zhou
+
 DROP DATABASE IF EXISTS Algonquin_Kiosk;
 
 CREATE DATABASE Algonquin_Kiosk;
@@ -94,3 +97,6 @@ CREATE TABLE BookedMeetings(
 	CONSTRAINT	studentmeeting_fk FOREIGN KEY(StudentID) REFERENCES Student(StudentID),
 	CONSTRAINT	officemeeting_fk FOREIGN KEY(OfficeID) REFERENCES OfficeHours(OfficeID)
 );
+
+
+
