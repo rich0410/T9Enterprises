@@ -20,3 +20,12 @@ That will run the scripts to set up the database. The name of the Database is Al
 Proceeding setting up the database, you can begin to run the executable jar file included with the source code to create the kiosk program,
 as it opens to the login screen and can be put into full screen. The login will use either the Student, Professor, or Administrator 
 profiles to use the software functionality.
+
+#Screen Shots 
+![Alt text]( https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%201.PNG?raw=true "SreenShot 1")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture2.PNG?raw=true "SreenShot 2")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%203.PNG?raw=true "SreenShot 3")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%204.PNG?raw=true "SreenShot 4")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%205.PNG?raw=true "SreenShot 5")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture6.PNG?raw=true "SreenShot 6")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture7.PNG?raw=true "SreenShot 7")
