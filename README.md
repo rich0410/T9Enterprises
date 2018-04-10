@@ -23,9 +23,9 @@ profiles to use the software functionality.
 
 #Screen Shots 
 ![Alt text]( https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%201.PNG?raw=true "SreenShot 1")
-![Alt text](/ScreenShots/Capture2.png?raw=true "SreenShot 2")
-![Alt text](/ScreenShots/Capture 3.png?raw=true "SreenShot 3")
-![Alt text](/ScreenShots/Capture 4.png?raw=true "SreenShot 4")
-![Alt text](/ScreenShots/Capture 5.png?raw=true "SreenShot 5")
-![Alt text](/ScreenShots/Capture6.png?raw=true "SreenShot 6")
-![Alt text](/ScreenShots/Capture7.png?raw=true "SreenShot 7")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture2.PNG?raw=true "SreenShot 2")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%203.PNG?raw=true "SreenShot 3")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%204.PNG?raw=true "SreenShot 4")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%205.PNG?raw=true "SreenShot 5")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture6.PNG?raw=true "SreenShot 6")
+![Alt text](https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture7.PNG?raw=true "SreenShot 7")
