@@ -1,3 +1,5 @@
+-- Written by John Ferguson
+-- Modified by : Pannu Prabdeep Singh, Justin Richardson, Bin Zhou
 INSERT INTO Teacher(TeacherID, FirstName, LastName, EmailAddress) VALUES
 ('bigg2212', 'Roland', 'Biggs', 'bigg2212@algonquincollege.com'),
 ('jeff2364', 'Jack', 'Jefferson', 'jeff2364@algonquincollege.com'),

@@ -1,3 +1,5 @@
+-- Written by John Ferguson
+-- Modified by : Pannu Prabdeep Singh, Justin Richardson, Bin Zhou
 DROP DATABASE IF EXISTS Algonquin_Kiosk;
 
 CREATE DATABASE Algonquin_Kiosk;
