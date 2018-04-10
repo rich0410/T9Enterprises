@@ -22,7 +22,7 @@ as it opens to the login screen and can be put into full screen. The login will 
 profiles to use the software functionality.
 
 #Screen Shots 
-![Alt text]( /ScreenShots/Capture 1.png?raw=true "SreenShot 1")
+![Alt text]( https://github.com/rich0410/T9Enterprises/blob/lastt/ScreenShots/Capture%201.PNG?raw=true "SreenShot 1")
 ![Alt text](/ScreenShots/Capture2.png?raw=true "SreenShot 2")
 ![Alt text](/ScreenShots/Capture 3.png?raw=true "SreenShot 3")
 ![Alt text](/ScreenShots/Capture 4.png?raw=true "SreenShot 4")
