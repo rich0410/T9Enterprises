@@ -26,6 +26,11 @@ import java.util.*;
 
 import static java.util.logging.Level.WARNING;
 
+/***
+ *This class is used to upload the student data to the system using csv
+ *This also shows the student tables which includes all the students
+ * @author Prabdeep Singh Pannu
+ */
 
 public class Upload_Students implements Initializable {
 

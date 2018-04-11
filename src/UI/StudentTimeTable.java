@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+/**
+ * This is the controller class used to get the students timetable
+ * @author Prabdeep Singh Pannu
+ * */
 
 public class StudentTimeTable implements Initializable {
     @FXML

@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * This class is used to read the csv file and saving the data to the arrayulist
+ *
+ * @author Justin
+ */
 public class ScheduleReader {
 
     private Scanner schedScanner = null;
@@ -96,8 +101,6 @@ public class ScheduleReader {
 
         return schedule;
     }
-
-
 
 
     public ArrayList<HashMap<String, String>> readFile_StudentSchadule(File file) {

@@ -18,7 +18,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-
+/**
+ * This class is a controller for Appointment table to send data on the frond end
+ * @author - Prabdeep Singh Pannu
+ * */
 public class AppointmentController implements Initializable {
 
     @FXML

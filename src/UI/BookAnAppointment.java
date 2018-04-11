@@ -25,7 +25,11 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * This class is a controller for the booking appointment
+ * sending data to the front end
+ * @author Prabdeep Singh Pannu , Bin
+ * */
 
 public class BookAnAppointment implements Initializable {
     @FXML

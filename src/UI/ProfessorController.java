@@ -24,7 +24,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+/**
+ * This is the controller which is used to get all the professors and set them in the table
+ * @team T9-Enterprise
+ * @author Prabdeep Singh Pannu
+ * */
 
 public class ProfessorController implements Initializable {
 

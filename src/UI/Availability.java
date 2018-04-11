@@ -23,6 +23,10 @@ import java.net.URL;
 
 import java.time.LocalDate;
 import java.util.*;
+/**
+ * This class is a controller class which checks the acclivity of professors.
+ * @author Prabdeep Singh Pannu
+ * */
 
 public class Availability implements Initializable {
 

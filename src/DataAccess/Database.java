@@ -16,6 +16,15 @@ import Domain.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * This class is used to handle all the database operation
+ * fatching data from the database
+ * Inserting data to the database
+ *
+ * @author Justin
+ * @modifiedby Prabdeep Singh Pannu, John Ferguson
+ */
+
 public class Database {
 
     private Connection conn = null;
@@ -552,7 +561,7 @@ public class Database {
     }
 
 
-    public void  resetOfficeTime(HashMap<String, String> office) {
+    public void resetOfficeTime(HashMap<String, String> office) {
         try {
             pSt = conn.prepareStatement("DELETE FROM BOOKEDMEETINGS WHERE OFFICEID = ? ");
             pSt.setString(1, office.get("ID"));
@@ -567,7 +576,7 @@ public class Database {
         }
     }
 
-    public void  ResetClassHour(HashMap<String, String> office) {
+    public void ResetClassHour(HashMap<String, String> office) {
         try {
 //            pSt = conn.prepareStatement("DELETE FROM BOOKEDMEETINGS WHERE OFFICEID = ? ");
 //            pSt.setString(1, office.get("ID"));
@@ -581,7 +590,6 @@ public class Database {
             e.printStackTrace();
         }
     }
-
 
 
     public void updateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) throws SQLException {

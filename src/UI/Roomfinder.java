@@ -12,7 +12,11 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**
+ * This the controller class which is resposible to get the room finder on the front end
+ * Web-view and web-engine java components are used to get the http page
+ * @author Prabdeep Singh Pannu, Bin
+ * */
 
 public class Roomfinder implements Initializable {
 

@@ -18,6 +18,11 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This is the welcome page for all the users and all the fragments replace this class using FXML loader
+ * @author Prabdeep Singh pannu
+ * */
+
 public class Welcome implements Initializable {
 
 

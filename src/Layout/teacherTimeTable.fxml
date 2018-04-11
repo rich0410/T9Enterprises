@@ -9,44 +9,50 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.TeacherTimeTable">
+<!--This is xml file is used to load the teachers Time table
+@author Prabdeep Singh pannu, Dii-->
 
-        <center>
-            <VBox prefHeight="400.0" prefWidth="800.0" styleClass="content">
-                <children>
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UI.TeacherTimeTable">
 
-                    <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml">
-                        <children>
-                            <TableView fx:id="tableView" layoutX="9.0" layoutY="86.0" prefHeight="404.0" prefWidth="782.0">
-                                <columns>
-                                    <TableColumn fx:id="CourseCodeID" prefWidth="268.99999237060547" text="CourseCodeID" />
-                                    <TableColumn fx:id="DayOfTheWeek" prefWidth="140.0" text="DayOfTheWeek" />
-                                    <TableColumn fx:id="StartTime" prefWidth="107.0" text="StartTime" />
-                                    <TableColumn fx:id="Duration" prefWidth="98.0" text="Duration" />
-                                    <TableColumn fx:id="RoomNumber" prefWidth="73.0" text="Room" />
-                                </columns>
-                            </TableView>
-                          <Label alignment="CENTER" layoutX="6.0" layoutY="44.0" prefHeight="35.0" prefWidth="789.0" styleClass="heading" text="Time Table" />
-                        </children>
-                    </AnchorPane>
+    <center>
+        <VBox prefHeight="400.0" prefWidth="800.0" styleClass="content">
+            <children>
 
-                </children>
+                <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml">
+                    <children>
+                        <TableView fx:id="tableView" layoutX="9.0" layoutY="86.0" prefHeight="404.0" prefWidth="782.0">
+                            <columns>
+                                <TableColumn fx:id="CourseCodeID" prefWidth="268.99999237060547" text="CourseCodeID"/>
+                                <TableColumn fx:id="DayOfTheWeek" prefWidth="140.0" text="DayOfTheWeek"/>
+                                <TableColumn fx:id="StartTime" prefWidth="107.0" text="StartTime"/>
+                                <TableColumn fx:id="Duration" prefWidth="98.0" text="Duration"/>
+                                <TableColumn fx:id="RoomNumber" prefWidth="73.0" text="Room"/>
+                            </columns>
+                        </TableView>
+                        <Label alignment="CENTER" layoutX="6.0" layoutY="44.0" prefHeight="35.0" prefWidth="789.0"
+                               styleClass="heading" text="Time Table"/>
+                    </children>
+                </AnchorPane>
+
+            </children>
 
 
-            </VBox>
+        </VBox>
 
-        </center>
+    </center>
 
-        <bottom>
-            <HBox styleClass="footer">
-                <children>
-                    <Label text="Copyright T9-Enterprises" />
-                </children>
-            </HBox>
-        </bottom>
+    <bottom>
+        <HBox styleClass="footer">
+            <children>
+                <Label text="Copyright T9-Enterprises"/>
+            </children>
+        </HBox>
+    </bottom>
 
-        <stylesheets>
-            <URL value="@toolbar-demo.css" />
-        </stylesheets>
+    <stylesheets>
+        <URL value="@toolbar-demo.css"/>
+    </stylesheets>
 
-    </BorderPane>
+</BorderPane>

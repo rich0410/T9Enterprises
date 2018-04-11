@@ -5,9 +5,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/***
+/**
  * This class is used for User Login
- * Under progress
+ * Under progress because of the College Url and security reasons
+ * @author Justin
  */
 
 public class UserLogin {

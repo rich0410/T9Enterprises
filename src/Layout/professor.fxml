@@ -10,6 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
+
+<!--This xml file is used to get all the professors from the database-->
+<!--@author Prabdeep Singh Pannu-->
+
 <BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="UI.ProfessorController">
     <center>
@@ -32,7 +36,8 @@
 
             </children>
 
-            <Button contentDisplay="LEFT" defaultButton="true" mnemonicParsing="false" onAction="#handleUpdateAction" prefHeight="43.0" prefWidth="101.0" text="Update" />
+            <Button contentDisplay="LEFT" defaultButton="true" mnemonicParsing="false" onAction="#handleUpdateAction"
+                    prefHeight="43.0" prefWidth="101.0" text="Update"/>
 
         </VBox>
 

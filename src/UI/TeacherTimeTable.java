@@ -17,7 +17,10 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-
+/**
+ * This class is used to load teacher time table from the csv file
+ * @author Prabdeep Singh Pannu, Bin
+ * */
 public class TeacherTimeTable implements Initializable {
 
     @FXML
