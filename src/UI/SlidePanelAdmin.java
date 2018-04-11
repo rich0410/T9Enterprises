@@ -14,6 +14,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This class is used to set the slide panel for the admin user role
+ * @author Prabdeep Singh Pannu
+ * */
+
 public class SlidePanelAdmin implements Initializable {
 
     @FXML
@@ -73,7 +78,7 @@ public class SlidePanelAdmin implements Initializable {
 
             case "Room Finder":
                 Welcome.drawerP.close();
-                BorderPane Content5 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
+                StackPane Content5 = FXMLLoader.load(getClass().getResource(("../Layout/Roomfinder.fxml")));
                 Welcome.fragementP.getChildren().setAll(Content5);
                 break;
 

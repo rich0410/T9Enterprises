@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import com.jfoenix.controls.JFXButton?>
+
+
+<!--This is the slide Panel for the Admin
+Material design is used by Jfoenix lib
+refrence -https://github.com/jfoenixadmin/JFoenix
+@author Prabdeep Singh pannu-->
+
 <VBox prefHeight="800.0" prefWidth="178.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="UI.SlidePanelAdmin">
 
@@ -17,6 +18,7 @@
         <ImageView fitHeight="200" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@img/algon.png"/>
+                <!--Image taken from algon.png reference - www.algonquincollege.com-->
             </image>
         </ImageView>
         <JFXButton fx:id="b2" buttonType="RAISED" onAction="#changeUI" layoutX="10.0" layoutY="123.0" prefHeight="74.0"

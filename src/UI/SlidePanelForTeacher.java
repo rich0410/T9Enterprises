@@ -19,7 +19,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * This is a controller for the Slide Panel for the teacher to get other fragments
+ * @author Prabdeep Singh Pannu, Bin
+ * */
 public class SlidePanelForTeacher implements Initializable{
 
     @FXML

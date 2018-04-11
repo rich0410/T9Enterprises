@@ -20,7 +20,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
+/**
+ * This is the controller for the side panel for the student
+ * @author Prabdeep Singh Pannu
+ * */
 
 public class SidePanelContentController implements Initializable {
 

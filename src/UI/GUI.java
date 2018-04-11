@@ -15,6 +15,7 @@ import static com.sun.org.apache.xerces.internal.utils.SecuritySupport.getResour
  * This class helps to manage the UI part for the application
  * This extends Application class
  * some methods of the extended class is modified
+ * @author Prabdeep Singh Pannu
  */
 public class GUI extends Application {
 

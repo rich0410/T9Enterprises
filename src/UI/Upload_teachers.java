@@ -20,6 +20,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * This class is used to upload teachers data to the database using csv files
+ * @author Prabdeep Singh pannu , Bin
+ * */
 public class Upload_teachers implements Initializable {
 
     @FXML

@@ -1,6 +1,8 @@
 package Domain;
 
-
+/**
+ * The main launcher class
+ */
 public class Launcher {
 
     static Controller ctl;

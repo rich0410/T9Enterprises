@@ -5,6 +5,13 @@ import javafx.scene.control.Button;
 import java.sql.Time;
 import java.time.LocalTime;
 
+/**
+ * This is the timeslot model class which is used to implement operation on TimeSlot Object
+ * getters and setter are used in different classes
+ *
+ * @author Justin
+ */
+
 public class TimeSlot {
     private LocalTime startTime;
     private String room_number;
@@ -17,81 +24,87 @@ public class TimeSlot {
     private String id;
     private Button button;
 
-    public TimeSlot(){}
+    public TimeSlot() {
+    }
 
-    public LocalTime getStartTime(){
+    public LocalTime getStartTime() {
         return startTime;
     }
-    public int getDuration(){
+
+    public int getDuration() {
         return duration;
     }
 
-    public String getRoom_number(){
+    public String getRoom_number() {
         return room_number;
     }
 
-    public  String getCourse(){
-        return  course;
+    public String getCourse() {
+        return course;
     }
 
-    public String getDay(){
+    public String getDay() {
         return day;
     }
-    public boolean isCancelled(){
+
+    public boolean isCancelled() {
         return cancelled;
     }
 
-    public String getTime(){
+    public String getTime() {
         return Time;
     }
 
-    public void setStartTime(String startTime){
+    public void setStartTime(String startTime) {
         this.startTime = LocalTime.parse(startTime);
     }
 
-    public void setTime(String startTime){
+    public void setTime(String startTime) {
         this.Time = startTime;
     }
 
 
-    public void setDay(String day){
+    public void setDay(String day) {
         this.day = day;
     }
 
-    public  void setRoom_number(String room_number){
+    public void setRoom_number(String room_number) {
         this.room_number = room_number;
     }
 
-    public void setDuration(int duration){
+    public void setDuration(int duration) {
         this.duration = duration;
     }
-    
-    public void cancel(){
-    	cancelled = true;
+
+    public void cancel() {
+        cancelled = true;
     }
 
-    public  void setCourse(String course){
+    public void setCourse(String course) {
         this.course = course;
     }
 
-    public void setAvalibility(String ava){
+    public void setAvalibility(String ava) {
         this.avalib = ava;
     }
-    public String getAvalibility(){
+
+    public String getAvalibility() {
         return avalib;
     }
 
-    public String getid(){
+    public String getid() {
         return id;
     }
-    public void setId(String id){
+
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Button getButton(){
+    public Button getButton() {
         return button;
     }
-    public void setButton(Button button){
+
+    public void setButton(Button button) {
         this.button = button;
     }
 }

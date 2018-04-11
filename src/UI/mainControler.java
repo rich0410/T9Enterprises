@@ -27,7 +27,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static javafx.application.Application.launch;
-
+/**
+ * This is the main controller class on which all the layouts are set up
+ * This works as a parent layout
+ * @author Prabdeep Singh Pannu, Dii
+ * */
 
 public class mainControler implements Initializable {
 
@@ -49,6 +53,9 @@ public class mainControler implements Initializable {
         }
     }
 
+    /**
+     * This includes the s[lash screen of the project
+     * */
     private void loadSplashScreen() {
         try {
 

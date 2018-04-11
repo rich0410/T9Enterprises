@@ -22,6 +22,11 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * This the controller class for uploading the timetable for the teacher using csv file
+ * @author Prabdeep Singh pannu
+ * */
+
 public class UploadTimetable implements Initializable {
 
 

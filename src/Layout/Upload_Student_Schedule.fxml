@@ -10,6 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+<!--This is xml file is used to load the students schedule
+@author Prabdeep Singh pannu, Dii-->
+
 <AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UploadStudentSchedule">
 

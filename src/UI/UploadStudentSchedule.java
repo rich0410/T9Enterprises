@@ -13,7 +13,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-
+/**
+ * This class is used to upload the Student schedule to the system
+ * @author Prabdeep Singh pannu
+ * */
 public class UploadStudentSchedule implements Initializable {
 
     @FXML

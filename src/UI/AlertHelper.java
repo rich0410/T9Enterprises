@@ -6,7 +6,10 @@ import javafx.stage.Window;
 
 import java.awt.event.ActionEvent;
 import java.util.Optional;
-
+/**
+ * This class is used to set alerts like warning to the user about the program
+ * @author Prabdeep Singh Pannu, Bin
+ * */
 public class AlertHelper {
 
     public static Alert showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

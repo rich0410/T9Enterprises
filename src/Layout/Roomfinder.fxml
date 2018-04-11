@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.BorderPane?>
-
+<!--This is the layout on which the Rome finder is loaded
+@aothor Prabdeep Singh pannu, Dii-->
 
 <?import javafx.scene.layout.StackPane?>
 <StackPane  fx:id="stackPane"  xmlns="http://javafx.com/javafx/8.0.121"

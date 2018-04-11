@@ -1,3 +1,6 @@
+/**This is a css file for implementing colors and design in the UI*/
+/*@author  Dii*/
+/*@modifiedby Prabdeep Singh pannu */
 
 .jfx-decorator {
     -fx-decorator-color: #4CAF50;
@@ -12,7 +15,6 @@
     -fx-border-width: 0 2 2 2;
 }
 
-
 .label {
     -fx-font-size: 12pt;
     -fx-text-fill: #1B5E20;
@@ -23,7 +25,6 @@
     -fx-base: #81C784;
     -fx-padding: 5;
 }
-
 
 .root {
     -fx-font-size: 14px;
@@ -37,11 +38,9 @@
     -fx-background-color: #008000;
 }
 
-.button{
+.button {
     -fx-background-color: #00E640;
 }
-
-
 
 .header-section Label {
     -fx-text-fill: #ffffff;
@@ -85,7 +84,9 @@
     -fx-font-weight: 700;
 }
 
-.javafx_dummy_selector {-fx-background-color: #98fb98;}
+.javafx_dummy_selector {
+    -fx-background-color: #98fb98;
+}
 
 #content {
     -fx-wrap-text: true;
@@ -100,6 +101,38 @@
 #footer-section {
     -fx-alignment: center;
     -fx-padding: 10 10 10 10;
+    -fx-border-width: 1;
+    -fx-border-color: #E8E8E8 transparent transparent transparent;
+}
+
+.root {
+    -fx-font-size: 14px;
+}
+
+.toolbar Button {
+    -fx-background-color: transparent;
+    -fx-content-display: top;
+    -fx-pref-width: 90px;
+}
+
+.content {
+    -fx-padding: 20px;
+    -fx-vgap: 10px;
+}
+
+.heading {
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+}
+
+.content Label {
+    -fx-wrap-text: true;
+    -fx-padding: 0 0 15px 0;
+}
+
+.footer {
+    -fx-padding: 15px;
+    -fx-alignment: center;
     -fx-border-width: 1;
     -fx-border-color: #E8E8E8 transparent transparent transparent;
 }

@@ -18,6 +18,11 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * This is the Controller class which handles all the operation and used in different class
+ *
+ * @author Justin
+ */
 public class Controller {
 
     private static final Controller ctl = new Controller();
@@ -63,16 +68,16 @@ public class Controller {
     public boolean authenticateUser(String userID, String password) {
         boolean verify = false;
         UserLogin uL = new UserLogin();
-       // if (uL.authenticate(userID, password)) {     // Currently user Url Verification functionality is not working
-            if (loadUser(userID) != null && password.equals("Password123")) {
-                set_user(loadUser(userID));
-                verify = true;
-                this.userID = userID;
-            }//Store the userID for future operations.
-            else {
-                verify = false;
-            }
-       // }
+        // if (uL.authenticate(userID, password)) {     // Currently user Url Verification functionality is not working
+        if (loadUser(userID) != null && password.equals("Password123")) {
+            set_user(loadUser(userID));
+            verify = true;
+            this.userID = userID;
+        }//Store the userID for future operations.
+        else {
+            verify = false;
+        }
+        // }
         return verify;
     }
 
@@ -170,15 +175,15 @@ public class Controller {
     public void ResetMeeting(HashMap<String, String> office) {
 
         dB.resetMeetings(office);
-        sendEmail_Cancel(student.getEmailAddress(), office);		//This method call will need revision.
+        sendEmail_Cancel(student.getEmailAddress(), office);        //This method call will need revision.
     }
 
-    public void ReveOfficeHour(HashMap<String, String> office){
+    public void ReveOfficeHour(HashMap<String, String> office) {
         dB.resetOfficeTime(office);
 
     }
 
-    public void ResetClassHour(HashMap<String, String> office){
+    public void ResetClassHour(HashMap<String, String> office) {
         dB.ResetClassHour(office);
 
     }
@@ -209,7 +214,7 @@ public class Controller {
         return dB.getStudentClasses(student.getUserID());
     }
 
-    public void setUpdatedData(ArrayList<HashMap<String, String>> classInfo) throws SQLException{
+    public void setUpdatedData(ArrayList<HashMap<String, String>> classInfo) throws SQLException {
         dB.updateTeacherClasses(teacher.getUserID(), classInfo);
     }
 
@@ -253,11 +258,11 @@ public class Controller {
         dB.removeAllTeachers();
     }
 
-    public void UpdateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) throws SQLException{
+    public void UpdateTeachers(ArrayList<HashMap<String, String>> TeacherInfo) throws SQLException {
         dB.updateTeachers(TeacherInfo);
     }
 
-    public void UpdateStudents(ArrayList<HashMap<String, String>> StudentInfo) throws SQLException{
+    public void UpdateStudents(ArrayList<HashMap<String, String>> StudentInfo) throws SQLException {
         dB.updateStudents(StudentInfo);
     }
 
@@ -269,7 +274,7 @@ public class Controller {
         Email e = new Email();
         e.email_Thread(emailAddress);
         e.email_Thread(office.get("Email"));
-        System.out.println(" An Email has been sent to"+office.get("Email"));
+        System.out.println(" An Email has been sent to" + office.get("Email"));
 
     }
 
@@ -277,7 +282,7 @@ public class Controller {
         Email e = new Email();
         e.email_Thread(emailAddress);
         e.email_Thread_Cancel(office.get("Email"));
-        System.out.println("An Email has been sent to"+office.get("Email"));
+        System.out.println("An Email has been sent to" + office.get("Email"));
 
     }
 

@@ -20,6 +20,7 @@ import java.util.Properties;
  * This is the main sender class which is used to send emil to clients using SMTP server
  * This class is using javax.mail library
  * reference : https://javaee.github.io/javamail/
+ *
  * @author Prabdeep Singh Pannu
  */
 
@@ -28,7 +29,6 @@ public class sender extends javax.mail.Authenticator {
     private String u;
     private String p;
     private Session s;
-
 
     public sender(String u, String p) {
         this.u = u;
@@ -48,12 +48,6 @@ public class sender extends javax.mail.Authenticator {
         s = Session.getDefaultInstance(prop, this);
     }
 
-
-    protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication(u, p);
-
-
-    }
 
     public synchronized void sendMail(String subject, String body,
                                       String sender, String recipients) throws Exception {
@@ -99,7 +93,7 @@ public class sender extends javax.mail.Authenticator {
 
 
         public OutputStream getOutputStream() throws IOException {
-            throw new IOException("Not Supported");
+            return null;
         }
     }
 
